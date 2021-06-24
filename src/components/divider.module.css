@@ -1,9 +1,9 @@
 :root {
-  --divider-color: hsl(210, 14%, 83%);
+  --divider-color: var(--oc-gray-1);
 }
 
 .divider {
-  background-color: hsl(210, 14%, 83%);
+  background-color: var(--oc-gray-1);
 }
 
 .divider.level-3 {

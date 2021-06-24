@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 
+import 'open-color/open-color.css';
 import styles from './App.module.css';
 
 import { View, Text, Button, Spacer, Divider, List, Heading } from './components';
@@ -38,18 +39,11 @@ const Window = ({ noPadding, style, children, onWindowFocus, onWindowBlur, ...pr
   };
 
   return (
-    <View
-      ref={windowRef}
-      backgroundColor="white"
-      boxShadow
-      borderRadius
-      style={windowStyle}
-      {...props}
-    >
-      <View alignItems="center" padding="medium" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+    <View ref={windowRef} background="white" boxShadow borderRadius style={windowStyle} {...props}>
+      <View alignItems="center" padding="medium" background="gray-1" topBorderRadius onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
         <Text fontWeight="bold">Title</Text>
       </View>
-      <Divider size="none" />
+      {/* <Divider size="none" /> */}
       <View padding={!noPadding && 'medium'}>
         {children}
       </View>
@@ -62,20 +56,20 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
     <View>
       <View horizontal>
         <View justifyContent="center" alignItems="center">
-          <Spacer backgroundColor="gray-1" />
+          <Spacer background="gray-1" />
           <Text>TEXT TEXT</Text>
-          <Spacer backgroundColor="gray-1" />
+          <Spacer background="gray-1" />
           <Text>TEXT TEXT TEXT</Text>
-          <Spacer backgroundColor="gray-1" />
+          <Spacer background="gray-1" />
         </View>
         <Spacer />
         <Divider />
         <Spacer />
         <View justifyContent="center" alignItems="center">
           <Text>TEXT TEXT</Text>
-          <Spacer backgroundColor="gray-1" />
+          <Spacer background="gray-1" />
           <Text>TEXT TEXT</Text>
-          <Spacer backgroundColor="gray-1" />
+          <Spacer background="gray-1" />
           <View horizontal>
             <Button title="Secondary" />
             <Spacer />
@@ -130,7 +124,13 @@ function App() {
     const Widget = calculator.default;
 
     addWindow(
-      <ExampleWindow key={3} onWindowFocus={handleWindowFocus} onWindowBlur={handleWindowBlur} />
+      <VideoPlayer src="videos/trailer.webm" />,
+      { noPadding: true, style: { left: 100, top: 50 } }
+    );
+
+    addWindow(
+      <ExampleWindow key={3} onWindowFocus={handleWindowFocus} onWindowBlur={handleWindowBlur} />,
+      { style: { left: 100, top: 400 } }
     );
 
     addWindow(
@@ -141,21 +141,17 @@ function App() {
           <Heading imageSrc="https://f4.bcbits.com/img/a3221996752_10.jpg" title="John Wick Mode" subtitle="Le Castle Vania" />
         </List>
       </View>,
-      { noPadding: true }
+      { noPadding: true, style: { left: 100, top: 650 } }
     );
 
     addWindow(
-      <Widget components={{ View, Text, Button, Spacer, Divider, List }} />
-    );
-
-    addWindow(
-      <VideoPlayer src="videos/trailer.webm" />,
-      { noPadding: true }
+      <Widget components={{ View, Text, Button, Spacer, Divider, List }} />,
+      { style: { left: 550, top: 450 } }
     );
   }, []);
 
   return (
-    <View backgroundColor="gray-1" className={styles.App} onMouseMove={handleMouseMove}>
+    <View background="gray-1" className={styles.App} onMouseMove={handleMouseMove}>
       {windowList}
     </View>
   );

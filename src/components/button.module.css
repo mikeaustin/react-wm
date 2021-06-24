@@ -1,7 +1,7 @@
 .button {
   cursor: pointer;
   background-color: transparent;
-  border: 1px solid var(--divider-color);
+  border: 1px solid var(--oc-gray-3);
   outline: none;
 }
 

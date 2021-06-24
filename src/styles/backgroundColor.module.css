@@ -1,13 +1,21 @@
 .gray-0 {
-  background: hsl(210, 17%, 98%);
+  background: var(--oc-gray-0);
 }
 
 .gray-1 {
-  background: hsl(210, 17%, 95%);
+  background: var(--oc-gray-1);
+}
+
+.gray-1-gradient {
+  background: linear-gradient(0deg, var(--oc-gray-2), var(--oc-gray-1));
+}
+
+.gray-2 {
+  background: var(--oc-gray-2);
 }
 
 .gray-3 {
-  background: hsl(210, 16%, 93%);
+  background: var(--oc-gray-3);
 }
 
 .white {

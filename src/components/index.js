@@ -8,7 +8,8 @@ import paddingStyles from '../styles/padding.module.css';
 import verticalPaddingStyles from '../styles/verticalPadding.module.css';
 import horizontalPaddingStyles from '../styles/horizontalPadding.module.css';
 import textStyles from '../styles/text.module.css';
-import borderStyles from '../styles/border.module.css';
+import borderRadiusStyles from '../styles/borderRadius.module.css';
+import topBorderRadiusStyles from '../styles/topBorderRadius.module.css';
 import boxShadowStyles from '../styles/boxShadow.module.css';
 
 import buttonStyles from './button.module.css';
@@ -21,12 +22,13 @@ const View = React.forwardRef(({
   flex,
   justifyContent,
   alignItems,
-  backgroundColor,
+  background,
   padding,
   verticalPadding,
   horizontalPadding,
   horizontal,
   borderRadius,
+  topBorderRadius,
   boxShadow,
   absolute,
   style,
@@ -41,11 +43,12 @@ const View = React.forwardRef(({
     flex && alignItemsStyles[flex],
     justifyContent && justifyContentStyles[justifyContent],
     alignItems && alignItemsStyles[alignItems],
-    backgroundColor && backgroundColorStyles[backgroundColor],
+    background && backgroundColorStyles[background],
     padding && paddingStyles[padding],
     verticalPadding && verticalPaddingStyles[verticalPadding],
     horizontalPadding && horizontalPaddingStyles[horizontalPadding],
-    borderRadius && borderStyles[borderRadius],
+    borderRadius && borderRadiusStyles[borderRadius],
+    topBorderRadius && topBorderRadiusStyles[topBorderRadius],
     boxShadow && boxShadowStyles[boxShadow],
     absolute && styles.absolute,
     className
