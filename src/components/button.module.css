@@ -1,0 +1,46 @@
+.button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid var(--oc-gray-3);
+  outline: none;
+}
+
+.button.secondary {
+  border: 1px solid hsl(210, 100%, calc(60%));
+}
+
+.button * {
+  cursor: pointer;
+}
+
+.button.primary {
+  cursor: pointer;
+  background-color: hsl(210, 100%, calc(60%));
+  border: 1px solid hsl(210, 100%, calc(60%));
+  outline: none;
+}
+
+/* .button:hover {
+  background-color: hsl(210, 100%, calc(60% + 10%));
+  border-color: hsl(210, 100%, calc(60% + 10%));
+}
+
+.button:hover * {
+  color: white;
+} */
+
+.button:active {
+  background-color: hsl(210, 100%, calc(100% - 10%));
+  border-color: hsl(210, 100%, calc(60% - 10%));
+}
+
+.button.primary:active {
+  background-color: hsl(210, 100%, calc(60% - 10%));
+  border-color: hsl(210, 100%, calc(60% - 10%));
+}
+
+x.button:focus {
+  /* border-width: 2px; */
+  /* border-color: hsl(210, 100%, calc(60% - 5%)); */
+  /* box-shadow: inset 0 0 0 1px hsl(210, 100%, calc(60% - 5%)); */
+}

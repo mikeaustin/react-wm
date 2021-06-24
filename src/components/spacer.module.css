@@ -1,0 +1,9 @@
+:global(.vertical) > .small {
+  min-height: 10px;
+  align-self: stretch;
+}
+
+:global(.horizontal) > .small {
+  min-width: 10px;
+  align-self: stretch;
+}
