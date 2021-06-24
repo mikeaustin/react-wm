@@ -1,0 +1,19 @@
+.gray-0 {
+  background: hsl(210, 17%, 98%);
+}
+
+.gray-1 {
+  background: hsl(210, 17%, 95%);
+}
+
+.gray-3 {
+  background: hsl(210, 16%, 93%);
+}
+
+.white {
+  background: hsl(0, 0%, 100%);
+}
+
+.blue {
+  background: hsl(210, 100%, 60%);
+}

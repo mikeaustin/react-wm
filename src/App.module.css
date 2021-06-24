@@ -1,0 +1,80 @@
+.App {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.View {
+  display: flex;
+  appearance: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+:global(.vertical) {
+  flex-direction: column;
+}
+
+:global(.horizontal) {
+  flex-direction: row;
+}
+
+.absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Overlay */
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(0deg, hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.0));
+  opacity: 0.0;
+  transition: 0.3s ease-in-out;
+}
+
+.visible .background {
+  opacity: 1.0;
+}
+
+/* */
+
+.playButton {
+  position: relative;
+  opacity: 0.0;
+  transition: 0.25s ease-in-out;
+}
+
+.visible .playButton {
+  opacity: 1.0;
+  transition: 0.3s 0.075s ease-in-out;
+}
+
+.controls {
+  position: relative;
+  transform: translate(0, 100%);
+  opacity: 0.0;
+  transition: 0.3s ease-in-out;
+}
+
+.visible .controls {
+  transform: none;
+  opacity: 1.0;
+}

@@ -1,0 +1,32 @@
+.small {
+  cursor: default;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+.xsmall {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.white {
+  color: white;
+}
+
+.blue {
+  color: hsl(210, 100%, 60%);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semibold {
+  font-weight: 600;
+}
