@@ -8,6 +8,7 @@ import paddingStyles from '../styles/padding.module.css';
 import verticalPaddingStyles from '../styles/verticalPadding.module.css';
 import horizontalPaddingStyles from '../styles/horizontalPadding.module.css';
 import textStyles from '../styles/text.module.css';
+import fontWeightStyles from '../styles/fontWeight.module.css';
 import borderRadiusStyles from '../styles/borderRadius.module.css';
 import topBorderRadiusStyles from '../styles/topBorderRadius.module.css';
 import boxShadowStyles from '../styles/boxShadow.module.css';
@@ -61,17 +62,22 @@ const View = React.forwardRef(({
   );
 });
 
-const Text = ({ children, fontSize, fontWeight, color }) => {
+const Text = ({ children, fontSize, fontWeight, color, ...props }) => {
   const textClassName = [
     textStyles.small,
     fontSize && textStyles[fontSize],
-    fontWeight && textStyles[fontWeight],
+    fontWeight && fontWeightStyles[fontWeight],
     color && textStyles[color]
   ].filter(className => !!className).join(' ');
+  const childrenArray = React.Children.toArray(children)[0].toString().split(/\n|\\n/);
+  const formattedText = childrenArray.length > 1 ? childrenArray.reduce((array, str, index) => [
+    ...array,
+    ...(index > 0 ? [<br />] : []), str
+  ], []) : children;
 
   return (
-    <View tag="div">
-      <span className={textClassName}>{children}</span>
+    <View tag="div" {...props}>
+      <span className={textClassName}>{formattedText}</span>
     </View>
   );
 };
@@ -82,23 +88,28 @@ const Image = ({ src, width, height, ...props }) => {
   );
 };
 
-const Button = ({ title, primary, secondary, ...props }) => {
-  const textColor = primary
+const Button = ({ title, link, primary, solid, secondary, disabled, ...props }) => {
+  const textColor = primary && solid
     ? 'white'
-    : secondary ? 'blue' : undefined;
+    : primary ? 'blue' : undefined;
 
   const buttonClassName = [
     buttonStyles.button,
+    link && buttonStyles.link,
     primary && buttonStyles.primary,
-    secondary && buttonStyles.secondary,
+    solid && buttonStyles.solid,
+    disabled && buttonStyles.disabled,
   ].filter(className => !!className).join(' ');
 
   return (
     <View
       tag="button"
       padding="small"
+      horizontalPadding="medium"
+      justifyContent="center"
       alignItems="center"
       borderRadius
+      disabled={disabled}
       className={buttonClassName}
       {...props}
     >
@@ -147,7 +158,7 @@ const List = ({ horizontal, divider, level, spacerSize, children, ...props }) =>
 
 const Heading = ({ imageSrc, title, subtitle }) => {
   return (
-    <View horizontal alignItems="center" verticalPadding="xxsmall">
+    <View horizontal alignItems="center" verticalPadding="xsmall">
       {imageSrc && (
         <>
           <View>
@@ -157,11 +168,11 @@ const Heading = ({ imageSrc, title, subtitle }) => {
         </>
       )}
       <View>
-        <Text fontWeight="medium">{title}</Text>
+        <Text fontWeight="semibold">{title}</Text>
         {subtitle && (
           <>
             <Spacer />
-            <Text fontSize="xsmall">{subtitle}</Text>
+            <Text fontSize="xsmall" color="gray-5">{subtitle}</Text>
           </>
         )}
       </View>

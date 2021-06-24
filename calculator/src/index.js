@@ -4,7 +4,7 @@ const CalculatorButton = ({ components, ...props }) => {
   const { View, Text, Button, Spacer, List } = components;
 
   return (
-    <Button flex padding="medium" {...props} />
+    <Button flex padding="medium" background="white" {...props} />
   );
 };
 

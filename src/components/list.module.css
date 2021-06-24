@@ -22,7 +22,7 @@
 .list.divider:global(.vertical) > li:not(:first-child)::before {
   content: '';
   position: absolute;
-  left: 65px;
+  left: 50px;
   right: 0;
   border-top: 1px solid var(--divider-color);
 }

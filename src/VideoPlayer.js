@@ -65,7 +65,7 @@ const VideoPlayer = ({ src }) => {
             <Text color="white">Title</Text>
           </View>
           <View flex justifyContent="center" alignItems="center" className={styles.playButton}>
-            <Button primary title="Play" onClick={handleVideoPlayClick} />
+            <Button solid title="Play" onClick={handleVideoPlayClick} />
           </View>
           <View padding="small" className={styles.controls}>
             <View horizontal justifyContent="space-between">

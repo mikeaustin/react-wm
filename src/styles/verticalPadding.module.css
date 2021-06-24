@@ -1,15 +1,19 @@
 .xxsmall {
-  padding: 3px 0;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .xsmall {
-  padding: 5px 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .small {
-  padding: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .medium {
-  padding: 15px 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }

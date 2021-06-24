@@ -2,6 +2,14 @@
   align-items: center;
 }
 
+.flex-start {
+  align-items: flex-start;
+}
+
+.flex-end {
+  align-items: flex-end;
+}
+
 .true {
   flex: 1
 }

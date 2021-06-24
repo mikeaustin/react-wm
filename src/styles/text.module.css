@@ -6,9 +6,32 @@
   margin-bottom: -5px;
 }
 
+.xlarge {
+  font-size: 36px;
+  line-height: 54px;
+  margin-top: -13px;
+  margin-bottom: -13px;
+}
+
+.large {
+  font-size: 24px;
+  line-height: 36px;
+  margin-top: -9px;
+  margin-bottom: -8px;
+}
+
+.medium {
+  font-size: 18px;
+  line-height: 27px;
+  margin-top: -6px;
+  margin-bottom: -6px;
+}
+
 .xsmall {
   font-size: 12px;
   line-height: 18px;
+  margin-top: -4px;
+  margin-bottom: -5px;
 }
 
 .white {
@@ -19,14 +42,18 @@
   color: hsl(210, 100%, 60%);
 }
 
-.bold {
-  font-weight: bold;
+.gray-1 {
+  color: var(--oc-gray-1);
 }
 
-.medium {
-  font-weight: 500;
+.gray-3 {
+  color: var(--oc-gray-3);
 }
 
-.semibold {
-  font-weight: 600;
+.gray-5 {
+  color: var(--oc-gray-5);
+}
+
+.gray-7 {
+  color: var(--oc-gray-7);
 }

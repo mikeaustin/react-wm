@@ -1,23 +1,32 @@
 .button {
   cursor: pointer;
-  background-color: transparent;
-  border: 1px solid var(--oc-gray-3);
+  /* background-color: transparent; */
+  box-shadow: inset 0 0 0 1px var(--oc-gray-3);
   outline: none;
-}
-
-.button.secondary {
-  border: 1px solid hsl(210, 100%, calc(60%));
 }
 
 .button * {
   cursor: pointer;
+  white-space: nowrap;
+}
+
+.button.solid {
+  background: var(--oc-gray-3);
+  box-shadow: none;
 }
 
 .button.primary {
+  box-shadow: inset 0 0 0 1px var(--oc-blue-5);
+}
+
+.button.primary.solid {
   cursor: pointer;
-  background-color: hsl(210, 100%, calc(60%));
-  border: 1px solid hsl(210, 100%, calc(60%));
-  outline: none;
+  background-color: var(--oc-blue-5);
+  box-shadow: none;
+}
+
+.button.link {
+  box-shadow: none;
 }
 
 /* .button:hover {
@@ -30,17 +39,33 @@
 } */
 
 .button:active {
-  background-color: hsl(210, 100%, calc(100% - 10%));
-  border-color: hsl(210, 100%, calc(60% - 10%));
+  background-color: var(--oc-gray-3);
+}
+
+.button.solid:active {
+  background-color: var(--oc-gray-5);
 }
 
 .button.primary:active {
-  background-color: hsl(210, 100%, calc(60% - 10%));
-  border-color: hsl(210, 100%, calc(60% - 10%));
+  background-color: var(--oc-blue-1);
 }
 
-x.button:focus {
+.button.primary.solid:active {
+  background-color: var(--oc-blue-7);
+}
+
+.button:focus {
   /* border-width: 2px; */
   /* border-color: hsl(210, 100%, calc(60% - 5%)); */
   /* box-shadow: inset 0 0 0 1px hsl(210, 100%, calc(60% - 5%)); */
+}
+
+.button.disabled {
+  opacity: 0.5;
+  cursor: auto;
+  pointer-events: none;
+}
+
+.button.disabled * {
+  cursor: auto;
 }

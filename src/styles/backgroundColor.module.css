@@ -18,10 +18,42 @@
   background: var(--oc-gray-3);
 }
 
+.gray-5 {
+  background: var(--oc-gray-5);
+}
+
+.gray-7 {
+  background: var(--oc-gray-7);
+}
+
+.gray-9 {
+  background: var(--oc-gray-9);
+}
+
 .white {
   background: hsl(0, 0%, 100%);
 }
 
 .blue {
   background: hsl(210, 100%, 60%);
+}
+
+.blue-1 {
+  background: var(--oc-blue-1);
+}
+
+.blue-3 {
+  background: var(--oc-blue-3);
+}
+
+.blue-5 {
+  background: var(--oc-blue-5);
+}
+
+.blue-7 {
+  background: var(--oc-blue-7);
+}
+
+.blue-9 {
+  background: var(--oc-blue-9);
 }

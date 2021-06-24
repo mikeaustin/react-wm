@@ -1,9 +1,10 @@
 :root {
-  --divider-color: var(--oc-gray-1);
+  --divider-color: var(--oc-gray-3);
 }
 
 .divider {
-  background-color: var(--oc-gray-1);
+  background-color: var(--oc-gray-3);
+  align-self: stretch;
 }
 
 .divider.level-3 {
