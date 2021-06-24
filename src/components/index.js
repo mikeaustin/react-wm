@@ -172,7 +172,7 @@ const Heading = ({ imageSrc, title, subtitle }) => {
         {subtitle && (
           <>
             <Spacer />
-            <Text fontSize="xsmall" color="gray-5">{subtitle}</Text>
+            <Text fontSize="xsmall" color="gray-6">{subtitle}</Text>
           </>
         )}
       </View>

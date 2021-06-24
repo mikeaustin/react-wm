@@ -54,6 +54,10 @@
   color: var(--oc-gray-5);
 }
 
+.gray-6 {
+  color: var(--oc-gray-6);
+}
+
 .gray-7 {
   color: var(--oc-gray-7);
 }
