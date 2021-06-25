@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import 'open-color/open-color.css';
 import styles from './App.module.css';
 
-import { View, Text, Button, Spacer, Divider, List, Heading } from './components';
+import { View, Text, Image, Button, Spacer, Divider, List, Heading } from './components';
 import VideoPlayer from './VideoPlayer';
 
 const Window = ({ title, noPadding, style, children, onWindowFocus, onWindowBlur, ...props }) => {
@@ -114,6 +114,13 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
             <Button disabled primary title="Primary" />
             <Button disabled primary solid title="Primary Solid" />
           </List>
+          <Spacer />
+          <List horizontal alignItems="center" spacerSize="small">
+            <Button title="Default" borderRadius="rounded" />
+            <Button solid title="Solid" borderRadius="rounded" />
+            <Button primary title="Primary" borderRadius="rounded" />
+            <Button primary solid title="Primary Solid" borderRadius="rounded" />
+          </List>
         </View>
       </View>
       <Divider size="medium" />
@@ -130,9 +137,21 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
         <View padding="medium" background="blue-9" />
       </View>
       <Divider size="medium" />
-      <View horizontal>
+      <View xhorizontal>
         <Text ref={textRef}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </Text>
+      </View>
+      <Divider size="medium" />
+      <View horizontal>
+        <Text fontSize="large" xref={textRef} style={{ width: 250 }}>
+          Lorem ipsum dolor sit amet, consectetur&hellip;
+        </Text>
+        <Text fontSize="medium" xref={textRef} style={{ width: 250 }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing&hellip;
+        </Text>
+        <Text fontSize="small" xref={textRef} style={{ width: 250 }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do&hellip;
         </Text>
       </View>
       <Divider size="medium" />
@@ -148,6 +167,7 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
 function App() {
   const windowRef = useRef(null);
   const firstMouseRef = useRef(null);
+  const [backgroundUrl, setBackgroundUrl] = useState('/images/d1e91a4058a8a1082da711095b4e0163.png');
   const [windowList, setWindowList] = useState([]);
 
   const handleWindowFocus = (window, mouseX, mouseY) => {
@@ -168,6 +188,10 @@ function App() {
     }
   };
 
+  const handleBackgroundImageClick = (event) => {
+    setBackgroundUrl(event.target.src);
+  };
+
   const addWindow = (element, props) => {
     setWindowList((windowList) => [
       ...windowList,
@@ -184,12 +208,12 @@ function App() {
 
       addWindow(
         <VideoPlayer src="videos/trailer.webm" />,
-        { title: 'Video', noPadding: true, style: { left: 50, top: 50 } }
+        { title: 'Video', noPadding: true, style: { left: 950, top: 50 } }
       );
 
       addWindow(
         <ExampleWindow key={3} onWindowFocus={handleWindowFocus} onWindowBlur={handleWindowBlur} />,
-        { title: 'Examples', style: { left: 50, top: 400 } }
+        { title: 'Examples', style: { left: 50, top: 50 } }
       );
 
       addWindow(
@@ -200,12 +224,28 @@ function App() {
             <Heading imageSrc="https://f4.bcbits.com/img/a3221996752_10.jpg" title="John Wick Mode" subtitle="Le Castle Vania" />
           </List>
         </View>,
-        { title: 'Songs', noPadding: true, style: { left: 50, top: 800 } }
+        { title: 'Songs', noPadding: true, style: { left: 50, top: 600 } }
       );
 
       addWindow(
         <Widget components={{ View, Text, Button, Spacer, Divider, List }} />,
-        { title: 'Calculator', background: 'gray-1', style: { left: 500, top: 800 } }
+        { title: 'Calculator', background: 'gray-1', style: { left: 500, top: 600 } }
+      );
+
+      addWindow(
+        <View style={{ width: 400 }}>
+          <List horizontal divider wrap spacerSize="none" style={{ flexWrap: 'wrap' }}>
+            <Image src="/images/d1e91a4058a8a1082da711095b4e0163.png" itemWidth="50%" onClick={handleBackgroundImageClick} />
+            <Image src="/images/274355.jpg" itemWidth="50%" onClick={handleBackgroundImageClick} />
+            <Image src="/images/1638117.png" itemWidth="50%" onClick={handleBackgroundImageClick} />
+          </List>
+          <Divider size="medium" />
+          <List horizontal xpadding="small" justifyContent="center" spacerPadding="small">
+            <Button primary title="Close" />
+            <Button primary solid title="Apply" />
+          </List>
+        </View>,
+        { title: 'Background', background: 'gray-1', style: { left: 950, top: 500 } }
       );
     })();
 
@@ -215,7 +255,7 @@ function App() {
   }, []);
 
   return (
-    <View background="gray-3" className={styles.App} onMouseMove={handleMouseMove}>
+    <View background="gray-3" className={styles.App} style={{ background: `center / cover url(${backgroundUrl})` }} onMouseMove={handleMouseMove}>
       {windowList}
     </View>
   );

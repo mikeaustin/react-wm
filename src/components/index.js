@@ -139,7 +139,7 @@ const Divider = ({ size, level, ...props }) => {
   );
 };
 
-const List = ({ horizontal, divider, level, spacerSize, children, ...props }) => {
+const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, ...props }) => {
   const listClassName = [
     listStyles.list,
     horizontal && 'horizontal' || 'vertical',
@@ -147,11 +147,20 @@ const List = ({ horizontal, divider, level, spacerSize, children, ...props }) =>
     level && listStyles[`level-${level}`],
     spacerSize && listStyles[spacerSize],
   ].filter(className => !!className).join(' ');
+  const listStyle = {
+    marginLeft: wrap && -10,
+    marginTop: wrap && -10,
+    ...style
+  };
 
   return (
-    <View tag="ul" horizontal={horizontal} className={listClassName} {...props}>
+    <View tag="ul" horizontal={horizontal} className={listClassName} style={listStyle} {...props}>
       {React.Children.map(children, (child, index) => (
-        <View key={index} tag="li" flex>
+        <View key={index} tag="li" xflex style={{
+          width: `calc(${child.props.itemWidth} - 10px)`,
+          marginLeft: wrap && 10,
+          marginTop: wrap && 10,
+        }}>
           {child}
         </View>
       ))}
@@ -186,6 +195,7 @@ const Heading = ({ imageSrc, title, subtitle }) => {
 export {
   View,
   Text,
+  Image,
   Button,
   Spacer,
   Divider,
