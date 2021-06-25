@@ -94,7 +94,7 @@ const Image = ({ src, width, height, ...props }) => {
 const Button = ({ title, link, primary, solid, secondary, disabled, ...props }) => {
   const textColor = primary && solid
     ? 'white'
-    : primary ? 'blue' : undefined;
+    : primary ? 'blue-5' : undefined;
 
   const buttonClassName = [
     buttonStyles.button,
