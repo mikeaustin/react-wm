@@ -35,6 +35,10 @@ const VideoPlayer = ({ src }) => {
   };
 
   const handleTimeUpdate = (event) => {
+    if (!overlayIsVisible) {
+      return;
+    }
+
     setCurrentTime(videoRef.current.currentTime);
 
     sliderRef.current.style.setProperty(
