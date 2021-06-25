@@ -39,11 +39,11 @@ const Window = ({ title, noPadding, style, children, onWindowFocus, onWindowBlur
   };
 
   return (
-    <View ref={windowRef} background="white" boxShadow borderRadius style={windowStyle} {...props}>
-      <View alignItems="center" padding="small" background="gray-1" topBorderRadius onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+    <View ref={windowRef} background="white" boxShadow borderRadius="small" style={windowStyle} {...props}>
+      <View alignItems="center" padding="small" background="gray-1" topBorderRadius="small" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
         <Text fontWeight="bold">{title}</Text>
       </View>
-      {/* <Divider size="none" /> */}
+      <Divider size="none" />
       <View padding={!noPadding && 'medium'}>
         {children}
       </View>

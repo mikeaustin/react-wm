@@ -2,6 +2,10 @@
   border-radius: 2.5px;
 }
 
+.small {
+  border-radius: 5px;
+}
+
 .rounded {
   border-radius: 1000px;
 }
