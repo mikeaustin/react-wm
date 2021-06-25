@@ -12,6 +12,7 @@ import fontWeightStyles from '../styles/fontWeight.module.css';
 import borderRadiusStyles from '../styles/borderRadius.module.css';
 import topBorderRadiusStyles from '../styles/topBorderRadius.module.css';
 import boxShadowStyles from '../styles/boxShadow.module.css';
+import opacityStyles from '../styles/opacity.module.css';
 
 import buttonStyles from './button.module.css';
 import spacerStyles from './spacer.module.css';
@@ -32,6 +33,7 @@ const View = React.forwardRef(({
   topBorderRadius,
   boxShadow,
   absolute,
+  opacity,
   style,
   className,
   children,
@@ -52,6 +54,7 @@ const View = React.forwardRef(({
     topBorderRadius && topBorderRadiusStyles[topBorderRadius],
     boxShadow && boxShadowStyles[boxShadow],
     absolute && styles.absolute,
+    opacity && opacityStyles[`opacity-${opacity}`],
     className
   ].filter(className => !!className).join(' ');
 
