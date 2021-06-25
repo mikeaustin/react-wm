@@ -52,6 +52,14 @@ const Window = ({ title, noPadding, style, children, onWindowFocus, onWindowBlur
 };
 
 const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
+  const textRef = useRef();
+
+  useEffect(() => {
+    textRef.current.style.position = 'absolute';
+    textRef.current.style.width = textRef.current.offsetWidth + 'px';
+    textRef.current.style.position = null;
+  });
+
   return (
     <View>
       <View horizontal>
@@ -120,6 +128,12 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
         <View padding="medium" background="blue-5" />
         <View padding="medium" background="blue-7" />
         <View padding="medium" background="blue-9" />
+      </View>
+      <Divider size="medium" />
+      <View horizontal>
+        <Text ref={textRef}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </Text>
       </View>
       <Divider size="medium" />
       <View horizontal justifyContent="center">

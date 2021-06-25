@@ -62,7 +62,7 @@ const View = React.forwardRef(({
   );
 });
 
-const Text = ({ children, fontSize, fontWeight, color, ...props }) => {
+const Text = React.forwardRef(({ children, fontSize, fontWeight, color, ...props }, ref) => {
   const textClassName = [
     textStyles.small,
     fontSize && textStyles[fontSize],
@@ -76,11 +76,11 @@ const Text = ({ children, fontSize, fontWeight, color, ...props }) => {
   ], []) : children;
 
   return (
-    <View tag="div" {...props}>
+    <View ref={ref} tag="div" {...props}>
       <span className={textClassName}>{formattedText}</span>
     </View>
   );
-};
+});
 
 const Image = ({ src, width, height, ...props }) => {
   return (
@@ -147,8 +147,8 @@ const List = ({ horizontal, divider, level, spacerSize, children, ...props }) =>
 
   return (
     <View tag="ul" horizontal={horizontal} className={listClassName} {...props}>
-      {React.Children.map(children, child => (
-        <View tag="li" flex>
+      {React.Children.map(children, (child, index) => (
+        <View key={index} tag="li" flex>
           {child}
         </View>
       ))}
