@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import 'open-color/open-color.css';
 import styles from './App.module.css';
 
-import { View, Text, Image, Button, Spacer, Divider, List, Heading } from './components';
+import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from './components';
 import VideoPlayer from './VideoPlayer';
 
 const Window = ({ title, noPadding, style, children, onWindowFocus, onWindowBlur, ...props }) => {
@@ -235,9 +235,15 @@ function App() {
       addWindow(
         <View style={{ width: 400 }}>
           <List horizontal divider wrap spacerSize="none" style={{ flexWrap: 'wrap' }}>
-            <Image src="/images/d1e91a4058a8a1082da711095b4e0163.png" itemWidth="50%" onClick={handleBackgroundImageClick} />
-            <Image src="/images/274355.jpg" itemWidth="50%" onClick={handleBackgroundImageClick} />
-            <Image src="/images/1638117.png" itemWidth="50%" onClick={handleBackgroundImageClick} />
+            <Clickable itemWidth="50%" tabindex="0" onClick={handleBackgroundImageClick}>
+              <Image src="/images/d1e91a4058a8a1082da711095b4e0163.png" borderRadius />
+            </Clickable>
+            <Clickable itemWidth="50%" tabindex="0" onClick={handleBackgroundImageClick}>
+              <Image src="/images/274355.jpg" borderRadius />
+            </Clickable>
+            <Clickable itemWidth="50%" tabindex="0" onClick={handleBackgroundImageClick}>
+              <Image src="/images/1638117.png" borderRadius />
+            </Clickable>
           </List>
           <Divider size="medium" />
           <List horizontal xpadding="small" justifyContent="center" spacerPadding="small">

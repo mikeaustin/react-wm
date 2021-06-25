@@ -18,6 +18,7 @@ import buttonStyles from './button.module.css';
 import spacerStyles from './spacer.module.css';
 import dividerStyles from './divider.module.css';
 import listStyles from './list.module.css';
+import clickableStyles from './clickable.module.css';
 
 const View = React.forwardRef(({
   tag: Tag = 'div',
@@ -89,6 +90,14 @@ const Image = ({ src, width, height, ...props }) => {
   return (
     <View tag="img" src={src} style={{ width, height }} {...props} />
   );
+};
+
+const Clickable = ({ className, ...props }) => {
+  // const handleClick = (event) => {
+  //   onClick(event);
+  // };
+
+  return <View className={clickableStyles.clickable} {...props} />;
 };
 
 const Button = ({ title, link, primary, solid, secondary, disabled, ...props }) => {
@@ -200,5 +209,6 @@ export {
   Spacer,
   Divider,
   List,
-  Heading
+  Heading,
+  Clickable,
 };
