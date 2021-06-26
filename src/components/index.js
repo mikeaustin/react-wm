@@ -167,6 +167,7 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
     divider && listStyles.divider,
     level && listStyles[`level-${level}`],
     spacerSize && listStyles[spacerSize],
+    wrap && listStyles.wrap,
   ].filter(className => !!className).join(' ');
 
   const listStyle = {

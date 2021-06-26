@@ -13,7 +13,7 @@ const Video = React.forwardRef(({ ...props }, ref) => {
 
 const Slider = React.forwardRef(({ ...props }, ref) => {
   return (
-    <View ref={ref} tag="input" type="range" step="0.1" borderRadius="rounded" style={{ height: 4, background: 'hsla(0, 0%, 100%, 0.25)', xoverflow: 'hidden' }} {...props} />
+    <View ref={ref} tag="input" type="range" step="0.1" xborderRadius="rounded" style={{ height: 5, background: 'hsla(0, 0%, 100%, 0.25)', xoverflow: 'hidden' }} {...props} />
   );
 });
 
@@ -57,7 +57,7 @@ const VideoPlayer = ({ src }) => {
     }, 3000);
   };
 
-  const handleVideoPlayClick = () => {
+  const handleVideoPlayClick = (event) => {
     if (videoRef.current.paused) {
       videoRef.current.play();
 
@@ -93,9 +93,11 @@ const VideoPlayer = ({ src }) => {
         <View flex>
           <View flex justifyContent="center" alignItems="center" className={styles.playButton} onClick={handleVideoPlayClick}>
             <View padding="medium" />
-            <Text background="white" padding="small" horizontalPadding="medium" borderRadius opacity="25">
-              ▶️
-            </Text>
+            <View background="white" borderRadius="rounded" opacity="25" justifyContent="center" alignItems="center" style={{ width: 50, height: 50 }}>
+              <Text fontSize="large" style={{ position: 'relative', right: !isPlaying ? -2 : 0, top: -1 }}>
+                {isPlaying ? '❚❚' : '▶'}
+              </Text>
+            </View>
           </View>
           <View padding="small" className={styles.controls}>
             <View horizontal justifyContent="space-between">

@@ -8,6 +8,18 @@ import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable, W
 import VideoPlayer from './VideoPlayer';
 import Examples from './Examples';
 
+const backgroundUrls = [
+  '/images/d1e91a4058a8a1082da711095b4e0163.png',
+  '/images/modern_abstract-wallpaper-3440x1440.jpg',
+  '/images/781767.jpg',
+  '/images/16933.jpg',
+  '/images/274355.jpg',
+  '/images/1638117.png',
+  '/images/2685046.jpg',
+  '/images/9Azi4uS.jpg',
+  '/images/Star Wars ultra widescreen backgrounds Album on Imgur.jpg',
+];
+
 function App() {
   const windowRef = useRef(null);
   const firstMouseRef = useRef(null);
@@ -73,24 +85,17 @@ function App() {
 
       addWindow(
         <Widget components={{ View, Text, Button, Spacer, Divider, List }} />,
-        { title: 'Calculator', background: 'gray-1', style: { left: 500, top: 600 } }
+        { title: 'Calculator', xbackground: 'gray-1', style: { left: 500, top: 600 } }
       );
 
       addWindow(
-        <View style={{ width: 400 }}>
-          <List horizontal divider wrap spacerSize="none" style={{ flexWrap: 'wrap' }}>
-            <Clickable itemWidth="50%" tabIndex="0" onClick={handleBackgroundImageClick}>
-              <Image src="/images/d1e91a4058a8a1082da711095b4e0163.png" borderRadius />
-            </Clickable>
-            <Clickable itemWidth="50%" tabIndex="0" onClick={handleBackgroundImageClick}>
-              <Image src="/images/d1e91a4058a8a1082da711095b4e0163.jpg" borderRadius />
-            </Clickable>
-            <Clickable itemWidth="50%" tabIndex="0" onClick={handleBackgroundImageClick}>
-              <Image src="/images/274355.jpg" borderRadius />
-            </Clickable>
-            <Clickable itemWidth="50%" tabIndex="0" onClick={handleBackgroundImageClick}>
-              <Image src="/images/1638117.png" borderRadius />
-            </Clickable>
+        <View style={{ width: 500 }}>
+          <List horizontal divider wrap spacerSize="none">
+            {backgroundUrls.map(url => (
+              <Clickable key={url} itemWidth="33.33%" tabIndex="0" onClick={handleBackgroundImageClick}>
+                <Image src={url} borderRadius />
+              </Clickable>
+            ))}
           </List>
           <Divider size="medium" />
           <List horizontal xpadding="small" justifyContent="center" spacerSize="small">
@@ -98,7 +103,7 @@ function App() {
             <Button primary solid title="Apply" />
           </List>
         </View>,
-        { title: 'Background', xbackground: 'gray-1', style: { left: 950, top: 500 } }
+        { title: 'Backgrounds', xbackground: 'gray-1', style: { left: 950, top: 500 } }
       );
     })();
 

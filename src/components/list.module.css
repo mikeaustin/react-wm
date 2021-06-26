@@ -1,3 +1,7 @@
+.wrap {
+  flex-wrap: wrap;
+}
+
 .list:global(.horizontal) > li:not(:first-child) {
   margin-left: 10px;
 }
