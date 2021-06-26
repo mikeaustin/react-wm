@@ -1,3 +1,13 @@
+:global(.vertical) > .xsmall {
+  min-height: 5px;
+  align-self: stretch;
+}
+
+:global(.horizontal) > .xsmall {
+  min-width: 5px;
+  align-self: stretch;
+}
+
 :global(.vertical) > .small {
   min-height: 10px;
   align-self: stretch;

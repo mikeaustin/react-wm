@@ -7,6 +7,7 @@ import styles from './App.module.css';
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable, Window } from './components';
 import VideoPlayer from './VideoPlayer';
 import Examples from './Examples';
+import MenuBar from './components/MenuBar';
 
 const backgroundUrls = [
   '/images/d1e91a4058a8a1082da711095b4e0163.png',
@@ -73,14 +74,64 @@ function App() {
       );
 
       addWindow(
-        <View style={{ width: 320 }}>
-          <List divider level={2} horizontalPadding="medium" spacerSize="none">
-            <Heading imageSrc="https://f4.bcbits.com/img/a3221996752_10.jpg" title="Canyons on Fire" subtitle="Wild Nothing" />
-            <Heading imageSrc="https://f4.bcbits.com/img/a3221996752_10.jpg" title="What She Came For" subtitle="Franz Ferdinand" />
-            <Heading imageSrc="https://f4.bcbits.com/img/a3221996752_10.jpg" title="John Wick Mode" subtitle="Le Castle Vania" />
+        <View style={{ width: 375 }}>
+          <View padding="small" horizontalPadding="medium" background="gray-1">
+            <Spacer size="xsmall" />
+            <Text fontSize="xxsmall" fontWeight="semibold" color="gray-6">TODAY</Text>
+          </View>
+          <Divider size="none" />
+          <List divider="gray-1" level={2} xhorizontalPadding="medium" spacerSize="none">
+            <Heading
+              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              title="Tech for Less Order Confirmation TL1896893"
+              subtitle="Tech for Less Orders"
+              note="📎 ★"
+              label="Jun 26, 2021"
+              padding="medium"
+            >
+              <Text fontSize="xsmall">Thank you for the payment confirmation. I’ve uploaded</Text>
+            </Heading>
+            <Heading
+              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              subtitle="Tech for Less Order Confirmation TL1896893"
+              title="Tech for Less Orders"
+              label="📎 ★"
+              note="Jun 26, 2021"
+              padding="medium"
+            >
+              <Text fontSize="xsmall" style={{ height: 30, overflow: 'hidden' }}>
+                Thank you for the payment confirmation. I’ve uploaded the declaration page of my car insurance, as requested.
+              </Text>
+            </Heading>
+          </List>
+          <Divider size="none" />
+          <View padding="small" horizontalPadding="medium" background="gray-1">
+            <Spacer size="small" />
+            <Text fontSize="xxsmall" fontWeight="semibold" color="gray-6">YESTERDAY</Text>
+          </View>
+          <Divider size="none" />
+          <List divider="gray-1" level={2} xhorizontalPadding="medium" spacerSize="none">
+            <Heading
+              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              title="Tech for Less Order Confirmation TL1896893"
+              subtitle="Tech for Less Orders"
+              padding="medium"
+            />
+            <Heading
+              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              title="Tech for Less Order Confirmation TL1896893"
+              subtitle="Tech for Less Orders"
+              padding="medium"
+            />
+            <Heading
+              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              title="Tech for Less Order Confirmation TL1896893"
+              subtitle="Tech for Less Orders"
+              padding="medium"
+            />
           </List>
         </View>,
-        { title: 'Songs', noPadding: true, style: { left: 50, top: 600 } }
+        { title: 'Email', noPadding: true, style: { left: 50, top: 600 } }
       );
 
       addWindow(
@@ -114,21 +165,9 @@ function App() {
 
   return (
     <View background="gray-3" className={styles.App} style={{ background: `center / cover url(${backgroundUrl})` }} onMouseMove={handleMouseMove}>
-      <List horizontal xpadding="medium" horizontalPadding="small" spacerSize="none" background="gray-1">
-        <View padding="small" background="blue-5">
-          <Text fontWeight="bold" color="white">React WM</Text>
-        </View>
-        <View padding="small">
-          <Text fontWeight="medium">React WM</Text>
-        </View>
-      </List>
+      <MenuBar />
       <View>
         {windowList}
-      </View>
-      <View verticalPadding="xsmall" background="gray-1" boxShadow style={{ position: 'absolute', zIndex: 1, left: 10, top: 30 }}>
-        <View padding="small" horizontalPadding="small" background="blue-5"><Text fontWeight="semibold" color="white">Menu Option One</Text></View>
-        <View padding="small" horizontalPadding="small"><Text fontWeight="semibold">Menu Option One</Text></View>
-        <View padding="small" horizontalPadding="small"><Text fontWeight="semibold">Menu Option One</Text></View>
       </View>
     </View>
   );

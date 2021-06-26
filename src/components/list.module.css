@@ -38,14 +38,18 @@
 .list.divider:global(.vertical) > li:not(:first-child)::before {
   content: '';
   position: absolute;
-  left: 50px;
+  left: 30px;
   right: 0;
   border-top: 1px solid var(--divider-color);
 }
 
-.list.level-3.divider:global(.vertical) > li:not(:first-child)::before {
-  border-color: hsl(210, 17%, 95%);
+.list.divider.gray-1:global(.vertical) > li:not(:first-child)::before {
+  border-top: 1px solid var(--oc-gray-2);
 }
+
+/* .list.level-3.divider:global(.vertical) > li:not(:first-child)::before {
+  border-color: hsl(210, 17%, 95%);
+} */
 
 .list.divider.none:global(.vertical) > li:not(:first-child) {
   padding-top: 0;

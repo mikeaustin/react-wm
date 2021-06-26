@@ -134,9 +134,9 @@ const Button = ({ title, link, primary, solid, secondary, disabled, ...props }) 
   );
 };
 
-const Spacer = ({ size, ...props }) => {
+const Spacer = ({ size = 'small', ...props }) => {
   return (
-    <View xpadding="small" className={spacerStyles.small} {...props} />
+    <View className={spacerStyles[size]} {...props} />
   );
 };
 
@@ -165,6 +165,7 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
     listStyles.list,
     horizontal && 'horizontal' || 'vertical',
     divider && listStyles.divider,
+    divider && listStyles[divider],
     level && listStyles[`level-${level}`],
     spacerSize && listStyles[spacerSize],
     wrap && listStyles.wrap,
@@ -191,23 +192,40 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
   );
 };
 
-const Heading = ({ imageSrc, title, subtitle }) => {
+const Heading = ({ image, title, subtitle, note, label, children, ...props }) => {
+  const imageElement = typeof image === 'string'
+    ? <Image src={image} height={40} borderRadius />
+    : image;
+
   return (
-    <View horizontal alignItems="center" verticalPadding="xsmall">
-      {imageSrc && (
+    <View horizontal xalignItems="center" horizontalPadding="medium" {...props}>
+      {imageElement && (
         <>
           <View>
-            <Image src={imageSrc} height={40} borderRadius />
+            {imageElement}
           </View>
-          <Spacer />
+          <Spacer size="xsmall" />
         </>
       )}
-      <View>
-        <Text fontWeight="semibold">{title}</Text>
+      <View flex>
+        <View horizontal xalignItems="center">
+          <Text flex fontWeight="semibold" style={{ height: 10, overflow: 'hidden' }}>{title}</Text>
+          <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap', marginTop: 1, transform: 'scale(1.2)' }}>{note}</Text>
+        </View>
         {subtitle && (
           <>
             <Spacer />
-            <Text fontSize="xsmall" color="gray-6">{subtitle}</Text>
+            <View horizontal>
+              <Text flex fontSize="xsmall" color="gray-6">{subtitle}</Text>
+              <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
+            </View>
+            {children && (
+              <>
+                <Spacer size="small" />
+                <Spacer size="xsmall" />
+                {children}
+              </>
+            )}
           </>
         )}
       </View>
