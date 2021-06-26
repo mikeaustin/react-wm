@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Window from './Window';
+
 import styles from '../App.module.css';
 import justifyContentStyles from '../styles/justifyContent.module.css';
 import alignItemsStyles from '../styles/alignItems.module.css';
@@ -35,6 +37,8 @@ const View = React.forwardRef(({
   boxShadow,
   absolute,
   opacity,
+  itemFlex,
+  itemWidth,
   style,
   className,
   children,
@@ -148,6 +152,14 @@ const Divider = ({ size, level, ...props }) => {
   );
 };
 
+const ListItem = ({ itemFlex, itemWidth, children, ...props }) => {
+  return (
+    <View tag="li" {...props}>
+      {children}
+    </View>
+  );
+};
+
 const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, ...props }) => {
   const listClassName = [
     listStyles.list,
@@ -156,6 +168,7 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
     level && listStyles[`level-${level}`],
     spacerSize && listStyles[spacerSize],
   ].filter(className => !!className).join(' ');
+
   const listStyle = {
     marginLeft: wrap && -10,
     marginTop: wrap && -10,
@@ -165,7 +178,7 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
   return (
     <View tag="ul" horizontal={horizontal} className={listClassName} style={listStyle} {...props}>
       {React.Children.map(children, (child, index) => (
-        <View key={index} tag="li" xflex style={{
+        <View key={index} tag="li" flex={child.props.itemFlex} style={{
           width: `calc(${child.props.itemWidth} - 10px)`,
           marginLeft: wrap && 10,
           marginTop: wrap && 10,
@@ -211,4 +224,5 @@ export {
   List,
   Heading,
   Clickable,
+  Window,
 };
