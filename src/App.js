@@ -40,7 +40,7 @@ function App() {
       event.preventDefault();
 
       windowRef.current.style.left = `${event.clientX - firstMouseRef.current.mouseX}px`;
-      windowRef.current.style.top = `${event.clientY - firstMouseRef.current.mouseY}px`;
+      windowRef.current.style.top = `${event.clientY - firstMouseRef.current.mouseY - 30}px`;
     }
   };
 
@@ -114,9 +114,30 @@ function App() {
 
   return (
     <View background="gray-3" className={styles.App} style={{ background: `center / cover url(${backgroundUrl})` }} onMouseMove={handleMouseMove}>
-      {windowList}
+      <List horizontal xpadding="medium" horizontalPadding="small" spacerSize="none" background="gray-1">
+        <View padding="small" background="blue-5">
+          <Text fontWeight="bold" color="white">React WM</Text>
+        </View>
+        <View padding="small">
+          <Text fontWeight="medium">React WM</Text>
+        </View>
+      </List>
+      <View>
+        {windowList}
+      </View>
+      <View verticalPadding="xsmall" background="gray-1" boxShadow style={{ position: 'absolute', zIndex: 1, left: 10, top: 30 }}>
+        <View padding="small" horizontalPadding="small" background="blue-5"><Text fontWeight="semibold" color="white">Menu Option One</Text></View>
+        <View padding="small" horizontalPadding="small"><Text fontWeight="semibold">Menu Option One</Text></View>
+        <View padding="small" horizontalPadding="small"><Text fontWeight="semibold">Menu Option One</Text></View>
+      </View>
     </View>
   );
 }
 
 export default App;
+
+/*
+          <View background="gray-1" style={{ position: 'absolute', top: 21 }}>
+            <View padding="small"><Text>Option One</Text></View>
+          </View>
+*/

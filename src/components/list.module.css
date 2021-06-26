@@ -24,6 +24,10 @@
   margin-left: 0;
 }
 
+.list.large:global(.horizontal) > li:not(:first-child) {
+  margin-left: 20px;
+}
+
 /* */
 
 .list.divider:global(.vertical) > li:not(:first-child) {

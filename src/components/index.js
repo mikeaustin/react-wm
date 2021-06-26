@@ -77,8 +77,8 @@ const Text = React.forwardRef(({ children, fontSize, fontWeight, color, ...props
     fontWeight && fontWeightStyles[fontWeight],
     color && textStyles[color]
   ].filter(className => !!className).join(' ');
-  const childrenArray = React.Children.toArray(children)[0].toString().split(/\n|\\n/);
-  const formattedText = childrenArray.length > 1 ? childrenArray.reduce((array, str, index) => [
+  const childrenArray = React.Children.toArray(children)[0]?.toString().split(/\n|\\n/);
+  const formattedText = childrenArray?.length > 1 ? childrenArray.reduce((array, str, index) => [
     ...array,
     ...(index > 0 ? [<br />] : []), str
   ], []) : children;

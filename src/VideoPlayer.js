@@ -94,18 +94,18 @@ const VideoPlayer = ({ src }) => {
           <View flex justifyContent="center" alignItems="center" className={styles.playButton} onClick={handleVideoPlayClick}>
             <View padding="medium" />
             <View background="white" borderRadius="rounded" opacity="25" justifyContent="center" alignItems="center" style={{ width: 50, height: 50 }}>
-              <Text fontSize="large" style={{ position: 'relative', right: !isPlaying ? -2 : 0, top: -1 }}>
-                {isPlaying ? '❚❚' : '▶'}
+              <Text fontSize="large" style={{ position: 'relative', right: !isPlaying ? -1 : 0, top: 0 }}>
+                {isPlaying ? '❙❙' : '▶'}
               </Text>
             </View>
           </View>
           <View padding="small" className={styles.controls}>
             <View horizontal justifyContent="space-between">
               <Text fontSize="xsmall" color="white">
-                {`${Math.floor(currentTime / 60)}:${Math.floor(currentTime % 60).toString().padStart(2, '0')}`}
+                {`${Math.floor(currentTime / 60)}:${Math.floor(currentTime % 60)?.toString().padStart(2, '0')}`}
               </Text>
               <Text fontSize="xsmall" color="white">
-                {`${Math.floor(duration / 60)}:${Math.floor(duration % 60).toString().padStart(2, '0')}`}
+                {`${Math.floor(duration / 60)}:${Math.floor(duration % 60)?.toString().padStart(2, '0')}`}
               </Text>
             </View>
             <Spacer />
