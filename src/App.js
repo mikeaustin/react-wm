@@ -10,21 +10,21 @@ import Examples from './Examples';
 import MenuBar from './components/MenuBar';
 
 const backgroundUrls = [
-  '/images/d1e91a4058a8a1082da711095b4e0163.png',
-  '/images/modern_abstract-wallpaper-3440x1440.jpg',
-  '/images/781767.jpg',
-  '/images/16933.jpg',
-  '/images/274355.jpg',
-  '/images/1638117.png',
-  '/images/2685046.jpg',
-  '/images/9Azi4uS.jpg',
-  '/images/Star Wars ultra widescreen backgrounds Album on Imgur.jpg',
+  './images/d1e91a4058a8a1082da711095b4e0163.png',
+  './images/modern_abstract-wallpaper-3440x1440.jpg',
+  './images/781767.jpg',
+  './images/16933.jpg',
+  './images/274355.jpg',
+  './images/1638117.png',
+  './images/2685046.jpg',
+  './images/9Azi4uS.jpg',
+  './images/Star Wars ultra widescreen backgrounds Album on Imgur.jpg',
 ];
 
 function App() {
   const windowRef = useRef(null);
   const firstMouseRef = useRef(null);
-  const [backgroundUrl, setBackgroundUrl] = useState('/images/d1e91a4058a8a1082da711095b4e0163.png');
+  const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.png');
   const [windowList, setWindowList] = useState([]);
 
   const handleWindowFocus = (window, mouseX, mouseY) => {
