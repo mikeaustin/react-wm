@@ -3,7 +3,8 @@
 @each $oc-color, $color in $oc-color-list {
   @for $i from 0 through 9 {
     .#{$color}-#{$i} {
-      background: var(--oc-#{$color}-#{$i})
+      // background: var(--oc-#{$color}-#{$i});
+      background: map-get($oc-color, '#{$i}');
     }
   }
 }
