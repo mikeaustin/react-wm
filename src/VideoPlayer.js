@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 import React, { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 

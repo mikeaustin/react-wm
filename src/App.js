@@ -1,4 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+/* eslint no-unused-vars: "off" */
+
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 
 import 'open-color/open-color.css';
@@ -49,14 +51,14 @@ function App() {
     setBackgroundUrl(event.target.src);
   };
 
-  const addWindow = (element, props) => {
+  const addWindow = useCallback((element, props) => {
     setWindowList((windowList) => [
       ...windowList,
       <Window key={Math.random()} {...props} onWindowFocus={handleWindowFocus} onWindowBlur={handleWindowBlur}>
         {element}
       </Window>
     ]);
-  };
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -161,7 +163,7 @@ function App() {
     return () => {
       setWindowList([]);
     };
-  }, []);
+  }, [addWindow]);
 
   return (
     <View background="gray-3" className={styles.App} style={{ background: `center / cover url(${backgroundUrl})` }} onMouseMove={handleMouseMove}>

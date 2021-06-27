@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 import React, { useRef, useState, useEffect } from 'react';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '.';
