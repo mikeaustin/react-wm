@@ -7,7 +7,7 @@ import Window from './Window';
 import styles from '../App.module.css';
 import justifyContentStyles from '../styles/justifyContent.module.css';
 import alignItemsStyles from '../styles/alignItems.module.css';
-import backgroundColorStyles from '../styles/backgroundColor.module.css';
+import backgroundColorStyles from '../styles/backgroundColor.module.scss';
 import paddingStyles from '../styles/padding.module.css';
 import verticalPaddingStyles from '../styles/verticalPadding.module.css';
 import horizontalPaddingStyles from '../styles/horizontalPadding.module.css';
