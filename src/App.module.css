@@ -1,3 +1,7 @@
+:root {
+  --primary-color: var(--oc-blue-5);
+}
+
 .App {
   position: fixed;
   width: 100vw;

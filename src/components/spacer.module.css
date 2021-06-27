@@ -6,13 +6,20 @@
   align-self: stretch;
 }
 
-.horizontal > .xsmall {
-  min-width: 5px;
+.vertical > .small {
+  min-height: 10px;
   align-self: stretch;
 }
 
-.vertical > .small {
-  min-height: 10px;
+.vertical > .medium {
+  min-height: 15px;
+  align-self: stretch;
+}
+
+/* Horizontal */
+
+.horizontal > .xsmall {
+  min-width: 5px;
   align-self: stretch;
 }
 

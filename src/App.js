@@ -9,19 +9,9 @@ import styles from './App.module.css';
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable, Window } from './components';
 import VideoPlayer from './VideoPlayer';
 import Examples from './Examples';
-import MenuBar from './components/MenuBar';
+import Preferences from './Preferences';
 
-const backgroundUrls = [
-  './images/d1e91a4058a8a1082da711095b4e0163.png',
-  './images/modern_abstract-wallpaper-3440x1440.jpg',
-  './images/781767.jpg',
-  './images/16933.jpg',
-  './images/274355.jpg',
-  './images/1638117.png',
-  './images/2685046.jpg',
-  './images/9Azi4uS.jpg',
-  './images/Star Wars ultra widescreen backgrounds Album on Imgur.jpg',
-];
+import { MenuBar, Panel } from './components';
 
 function App() {
   const windowRef = useRef(null);
@@ -47,7 +37,7 @@ function App() {
     }
   };
 
-  const handleBackgroundImageClick = (event) => {
+  const handleSetBackground = (event) => {
     setBackgroundUrl(event.target.src);
   };
 
@@ -84,7 +74,7 @@ function App() {
           <Divider size="none" />
           <List divider="gray-2" level={2} spacerSize="none">
             <Heading
-              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
               title="Tech for Less Order Confirmation TL1896893"
               subtitle="Tech for Less Orders"
               note="📎 ★"
@@ -94,7 +84,7 @@ function App() {
               <Text fontSize="xsmall">Thank you for the payment confirmation. I’ve uploaded</Text>
             </Heading>
             <Heading
-              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
               subtitle="Tech for Less Order Confirmation TL1896893"
               title="Tech for Less Orders"
               label="📎 ★"
@@ -114,19 +104,19 @@ function App() {
           <Divider size="none" />
           <List divider="gray-2" level={2} spacerSize="none">
             <Heading
-              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
               title="Tech for Less Order Confirmation TL1896893"
               subtitle="Tech for Less Orders"
               padding="medium"
             />
             <Heading
-              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
               title="Tech for Less Order Confirmation TL1896893"
               subtitle="Tech for Less Orders"
               padding="medium"
             />
             <Heading
-              image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+              image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
               title="Tech for Less Order Confirmation TL1896893"
               subtitle="Tech for Less Orders"
               padding="medium"
@@ -142,21 +132,8 @@ function App() {
       );
 
       addWindow(
-        <View style={{ width: 500 }}>
-          <List horizontal divider wrap spacerSize="none">
-            {backgroundUrls.map(url => (
-              <Clickable key={url} itemWidth="33.33%" tabIndex="0" onClick={handleBackgroundImageClick}>
-                <Image src={url} borderRadius />
-              </Clickable>
-            ))}
-          </List>
-          <Divider size="medium" />
-          <List horizontal xpadding="small" justifyContent="center" spacerSize="small">
-            <Button primary title="Close" />
-            <Button primary solid title="Apply" />
-          </List>
-        </View>,
-        { title: 'Backgrounds', xbackground: 'gray-1', style: { left: 950, top: 500 } }
+        <Preferences onSetBackground={handleSetBackground} />,
+        { title: 'Preferences', xbackground: 'gray-1', style: { left: 950, top: 500 } }
       );
     })();
 

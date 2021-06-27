@@ -65,24 +65,6 @@ const Tabs = ({ labels, children }) => {
   );
 };
 
-const tabsContent = {
-  'Tab 1': () => (
-    <View>
-      <Text>Tab 1 Content</Text>
-    </View>
-  ),
-  'Tab 2': () => (
-    <View>
-      <Text>Tab 2 Content</Text>
-    </View>
-  ),
-  'Tab 3': () => (
-    <View>
-      <Text>Tab 3 Content</Text>
-    </View>
-  ),
-};
-
 function App() {
   return (
     <div className="App">
@@ -102,11 +84,3 @@ function App() {
 }
 
 export default App;
-
-/*
-      <Tabs content={tabsContent}>
-        <Tabs.Tab title="Tab One">
-          <Text>One</Text>
-        </Tabs.Tab>
-      </Tabs>
-*/

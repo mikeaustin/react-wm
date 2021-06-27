@@ -3,6 +3,8 @@
 import React from 'react';
 
 import Window from './Window';
+import MenuBar from './MenuBar';
+import Panel from './Panel';
 
 import styles from '../App.module.css';
 import justifyContentStyles from '../styles/justifyContent.module.css';
@@ -246,4 +248,6 @@ export {
   Heading,
   Clickable,
   Window,
+  MenuBar,
+  Panel,
 };
