@@ -1,0 +1,9 @@
+.menuItem:hover,
+.menuItem:focus {
+  background: var(--oc-blue-5);
+}
+
+.menuItem:hover,
+.menuItem:focus > * {
+  color: white;
+}
