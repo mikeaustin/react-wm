@@ -1,19 +1,22 @@
-:global(.vertical) > .xsmall {
+@value vertical from "../App.module.css";
+@value horizontal from "../App.module.css";
+
+.vertical > .xsmall {
   min-height: 5px;
   align-self: stretch;
 }
 
-:global(.horizontal) > .xsmall {
+.horizontal > .xsmall {
   min-width: 5px;
   align-self: stretch;
 }
 
-:global(.vertical) > .small {
+.vertical > .small {
   min-height: 10px;
   align-self: stretch;
 }
 
-:global(.horizontal) > .small {
+.horizontal > .small {
   min-width: 10px;
   align-self: stretch;
 }

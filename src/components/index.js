@@ -47,7 +47,7 @@ const View = React.forwardRef(({
   let viewStyles = [];
   let viewClassName = [
     styles.View,
-    horizontal && 'horizontal' || 'vertical',
+    horizontal && styles.horizontal || styles.vertical,
     flex && alignItemsStyles[flex],
     justifyContent && justifyContentStyles[justifyContent],
     alignItems && alignItemsStyles[alignItems],
@@ -167,7 +167,7 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
     divider && listStyles.divider,
     divider && listStyles[divider],
     level && listStyles[`level-${level}`],
-    spacerSize && listStyles[spacerSize],
+    spacerSize && listStyles[spacerSize] || listStyles.small,
     wrap && listStyles.wrap,
   ].filter(className => !!className).join(' ');
 
@@ -198,7 +198,7 @@ const Heading = ({ image, title, subtitle, note, label, children, ...props }) =>
     : image;
 
   return (
-    <View horizontal xalignItems="center" horizontalPadding="medium" {...props}>
+    <View horizontal horizontalPadding="medium" {...props}>
       {imageElement && (
         <>
           <View>
@@ -208,7 +208,7 @@ const Heading = ({ image, title, subtitle, note, label, children, ...props }) =>
         </>
       )}
       <View flex>
-        <View horizontal xalignItems="center">
+        <View horizontal>
           <Text flex fontWeight="semibold" style={{ height: 10, overflow: 'hidden' }}>{title}</Text>
           <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap', marginTop: 1, transform: 'scale(1.2)' }}>{note}</Text>
         </View>

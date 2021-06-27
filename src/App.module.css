@@ -14,11 +14,11 @@
   position: relative;
 }
 
-:global(.vertical) {
+.vertical {
   flex-direction: column;
 }
 
-:global(.horizontal) {
+.horizontal {
   flex-direction: row;
 }
 

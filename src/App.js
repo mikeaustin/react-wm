@@ -80,7 +80,7 @@ function App() {
             <Text fontSize="xxsmall" fontWeight="semibold" color="gray-6">TODAY</Text>
           </View>
           <Divider size="none" />
-          <List divider="gray-1" level={2} xhorizontalPadding="medium" spacerSize="none">
+          <List divider="gray-2" level={2} spacerSize="none">
             <Heading
               image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
               title="Tech for Less Order Confirmation TL1896893"
@@ -110,7 +110,7 @@ function App() {
             <Text fontSize="xxsmall" fontWeight="semibold" color="gray-6">YESTERDAY</Text>
           </View>
           <Divider size="none" />
-          <List divider="gray-1" level={2} xhorizontalPadding="medium" spacerSize="none">
+          <List divider="gray-2" level={2} spacerSize="none">
             <Heading
               image={<View background="blue-5" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
               title="Tech for Less Order Confirmation TL1896893"

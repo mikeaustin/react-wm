@@ -1,3 +1,6 @@
+@value vertical from "../App.module.css";
+@value horizontal from "../App.module.css";
+
 :root {
   --divider-color: var(--oc-gray-3);
 }
@@ -11,16 +14,16 @@
   background-color: hsl(210, 17%, 95%);
 }
 
-:global(.vertical) > .divider {
+.vertical > .divider {
   min-height: 1px;
   margin: 10px 0;
 }
 
-:global(.vertical) > .divider.medium {
+.vertical > .divider.medium {
   margin: 15px 0;
 }
 
-:global(.horizontal) > .divider {
+.horizontal > .divider {
   min-width: 1px;
   margin: 0 10px;
 }

@@ -13,7 +13,15 @@ const Video = React.forwardRef(({ ...props }, ref) => {
 
 const Slider = React.forwardRef(({ ...props }, ref) => {
   return (
-    <View ref={ref} tag="input" type="range" step="0.1" xborderRadius="rounded" style={{ height: 5, background: 'hsla(0, 0%, 100%, 0.25)', xoverflow: 'hidden' }} {...props} />
+    <View
+      ref={ref}
+      tag="input"
+      type="range"
+      step="0.1"
+      // xborderRadius="rounded"
+      style={{ height: 5, background: 'hsla(0, 0%, 100%, 0.25)', xoverflow: 'hidden' }}
+      {...props}
+    />
   );
 });
 

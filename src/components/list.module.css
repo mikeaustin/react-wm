@@ -1,41 +1,53 @@
+@value vertical from "../App.module.css";
+@value horizontal from "../App.module.css";
+
 .wrap {
   flex-wrap: wrap;
 }
 
-.list:global(.horizontal) > li:not(:first-child) {
+/* Horizontal */
+
+.list.small.horizontal > li:not(:first-child) {
   margin-left: 10px;
 }
 
-.list.medium:global(.vertical) > li:not(:first-child) {
-  margin-top: 15px;
+.list.medium.horizontal > li:not(:first-child) {
+  margin-left: 10px;
 }
 
-.list.none:global(.vertical) > li:not(:first-child) {
-  margin-top: 0;
+.list.large.horizontal > li:not(:first-child) {
+  margin-left: 10px;
 }
 
-.list:global(.vertical) > li:not(:first-child) {
-  margin-top: 10px;
-}
-
-/* */
-
-.list.none:global(.horizontal) > li:not(:first-child) {
+.list.none.horizontal > li:not(:first-child) {
   margin-left: 0;
 }
 
-.list.large:global(.horizontal) > li:not(:first-child) {
-  margin-left: 20px;
+/* Vertical */
+
+.list.small.vertical > li:not(:first-child) {
+  margin-top: 10px;
 }
 
-/* */
+.list.medium.vertical > li:not(:first-child) {
+  margin-top: 15px;
+}
 
-.list.divider:global(.vertical) > li:not(:first-child) {
-  /* border-top: 1px solid var(--divider-color); */
+.list.medium.vertical > li:not(:first-child) {
+  margin-top: 15px;
+}
+
+.list.none.vertical > li:not(:first-child) {
+  margin-top: 0;
+}
+
+/* Divider */
+
+.list.divider.vertical > li:not(:first-child) {
   padding-top: 11px;
 }
 
-.list.divider:global(.vertical) > li:not(:first-child)::before {
+.list.divider.vertical > li:not(:first-child)::before {
   content: '';
   position: absolute;
   left: 30px;
@@ -43,14 +55,10 @@
   border-top: 1px solid var(--divider-color);
 }
 
-.list.divider.gray-1:global(.vertical) > li:not(:first-child)::before {
-  border-top: 1px solid var(--oc-gray-2);
+.list.divider.vertical.gray-2 > li:not(:first-child)::before {
+  border-top-color: var(--oc-gray-2);
 }
 
-/* .list.level-3.divider:global(.vertical) > li:not(:first-child)::before {
-  border-color: hsl(210, 17%, 95%);
-} */
-
-.list.divider.none:global(.vertical) > li:not(:first-child) {
+.list.divider.none.vertical > li:not(:first-child) {
   padding-top: 0;
 }

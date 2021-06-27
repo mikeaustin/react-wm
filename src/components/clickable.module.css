@@ -4,11 +4,11 @@
 }
 
 .clickable:hover > * {
-  filter: brightness(110%);
+  filter: brightness(120%);
 }
 
 .clickable:active > * {
-  filter: brightness(90%);
+  filter: brightness(80%);
 }
 
 x.clickable:focus:before {
