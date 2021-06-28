@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from './components';
-import { MenuBar, Panel } from './components';
+import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '../components';
+import { MenuBar, Panel } from '../components';
 
 const backgroundUrls = [
   './images/d1e91a4058a8a1082da711095b4e0163.png',

@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 
-import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from './components';
+import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '../components';
 
 const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
   const textRef = useRef();
