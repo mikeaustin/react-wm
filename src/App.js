@@ -57,18 +57,18 @@ function App() {
 
       addWindow(
         <VideoPlayer src="videos/trailer.webm" />,
-        { title: 'Video', noPadding: true, style: { left: 950, top: 50 } }
+        { title: 'Video', noPadding: true, style: { left: 890, top: 15 } }
       );
 
       addWindow(
         <Examples key={3} onWindowFocus={handleWindowFocus} onWindowBlur={handleWindowBlur} />,
-        { title: 'Examples', style: { left: 50, top: 50 } }
+        { title: 'Examples', style: { left: 15, top: 15 } }
       );
 
       addWindow(
         <View style={{ width: 375 }}>
           <View padding="small" horizontalPadding="medium" background="gray-1">
-            <Spacer size="xsmall" />
+            <Spacer size="small" />
             <Text fontSize="xxsmall" fontWeight="semibold" color="gray-6">TODAY</Text>
           </View>
           <Divider size="none" />
@@ -115,25 +115,19 @@ function App() {
               subtitle="Tech for Less Orders"
               padding="medium"
             />
-            <Heading
-              image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
-              title="Tech for Less Order Confirmation TL1896893"
-              subtitle="Tech for Less Orders"
-              padding="medium"
-            />
           </List>
         </View>,
-        { title: 'Email', noPadding: true, style: { left: 50, top: 600 } }
+        { title: 'Mail', noPadding: true, style: { left: 15, top: 480 } }
       );
 
       addWindow(
         <Widget components={{ View, Text, Button, Spacer, Divider, List }} />,
-        { title: 'Calculator', xbackground: 'gray-1', style: { left: 500, top: 600 } }
+        { title: 'Calculator', background: 'gray-1', style: { left: 490, top: 540 } }
       );
 
       addWindow(
         <Preferences onSetBackground={handleSetBackground} />,
-        { title: 'Preferences', xbackground: 'gray-1', style: { left: 950, top: 500 } }
+        { title: 'Preferences', xbackground: 'gray-1', style: { left: 950, top: 400 } }
       );
     })();
 
@@ -143,9 +137,9 @@ function App() {
   }, [addWindow]);
 
   return (
-    <View background="gray-3" className={styles.App} style={{ background: `center / cover url(${backgroundUrl})` }} onMouseMove={handleMouseMove}>
+    <View flex background="gray-3" className={styles.App} style={{ background: `center / cover url(${backgroundUrl})` }} onMouseMove={handleMouseMove}>
       <MenuBar />
-      <View>
+      <View flex>
         {windowList}
       </View>
     </View>
@@ -153,9 +147,3 @@ function App() {
 }
 
 export default App;
-
-/*
-          <View background="gray-1" style={{ position: 'absolute', top: 21 }}>
-            <View padding="small"><Text>Option One</Text></View>
-          </View>
-*/

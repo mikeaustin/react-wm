@@ -77,19 +77,6 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
         </View>
       </View>
       <Divider size="medium" />
-      <View horizontal>
-        <View padding="medium" background="gray-1" />
-        <View padding="medium" background="gray-3" />
-        <View padding="medium" background="gray-5" />
-        <View padding="medium" background="gray-7" />
-        <View padding="medium" background="gray-9" />
-        <View padding="medium" background="blue-1" />
-        <View padding="medium" background="blue-3" />
-        <View padding="medium" background="blue-5" />
-        <View padding="medium" background="blue-7" />
-        <View padding="medium" background="blue-9" />
-      </View>
-      <Divider size="medium" />
       <View>
         <Text ref={textRef}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -106,12 +93,6 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
         <Text fontSize="small" xref={textRef} style={{ width: 250 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do&hellip;
         </Text>
-      </View>
-      <Divider size="medium" />
-      <View horizontal justifyContent="center">
-        <Button primary title="Back" />
-        <Spacer />
-        <Button solid primary title={"Continue"} />
       </View>
     </View>
   );

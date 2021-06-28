@@ -21,7 +21,7 @@ const Swatch = ({ color, onColorSelect, ...props }) => {
   };
 
   return (
-    <View flex style={{ height: 23.55 }} background={color} onMouseDown={handleClick} {...props} />
+    <Clickable flex style={{ height: 25 }} background={color} onMouseDown={handleClick} {...props} />
   );
 };
 
@@ -40,11 +40,6 @@ const Preferences = ({ onSetBackground }) => {
                 <Image src={url} borderRadius />
               </Clickable>
             ))}
-          </List>
-          <Divider size="medium" />
-          <List horizontal xpadding="small" justifyContent="center" spacerSize="small">
-            <Button primary title="Close" />
-            <Button primary solid title="Apply" />
           </List>
         </View>
         <View>
@@ -110,6 +105,11 @@ const Preferences = ({ onSetBackground }) => {
           </View>
         </View>
       </Panel>
+      <Divider size="medium" />
+      <List horizontal xpadding="small" justifyContent="center" spacerSize="small">
+        <Button primary title="Close" />
+        <Button primary solid title="Apply" />
+      </List>
     </View>
   );
 };

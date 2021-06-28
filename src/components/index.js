@@ -144,23 +144,16 @@ const Spacer = ({ size = 'small', ...props }) => {
   );
 };
 
-const Divider = ({ size, level, ...props }) => {
+const Divider = ({ size, level, color, ...props }) => {
   const dividerClassName = [
     dividerStyles.divider,
     size && dividerStyles[size],
-    level && dividerStyles[`level-${level}`]
+    level && dividerStyles[`level-${level}`],
+    color && dividerStyles[color],
   ].filter(className => !!className).join(' ');
 
   return (
     <View className={dividerClassName} {...props} />
-  );
-};
-
-const ListItem = ({ itemFlex, itemWidth, children, ...props }) => {
-  return (
-    <View tag="li" {...props}>
-      {children}
-    </View>
   );
 };
 
@@ -214,7 +207,7 @@ const Heading = ({ image, title, subtitle, note, label, children, ...props }) =>
       <View flex>
         <View horizontal>
           <Text flex fontWeight="semibold" style={{ height: 10, overflow: 'hidden' }}>{title}</Text>
-          <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap', marginTop: 1, transform: 'scale(1.2)' }}>{note}</Text>
+          <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{note}</Text>
         </View>
         {subtitle && (
           <>

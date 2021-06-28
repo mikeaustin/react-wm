@@ -38,10 +38,18 @@ const Window = ({ title, noPadding, style, children, onWindowFocus, onWindowBlur
 
   return (
     <View ref={windowRef} background="white" boxShadow borderRadius="small" style={windowStyle} {...props}>
-      <View alignItems="center" padding="small" background="gray-1" topBorderRadius="small" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
-        <Text fontWeight="bold">{title}</Text>
+      <View
+        alignItems="center"
+        padding="small"
+        background="gray-3"
+        topBorderRadius="small"
+
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      >
+        <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
       </View>
-      <Divider size="none" />
+      <Divider size="none" color="gray-4" />
       <View padding={!noPadding && 'medium'}>
         {children}
       </View>
@@ -50,3 +58,11 @@ const Window = ({ title, noPadding, style, children, onWindowFocus, onWindowBlur
 };
 
 export default Window;
+
+/*
+      <View horizontal justifyContent="space-between" alignItems="center" padding="small" background="gray-3" topBorderRadius="small" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+        <Text fontSize="medium" style={{ margin: '-5px 5px' }}>×</Text>
+        <Text fontWeight="bold">{title}</Text>
+        <Text>     </Text>
+      </View>
+*/

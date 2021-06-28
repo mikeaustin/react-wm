@@ -3,11 +3,11 @@
   cursor: pointer;
 }
 
-.clickable:hover > * {
+.clickable:hover {
   filter: brightness(120%);
 }
 
-.clickable:active > * {
+.clickable:active {
   filter: brightness(80%);
 }
 

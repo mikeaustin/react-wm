@@ -10,13 +10,18 @@
   align-self: stretch;
 }
 
-.divider.level-3 {
-  background-color: hsl(210, 17%, 95%);
+.divider.gray-4 {
+  background-color: var(--oc-gray-4);
+  align-self: stretch;
 }
 
 .vertical > .divider {
   min-height: 1px;
   margin: 10px 0;
+}
+
+.vertical > .divider.xsmall {
+  margin: 5px 0;
 }
 
 .vertical > .divider.medium {
