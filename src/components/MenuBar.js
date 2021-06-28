@@ -7,7 +7,7 @@ import styles from './MenuBar.module.css';
 
 const MenuItem = ({ title, ...props }) => {
   return (
-    <View padding="small" xhorizontalPadding="medium" className={styles.menuItem} tabIndex="0" {...props}>
+    <View padding="small" className={styles.menuItem} tabIndex="0" {...props}>
       <Text fontWeight="semibold">{title}</Text>
     </View>
   );
