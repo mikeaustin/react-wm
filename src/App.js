@@ -15,7 +15,7 @@ import Mail from './widgets/Mail';
 import { MenuBar, Panel } from './components';
 
 function App() {
-  const windowRef = useRef(null);
+  const windowElementRef = useRef(null);
   const firstMouseRef = useRef(null);
   const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.png');
   const [windowList, setWindowList] = useState([]);
@@ -23,33 +23,37 @@ function App() {
 
   console.log('App()', windowList);
 
-  const handleWindowFocus = useCallback((window, mouseX, mouseY, id) => {
-    console.log('>>>', windowList);
-
-    windowRef.current = window;
+  const handleWindowFocus = useCallback((windowElement, mouseX, mouseY, id) => {
+    windowElementRef.current = windowElement;
     firstMouseRef.current = { mouseX, mouseY };
 
-    const activeWindow = windowList.find(window => true);
+    setWindowList((windowList) => {
+      const activeWindow = windowList.find(window => window.props.id === id);
 
-    // console.log('activeWindow', activeWindow);
-  }, []);
+      return [
+        ...windowList.filter(window => window.props.id !== id),
+        activeWindow,
+      ];
+    });
+
+  }, [setWindowList]);
 
   const handleWindowBlur = useCallback((window, mouseX, mouseY) => {
-    windowRef.current = null;
+    windowElementRef.current = null;
   }, []);
 
-  const handleMouseMove = (event) => {
-    if (windowRef.current) {
+  const handleMouseMove = useCallback((event) => {
+    if (windowElementRef.current) {
       event.preventDefault();
 
-      windowRef.current.style.left = `${event.clientX - firstMouseRef.current.mouseX}px`;
-      windowRef.current.style.top = `${event.clientY - firstMouseRef.current.mouseY - 30}px`;
+      windowElementRef.current.style.left = `${event.clientX - firstMouseRef.current.mouseX}px`;
+      windowElementRef.current.style.top = `${event.clientY - firstMouseRef.current.mouseY - 30}px`;
     }
-  };
+  }, []);
 
-  const handleSetBackground = (event) => {
+  const handleSetBackground = useCallback((event) => {
     setBackgroundUrl(event.target.src);
-  };
+  }, []);
 
   const addWindow = useCallback((element, props) => {
     setWindowList((windowList) => [
@@ -98,10 +102,16 @@ function App() {
     return () => {
       setWindowList([]);
     };
-  }, [addWindow]);
+  }, [addWindow, handleSetBackground]);
 
   return (
-    <View flex background="gray-3" className={styles.App} style={{ background: `center / cover url(${backgroundUrl})` }} onMouseMove={handleMouseMove}>
+    <View
+      flex
+      background="gray-3"
+      className={styles.App}
+      style={{ background: `center / cover url(${backgroundUrl})` }}
+      onMouseMove={handleMouseMove}
+    >
       <MenuBar />
       <View flex>
         {windowList}

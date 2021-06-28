@@ -51,7 +51,7 @@ const View = React.forwardRef(({
   let viewStyles = [];
   let viewClassName = [
     styles.View,
-    horizontal && styles.horizontal || styles.vertical,
+    (horizontal && styles.horizontal) || styles.vertical,
     flex && alignItemsStyles[flex],
     justifyContent && justifyContentStyles[justifyContent],
     alignItems && alignItemsStyles[alignItems],
@@ -160,11 +160,11 @@ const Divider = ({ size, level, color, ...props }) => {
 const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, ...props }) => {
   const listClassName = [
     listStyles.list,
-    horizontal && 'horizontal' || 'vertical',
+    (horizontal && 'horizontal') || 'vertical',
     divider && listStyles.divider,
     divider && listStyles[divider],
     level && listStyles[`level-${level}`],
-    spacerSize && listStyles[spacerSize] || listStyles.small,
+    (spacerSize && listStyles[spacerSize]) || listStyles.small,
     wrap && listStyles.wrap,
   ].filter(className => !!className).join(' ');
 

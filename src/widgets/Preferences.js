@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 import React, { useState } from 'react';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '../components';
@@ -45,68 +47,68 @@ const Preferences = ({ onSetBackground }) => {
         <View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`red-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`red-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`pink-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`pink-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`grape-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`grape-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`violet-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`violet-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`indigo-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`indigo-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`blue-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`blue-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`cyan-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`cyan-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`teal-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`teal-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`green-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`green-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`lime-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`lime-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`yellow-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`yellow-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
           <View horizontal>
             {Array.from({ length: 10 }, (_, index) => (
-              <Swatch color={`orange-${index}`} onColorSelect={handleColorSelect} />
+              <Swatch key={index} color={`orange-${index}`} onColorSelect={handleColorSelect} />
             ))}
           </View>
         </View>
       </Panel>
       <Divider size="medium" />
-      <List horizontal xpadding="small" justifyContent="center" spacerSize="small">
+      <List horizontal justifyContent="center" spacerSize="small">
         <Button primary title="Close" />
         <Button primary solid title="Apply" />
       </List>
