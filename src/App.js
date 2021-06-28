@@ -34,9 +34,9 @@ function App() {
     // console.log('activeWindow', activeWindow);
   }, []);
 
-  const handleWindowBlur = (window, mouseX, mouseY) => {
+  const handleWindowBlur = useCallback((window, mouseX, mouseY) => {
     windowRef.current = null;
-  };
+  }, []);
 
   const handleMouseMove = (event) => {
     if (windowRef.current) {
@@ -66,7 +66,7 @@ function App() {
     ]);
 
     nextWindowIdRef.current = nextWindowIdRef.current + 1;
-  }, [handleWindowFocus]);
+  }, [handleWindowFocus, handleWindowBlur]);
 
   useEffect(() => {
     (async () => {
