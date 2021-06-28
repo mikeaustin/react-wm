@@ -18,11 +18,20 @@ function App() {
   const firstMouseRef = useRef(null);
   const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.png');
   const [windowList, setWindowList] = useState([]);
+  const nextWindowIdRef = useRef(0);
 
-  const handleWindowFocus = (window, mouseX, mouseY) => {
+  console.log('App()', windowList);
+
+  const handleWindowFocus = useCallback((window, mouseX, mouseY, id) => {
+    console.log('>>>', windowList);
+
     windowRef.current = window;
     firstMouseRef.current = { mouseX, mouseY };
-  };
+
+    const activeWindow = windowList.find(window => true);
+
+    // console.log('activeWindow', activeWindow);
+  }, []);
 
   const handleWindowBlur = (window, mouseX, mouseY) => {
     windowRef.current = null;
@@ -44,11 +53,13 @@ function App() {
   const addWindow = useCallback((element, props) => {
     setWindowList((windowList) => [
       ...windowList,
-      <Window key={Math.random()} {...props} onWindowFocus={handleWindowFocus} onWindowBlur={handleWindowBlur}>
+      <Window key={nextWindowIdRef.current} id={nextWindowIdRef.current} {...props} onWindowFocus={handleWindowFocus} onWindowBlur={handleWindowBlur}>
         {element}
       </Window>
     ]);
-  }, []);
+
+    nextWindowIdRef.current = nextWindowIdRef.current + 1;
+  }, [handleWindowFocus]);
 
   useEffect(() => {
     (async () => {

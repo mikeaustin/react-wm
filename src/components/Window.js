@@ -4,14 +4,12 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '.';
 
-const Window = ({ title, noPadding, style, children, onWindowFocus, onWindowBlur, ...props }) => {
+const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindowBlur, ...props }) => {
   console.log('Window()');
 
   const windowRef = useRef();
 
   const handleMouseDown = (event) => {
-    console.log('here', event);
-
     event.preventDefault();
 
     const boundingClientRect = windowRef.current.getBoundingClientRect();
@@ -19,7 +17,8 @@ const Window = ({ title, noPadding, style, children, onWindowFocus, onWindowBlur
     onWindowFocus(
       windowRef.current,
       event.clientX - boundingClientRect.left,
-      event.clientY - boundingClientRect.top
+      event.clientY - boundingClientRect.top,
+      id,
     );
   };
 
