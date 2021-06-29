@@ -46,7 +46,7 @@
 }
 
 .button.solid:active {
-  background-color: var(--oc-gray-5);
+  background-color: var(--oc-gray-4);
 }
 
 .button.primary:active {

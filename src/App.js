@@ -74,7 +74,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const calculator = await import(/* webpackIgnore: true */ '/widgets/bundle.js');
+      const calculator = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '.'}/widgets/calculator.js`);
       const Widget = calculator.default;
 
       addWindow(<VideoPlayer src="videos/trailer.webm" />, {

@@ -27,6 +27,6 @@ module.exports = {
       type: 'module'
     },
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    filename: 'calculator.js',
   },
 };
