@@ -17,7 +17,7 @@ import { MenuBar, Panel } from './components';
 function App() {
   const windowElementRef = useRef(null);
   const firstMouseRef = useRef(null);
-  const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.png');
+  const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.jpg');
   const [windowList, setWindowList] = useState([]);
   const nextWindowIdRef = useRef(0);
 
@@ -86,16 +86,16 @@ function App() {
       });
 
       addWindow(<Mail />, {
-        title: 'Mail', noPadding: true, style: { left: 15, top: 480 }
+        title: 'Mail', noPadding: true, style: { left: 15, top: 450 }
       });
 
       addWindow(
         <Widget components={{ View, Text, Button, Spacer, Divider, List }} />, {
-        title: 'Calculator', background: 'gray-1', style: { left: 490, top: 540 }
+        title: 'Calculator', background: 'gray-1', style: { left: 1100, top: 100 }
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
-        title: 'Preferences', xbackground: 'gray-1', style: { left: 950, top: 400 }
+        title: 'Preferences', xbackground: 'gray-1', style: { left: 1100, top: 450 }
       });
     })();
 
