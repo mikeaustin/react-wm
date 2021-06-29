@@ -17,6 +17,7 @@ import textStyles from '../styles/text.module.css';
 import fontWeightStyles from '../styles/fontWeight.module.css';
 import borderRadiusStyles from '../styles/borderRadius.module.css';
 import topBorderRadiusStyles from '../styles/topBorderRadius.module.css';
+import bottomBorderRadiusStyles from '../styles/bottomBorderRadius.module.css';
 import boxShadowStyles from '../styles/boxShadow.module.css';
 import opacityStyles from '../styles/opacity.module.css';
 
@@ -38,6 +39,7 @@ const View = React.forwardRef(({
   horizontal,
   borderRadius,
   topBorderRadius,
+  bottomBorderRadius,
   boxShadow,
   absolute,
   opacity,
@@ -61,6 +63,7 @@ const View = React.forwardRef(({
     horizontalPadding && horizontalPaddingStyles[horizontalPadding],
     borderRadius && borderRadiusStyles[borderRadius],
     topBorderRadius && topBorderRadiusStyles[topBorderRadius],
+    bottomBorderRadius && bottomBorderRadiusStyles[bottomBorderRadius],
     boxShadow && boxShadowStyles[boxShadow],
     absolute && styles.absolute,
     opacity && opacityStyles[`opacity-${opacity}`],
