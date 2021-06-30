@@ -96,11 +96,11 @@ function App() {
 
       addWindow(
         <Widget components={{ View, Text, Button, Spacer, Divider, List }} />, {
-        title: 'Calculator', background: 'gray-1', style: { left: 1100, top: 100 }
+        title: 'Calculator', background: 'gray-1', style: { left: 950, top: 100 }
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
-        title: 'Preferences', xbackground: 'gray-1', style: { left: 1100, top: 450 }
+        title: 'Preferences', xbackground: 'gray-1', style: { left: 1050, top: 450 }
       });
 
       addWindow(
@@ -118,7 +118,7 @@ function App() {
             </View>
           </View>
         </View>, {
-        title: 'Editor', noPadding: true, background: 'gray-1', style: { left: 1100, top: 450, width: 400, height: 300, }
+        title: 'Editor', noPadding: true, background: 'gray-1', style: { left: 1200, top: 100, width: 400, height: 300, }
       });
 
     })();
