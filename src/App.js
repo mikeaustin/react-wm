@@ -114,7 +114,16 @@ function App() {
             </View>
             <Divider size="none" />
             <View flex verticalPadding="medium" background="white" style={{ paddingLeft: 10 }}>
-              <View ref={editorRef} flex contentEditable spellCheck="false" style={{ fontSize: 14, fontFamily: 'monospace', margin: '-5px 0', lineHeight: '20px' }} onInput={handleInput} />
+              <View
+                ref={editorRef}
+                tag="pre"
+                flex
+                contentEditable
+                spellCheck="false"
+                style={{ xfontSize: 14, xfontFamily: 'monospace', margin: '-5px 0', lineHeight: '20px' }}
+                onInput={handleInput}
+                onPaste={event => { event.preventDefault(); document.execCommand("inserttext", false, event.clipboardData.getData("text/plain")); }}
+              />
             </View>
           </View>
         </View>, {
