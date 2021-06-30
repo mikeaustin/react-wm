@@ -20,6 +20,7 @@ function App() {
   const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.jpg');
   const [windowList, setWindowList] = useState([]);
   const nextWindowIdRef = useRef(0);
+  const editorRef = useRef();
 
   console.log('App()', windowList);
 
@@ -72,6 +73,10 @@ function App() {
     nextWindowIdRef.current = nextWindowIdRef.current + 1;
   }, [handleWindowFocus, handleWindowBlur]);
 
+  const handleInput = event => {
+    console.log(event.currentTarget.childNodes.length);
+  };
+
   useEffect(() => {
     (async () => {
       const calculator = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '.'}/widgets/calculator.js`);
@@ -97,6 +102,25 @@ function App() {
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
         title: 'Preferences', xbackground: 'gray-1', style: { left: 1100, top: 450 }
       });
+
+      addWindow(
+        <View flex>
+          <View flex horizontal>
+            <View style={{ margin: '0 10px' }} verticalPadding="medium">
+              <Text style={{ fontFamily: 'monospace', textAlign: 'right' }}>
+                1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />
+                11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20
+              </Text>
+            </View>
+            <Divider size="none" />
+            <View flex verticalPadding="medium" background="white" style={{ paddingLeft: 10 }}>
+              <View ref={editorRef} flex contentEditable spellCheck="false" style={{ fontSize: 14, fontFamily: 'monospace', margin: '-5px 0', lineHeight: '20px' }} onInput={handleInput} />
+            </View>
+          </View>
+        </View>, {
+        title: 'Editor', noPadding: true, background: 'gray-1', style: { left: 1100, top: 450, width: 400, height: 300, }
+      });
+
     })();
 
     return () => {

@@ -42,14 +42,13 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
         padding="small"
         background="gray-3"
         topBorderRadius="small"
-
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       >
         <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
       </View>
       <Divider size="none" color="gray-4" />
-      <View padding={!noPadding && 'medium'}>
+      <View flex padding={!noPadding && 'medium'} style={{ overflow: 'auto' }}>
         {children}
       </View>
     </View>
