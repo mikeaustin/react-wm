@@ -48,7 +48,7 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
         <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
       </View>
       <Divider size="none" color="gray-4" />
-      <View flex padding={!noPadding && 'medium'} style={{ overflow: 'auto' }}>
+      <View flex padding={!noPadding && 'medium'} style={{ overflowX: 'clip', overflowY: 'auto' }}>
         {children}
       </View>
     </View>

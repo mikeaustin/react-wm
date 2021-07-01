@@ -96,7 +96,7 @@ function App() {
 
       addWindow(
         <Widget components={{ View, Text, Button, Spacer, Divider, List }} />, {
-        title: 'Calculator', background: 'gray-1', style: { left: 950, top: 100 }
+        title: 'Calculator', background: 'gray-1', style: { left: 950, top: 60 }
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
@@ -113,23 +113,39 @@ function App() {
               </Text>
             </View>
             <Divider size="none" />
-            <View flex verticalPadding="medium" background="white" style={{ paddingLeft: 10 }}>
+            <View flex horizontalPadding="small" padding="medium" background="white" style={{ overflowX: 'auto' }}>
               <View
                 ref={editorRef}
                 tag="pre"
                 flex
                 contentEditable
                 spellCheck="false"
-                style={{ xfontSize: 14, xfontFamily: 'monospace', margin: '-5px 0', lineHeight: '20px' }}
+                style={{ margin: '-5px 0', lineHeight: '20px' }}
                 onInput={handleInput}
                 onPaste={event => { event.preventDefault(); document.execCommand("inserttext", false, event.clipboardData.getData("text/plain")); }}
-              />
+              >
+                {`const Image = ({ src, width, height, ...props }) => {
+  return (
+    <View tag="img" src={src} style={{ width, height }} {...props} />
+  );
+};
+
+`}
+              </View>
             </View>
           </View>
         </View>, {
-        title: 'Editor', noPadding: true, background: 'gray-1', style: { left: 1200, top: 100, width: 400, height: 300, }
+        title: 'Editor', noPadding: true, background: 'gray-1', style: {
+          left: 1000, top: 100, width: 500, height: 300
+        }
       });
 
+      addWindow(
+        <View tag="svg" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="99" stroke="#dee2e6" fill="none" stroke-width="2" />
+        </View>,
+        { title: 'Clock', style: { left: 1100, top: 140, width: 200, height: 230 } }
+      );
     })();
 
     return () => {
