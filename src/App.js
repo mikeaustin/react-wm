@@ -11,6 +11,7 @@ import VideoPlayer from './VideoPlayer';
 import Examples from './widgets/Examples';
 import Preferences from './widgets/Preferences';
 import Mail from './widgets/Mail';
+import Clock from './widgets/Clock';
 
 import { MenuBar, Panel } from './components';
 
@@ -141,9 +142,7 @@ function App() {
       });
 
       addWindow(
-        <View tag="svg" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="99" stroke="#dee2e6" fill="none" stroke-width="2" />
-        </View>,
+        <Clock />,
         { title: 'Clock', style: { left: 1100, top: 140, width: 200, height: 230 } }
       );
     })();
