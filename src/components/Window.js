@@ -8,6 +8,7 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
   console.log('Window()');
 
   const windowRef = useRef();
+  const mouseIsDownRef = useRef(false);
 
   const handleMouseDown = (event) => {
     event.preventDefault();
@@ -28,6 +29,23 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
     onWindowBlur(windowRef.current, event.nativeEvent.offsetX, event.nativeEvent.offsetY);
   };
 
+  const handleResizeMouseDown = (event) => {
+    event.preventDefault();
+
+    mouseIsDownRef.current = true;
+  };
+
+  const handleResizeMouseMove = (event) => {
+    console.log(event);
+    if (mouseIsDownRef.current) {
+      windowRef.current.style.width = windowRef.current.offsetWidth + event.movementX + 'px';
+    }
+  };
+
+  const handleResizeMouseUp = (event) => {
+    mouseIsDownRef.current = false;
+  };
+
   const windowStyle = {
     alignSelf: 'flex-start',
     position: 'absolute',
@@ -37,6 +55,13 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
 
   return (
     <View ref={windowRef} background="white" boxShadow borderRadius="small" style={windowStyle} {...props}>
+      <View
+        absolute
+        style={{ margin: -10, cursor: 'ew-resize' }}
+        onMouseDown={handleResizeMouseDown}
+        onMouseMove={handleResizeMouseMove}
+        onMouseUp={handleResizeMouseUp}
+      />
       <View
         alignItems="center"
         padding="small"

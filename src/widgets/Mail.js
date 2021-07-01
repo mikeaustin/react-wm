@@ -7,7 +7,7 @@ import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } 
 const Mail = () => {
   return (
     <View horizontal style={{ height: 400 }}>
-      <View style={{ width: 375, overflow: 'auto' }}>
+      <View style={{ minWidth: 375, overflow: 'auto' }}>
         <View background="gray-1">
           <Spacer size="medium" />
           <List horizontal horizontalPadding="medium">
@@ -77,7 +77,7 @@ const Mail = () => {
 
       <Divider size="none" />
 
-      <View xbackground="gray-0" style={{ width: 600, xoverflowY: 'scroll' }}>
+      <View xbackground="gray-0" style={{ xoverflowY: 'scroll' }}>
         <Spacer size="medium" />
         <View>
           <List horizontal horizontalPadding="medium" xbackground="white">

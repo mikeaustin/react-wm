@@ -92,7 +92,7 @@ function App() {
       });
 
       addWindow(<Mail />, {
-        title: 'Mail', noPadding: true, style: { left: 15, top: 450 }
+        title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900 }
       });
 
       addWindow(
@@ -101,7 +101,7 @@ function App() {
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
-        title: 'Preferences', xbackground: 'gray-1', style: { left: 1050, top: 450 }
+        title: 'Preferences', xbackground: 'gray-1', style: { left: 1050, top: 450, width: 500 }
       });
 
       addWindow(

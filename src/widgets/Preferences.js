@@ -33,7 +33,7 @@ const Preferences = ({ onSetBackground }) => {
   };
 
   return (
-    <View style={{ width: 500 }}>
+    <View style={{ xwidth: 500 }}>
       <Panel tabs={['Background', 'Primary Color']}>
         <View>
           <List horizontal divider wrap spacerSize="none">
