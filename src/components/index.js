@@ -5,6 +5,7 @@ import React from 'react';
 import Window from './Window';
 import MenuBar from './MenuBar';
 import Panel from './Panel';
+import Field from './Field';
 
 import styles from '../App.module.css';
 import justifyContentStyles from '../styles/justifyContent.module.css';
@@ -210,14 +211,14 @@ const Heading = ({ image, title, subtitle, note, label, children, ...props }) =>
       <View flex>
         <View horizontal>
           <Text flex fontWeight="semibold" style={{ height: 10, overflow: 'hidden' }}>{title}</Text>
-          <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{note}</Text>
+          <Text xfontSize="xsmall" xcolor="gray-6" style={{ whiteSpace: 'nowrap' }}>{note}</Text>
         </View>
         {subtitle && (
           <>
             <Spacer />
             <View horizontal>
               <Text flex fontSize="xsmall" color="gray-6">{subtitle}</Text>
-              <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
+              <Text fontSize="xxsmall" xcolor="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
             </View>
             {children && (
               <>
@@ -246,4 +247,5 @@ export {
   Window,
   MenuBar,
   Panel,
+  Field,
 };

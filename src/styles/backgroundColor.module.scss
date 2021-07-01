@@ -9,6 +9,10 @@
   }
 }
 
+.gray-0-gradient {
+  background: linear-gradient(180deg, $oc-gray-2, $oc-gray-3);
+}
+
 .primary {
   background: var(--primary-color);
 }

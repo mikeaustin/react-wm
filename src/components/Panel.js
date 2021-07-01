@@ -12,8 +12,13 @@ const Tab = ({ title, index, active, onSelectTab }) => {
   };
 
   return (
-    <View padding="small" horizontalPadding="medium" style={{ borderBottom: active && '2px solid var(--primary-color)', marginBottom: -1 }} onMouseDown={handleClick}>
+    <View
+      horizontalPadding="medium"
+      style={{ borderBottom: active && '2px solid var(--primary-color)', marginBottom: -1 }}
+      onMouseDown={handleClick}
+    >
       <Text fontWeight={active && 'bold'} style={{ letterSpacing: active && -0.6 }}>{title}</Text>
+      <Spacer size="small" />
     </View>
   );
 };
@@ -48,7 +53,7 @@ const Panel = ({ tabs, children }) => {
   const content = React.Children.toArray(children)[activeTabIndex];
 
   return (
-    <View style={{ marginTop: -5 }}>
+    <View>
       <TabBar data={tabs} activeTabIndex={activeTabIndex} onSelectTab={handleSelectTab} />
       <Spacer size="medium" />
       <View>

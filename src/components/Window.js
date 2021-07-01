@@ -57,7 +57,7 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
     <View ref={windowRef} background="white" boxShadow borderRadius="small" style={windowStyle} {...props}>
       <View
         absolute
-        style={{ margin: -10, cursor: 'ew-resize' }}
+        style={{ margin: -15, cursor: 'ew-resize' }}
         onMouseDown={handleResizeMouseDown}
         onMouseMove={handleResizeMouseMove}
         onMouseUp={handleResizeMouseUp}
@@ -66,6 +66,7 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
         alignItems="center"
         padding="small"
         background="gray-3"
+        background="gray-0-gradient"
         topBorderRadius="small"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}

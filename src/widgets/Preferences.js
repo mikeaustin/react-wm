@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '../components';
-import { MenuBar, Panel } from '../components';
+import { MenuBar, Panel, Field } from '../components';
 
 const backgroundUrls = [
   './images/d1e91a4058a8a1082da711095b4e0163.png',
@@ -17,6 +17,21 @@ const backgroundUrls = [
   './images/Star Wars ultra widescreen backgrounds Album on Imgur.jpg',
 ];
 
+const colors = [
+  'red',
+  'pink',
+  'grape',
+  'violet',
+  'indigo',
+  'blue',
+  'cyan',
+  'teal',
+  'green',
+  'lime',
+  'yellow',
+  'orange'
+];
+
 const Swatch = ({ color, onColorSelect, ...props }) => {
   const handleClick = () => {
     onColorSelect(color);
@@ -27,16 +42,25 @@ const Swatch = ({ color, onColorSelect, ...props }) => {
   );
 };
 
+const SwatchRow = ({ hue, onColorSelect }) => {
+  return (
+    <View horizontal>
+      {Array.from({ length: 10 }, (_, index) => (
+        <Swatch key={index} color={`${hue}-${index}`} onColorSelect={onColorSelect} />
+      ))}
+    </View>
+  );
+};
 const Preferences = ({ onSetBackground }) => {
   const handleColorSelect = (color) => {
     document.documentElement.style.setProperty('--primary-color', `var(--oc-${color})`);
   };
 
   return (
-    <View style={{ xwidth: 500 }}>
-      <Panel tabs={['Background', 'Primary Color']}>
+    <View>
+      <Panel tabs={['Background', 'Primary Color', 'User Info']}>
         <View>
-          <List horizontal divider wrap spacerSize="none">
+          <List horizontal wrap spacerSize="none">
             {backgroundUrls.map(url => (
               <Clickable key={url} itemWidth="33.33%" tabIndex="0" onClick={onSetBackground}>
                 <Image src={url} borderRadius />
@@ -45,66 +69,12 @@ const Preferences = ({ onSetBackground }) => {
           </List>
         </View>
         <View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`red-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`pink-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`grape-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`violet-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`indigo-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`blue-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`cyan-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`teal-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`green-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`lime-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`yellow-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
-          <View horizontal>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Swatch key={index} color={`orange-${index}`} onColorSelect={handleColorSelect} />
-            ))}
-          </View>
+          {colors.map(color => (
+            <SwatchRow hue={color} onColorSelect={handleColorSelect} />
+          ))}
+        </View>
+        <View>
+          <Field />
         </View>
       </Panel>
       <Divider size="medium" />
