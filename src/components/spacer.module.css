@@ -1,6 +1,10 @@
 @value vertical from "../App.module.css";
 @value horizontal from "../App.module.css";
 
+/* .small, .medium, .large {
+  pointer-events: none;;
+} */
+
 .vertical > .xsmall {
   min-height: 5px;
   align-self: stretch;
@@ -16,6 +20,11 @@
   align-self: stretch;
 }
 
+.vertical > .large {
+  min-height: 20px;
+  align-self: stretch;
+}
+
 /* Horizontal */
 
 .horizontal > .xsmall {
@@ -25,5 +34,15 @@
 
 .horizontal > .small {
   min-width: 10px;
+  align-self: stretch;
+}
+
+.horizontal > .medium {
+  min-width: 15px;
+  align-self: stretch;
+}
+
+.horizontal > .large {
+  min-width: 20px;
   align-self: stretch;
 }

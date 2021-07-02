@@ -1,5 +1,6 @@
 :root {
   --primary-color: var(--oc-blue-5);
+  --primary-light-color: var(--oc-blue-3);
 }
 
 .App {
