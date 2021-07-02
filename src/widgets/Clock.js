@@ -42,7 +42,7 @@ const Clock = () => {
 
   return (
     <View tag="svg" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="99" stroke="#343a40" fill="none" stroke-width="3" />
+      <circle cx="100" cy="100" r="98" stroke="#343a40" fill="none" stroke-width="3" />
       {Array.from({ length: 12 }, (_, index, angle = (index * 30 + 180) * (Math.PI / 180)) => (
         <circle
           cx={Math.cos(angle) * 0 - Math.sin(angle) * 80 + 100}

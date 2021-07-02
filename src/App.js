@@ -15,6 +15,15 @@ import Clock from './widgets/Clock';
 
 import { MenuBar, Panel } from './components';
 
+const editorText = (
+  `const Image = ({ src, width, height, ...props }) => {
+  return (
+    <View tag="img" src={src} style={{ width, height }} {...props} />
+  );
+};
+
+`);
+
 function App() {
   const windowElementRef = useRef(null);
   const firstMouseRef = useRef(null);
@@ -78,6 +87,12 @@ function App() {
     console.log(event.currentTarget.childNodes.length);
   };
 
+  const handlePaste = event => {
+    event.preventDefault();
+
+    document.execCommand("inserttext", false, event.clipboardData.getData("text/plain"));
+  };
+
   useEffect(() => {
     (async () => {
       const calculator = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '.'}/widgets/calculator.js`);
@@ -123,15 +138,9 @@ function App() {
                 spellCheck="false"
                 style={{ margin: '-5px 0', lineHeight: '20px' }}
                 onInput={handleInput}
-                onPaste={event => { event.preventDefault(); document.execCommand("inserttext", false, event.clipboardData.getData("text/plain")); }}
+                onPaste={handlePaste}
               >
-                {`const Image = ({ src, width, height, ...props }) => {
-  return (
-    <View tag="img" src={src} style={{ width, height }} {...props} />
-  );
-};
-
-`}
+                {editorText}
               </View>
             </View>
           </View>
