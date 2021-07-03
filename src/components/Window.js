@@ -4,13 +4,27 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '.';
 
-const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindowBlur, ...props }) => {
+const Window = ({
+  id,
+  title,
+  noPadding,
+  style,
+  children,
+  onWindowFocus,
+  onWindowBlur,
+  onWindowActivate,
+  ...props
+}) => {
   console.log('Window()');
 
   const windowRef = useRef();
   const mouseIsDownRef = useRef(false);
 
-  const handleMouseDown = (event) => {
+  const handleWindowMouseDown = (event) => {
+    onWindowActivate(id);
+  };
+
+  const handleTitleMouseDown = (event) => {
     event.preventDefault();
 
     const boundingClientRect = windowRef.current.getBoundingClientRect();
@@ -23,7 +37,7 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
     );
   };
 
-  const handleMouseUp = (event) => {
+  const handleTitleMouseUp = (event) => {
     console.log('here', event);
 
     onWindowBlur(windowRef.current, event.nativeEvent.offsetX, event.nativeEvent.offsetY);
@@ -54,7 +68,7 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
   };
 
   return (
-    <View ref={windowRef} background="white" boxShadow borderRadius="small" style={windowStyle} {...props}>
+    <View ref={windowRef} background="white" boxShadow borderRadius="small" style={windowStyle} onMouseDown={handleWindowMouseDown} {...props}>
       <View
         absolute
         style={{ margin: -15, cursor: 'ew-resize' }}
@@ -67,8 +81,8 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
         padding="small"
         background="gray-3"
         topBorderRadius="small"
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
+        onMouseDown={handleTitleMouseDown}
+        onMouseUp={handleTitleMouseUp}
       >
         <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
       </View>
@@ -83,7 +97,7 @@ const Window = ({ id, title, noPadding, style, children, onWindowFocus, onWindow
 export default Window;
 
 /*
-      <View horizontal justifyContent="space-between" alignItems="center" padding="small" background="gray-3" topBorderRadius="small" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+      <View horizontal justifyContent="space-between" alignItems="center" padding="small" background="gray-3" topBorderRadius="small" onMouseDown={handleTitleMouseDown} onMouseUp={handleTitleMouseUp}>
         <Text fontSize="medium" style={{ margin: '-5px 5px' }}>×</Text>
         <Text fontWeight="bold">{title}</Text>
         <Text>     </Text>

@@ -34,10 +34,7 @@ function App() {
 
   console.log('App()', windowList);
 
-  const handleWindowFocus = useCallback((windowElement, mouseX, mouseY, id) => {
-    windowElementRef.current = windowElement;
-    firstMouseRef.current = { mouseX, mouseY };
-
+  const handleWindowActivate = (id) => {
     setWindowList((windowList) => {
       const activeWindow = windowList.find(window => window.props.id === id);
 
@@ -46,10 +43,14 @@ function App() {
         activeWindow,
       ];
     });
+  };
 
+  const handleWindowFocus = useCallback((windowElement, mouseX, mouseY, id) => {
+    windowElementRef.current = windowElement;
+    firstMouseRef.current = { mouseX, mouseY };
   }, [setWindowList]);
 
-  const handleWindowBlur = useCallback((window, mouseX, mouseY) => {
+  const handleWindowBlur = useCallback(() => {
     windowElementRef.current = null;
   }, []);
 
@@ -72,6 +73,7 @@ function App() {
       <Window
         key={nextWindowIdRef.current}
         id={nextWindowIdRef.current}
+        onWindowActivate={handleWindowActivate}
         onWindowFocus={handleWindowFocus}
         onWindowBlur={handleWindowBlur}
         {...props}

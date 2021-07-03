@@ -51,9 +51,32 @@ const Clock = () => {
           fill="#343a40"
         />
       ))}
-      <line x1={100} y1={100} x2={hour.x + 100} y2={hour.y + 100} stroke="#343a40" stroke-width={12} stroke-linecap="round" />
-      <line x1={100} y1={100} x2={minute.x + 100} y2={minute.y + 100} stroke="#343a40" stroke-width={12} stroke-linecap="round" />
-      <line x1={-(second.x / 5) + 100} y1={-(second.y / 5) + 100} x2={second.x + 100} y2={second.y + 100} stroke="#adb5bd" stroke-width={2} stroke-linecap="round" />
+      <line
+        x1={100}
+        y1={100}
+        x2={hour.x + 100}
+        y2={hour.y + 100}
+        stroke="#343a40"
+        stroke-width={12}
+        stroke-linecap="round"
+      />
+      <line
+        x1={100}
+        y1={100}
+        x2={minute.x + 100} y2={minute.y + 100}
+        stroke="#343a40"
+        stroke-width={12}
+        stroke-linecap="round"
+        style={{ filter: 'drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.1))' }}
+      />
+      <line
+        x1={-(second.x / 5) + 100}
+        y1={-(second.y / 5) + 100} x2={second.x + 100}
+        y2={second.y + 100}
+        stroke="#adb5bd"
+        stroke-width={2}
+        stroke-linecap="round"
+      />
       <circle cx="100" cy="100" r="2" fill="white" />
     </View>
   );
