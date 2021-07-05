@@ -6,14 +6,14 @@ import classNames from 'classnames';
 import 'open-color/open-color.css';
 import styles from './App.module.css';
 
-import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable, Window } from './components';
+import { View, Text, Image, Button, Spacer, Divider, List } from './components';
 import VideoPlayer from './VideoPlayer';
 import Examples from './widgets/Examples';
 import Preferences from './widgets/Preferences';
 import Mail from './widgets/Mail';
 import Clock from './widgets/Clock';
 
-import { MenuBar, Panel } from './components';
+import { Window, MenuBar } from './components';
 
 const editorText = (
   `const Image = ({ src, width, height, ...props }) => {
@@ -28,27 +28,23 @@ function App() {
   const windowElementRef = useRef(null);
   const firstMouseRef = useRef(null);
   const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.jpg');
-  const [windowList, setWindowList] = useState([]);
+  const [windowElements, setWindowElements] = useState([]);
+  const [windowIndexes, setWindowIndexes] = useState([]);
   const nextWindowIdRef = useRef(0);
   const editorRef = useRef();
 
-  console.log('App()', windowList);
+  console.log('App()', windowElements);
 
-  const handleWindowActivate = (id) => {
-    setWindowList((windowList) => {
-      const activeWindow = windowList.find(window => window.props.id === id);
-
-      return [
-        ...windowList.filter(window => window.props.id !== id),
-        activeWindow,
-      ];
+  const handleWindowActivate = (windowId) => {
+    setWindowIndexes((windowIndexes) => {
+      return [...windowIndexes.filter(id => id !== windowId), windowId];
     });
   };
 
   const handleWindowFocus = useCallback((windowElement, mouseX, mouseY, id) => {
     windowElementRef.current = windowElement;
     firstMouseRef.current = { mouseX, mouseY };
-  }, [setWindowList]);
+  }, [setWindowElements]);
 
   const handleWindowBlur = useCallback(() => {
     windowElementRef.current = null;
@@ -68,8 +64,8 @@ function App() {
   }, []);
 
   const addWindow = useCallback((element, props) => {
-    setWindowList((windowList) => [
-      ...windowList,
+    setWindowElements((windowElements) => [
+      ...windowElements,
       <Window
         key={nextWindowIdRef.current}
         id={nextWindowIdRef.current}
@@ -82,7 +78,12 @@ function App() {
       </Window>
     ]);
 
-    nextWindowIdRef.current = nextWindowIdRef.current + 1;
+    setWindowIndexes(windowIndexes => [
+      ...windowIndexes,
+      nextWindowIdRef.current
+    ]);
+
+    nextWindowIdRef.current += 1;
   }, [handleWindowFocus, handleWindowBlur]);
 
   const handleInput = event => {
@@ -159,7 +160,7 @@ function App() {
     })();
 
     return () => {
-      setWindowList([]);
+      setWindowElements([]);
     };
   }, [addWindow, handleSetBackground]);
 
@@ -173,7 +174,9 @@ function App() {
     >
       <MenuBar />
       <View flex>
-        {windowList}
+        {windowElements.map(windowElement => React.cloneElement(windowElement, {
+          zIndex: windowIndexes.indexOf(windowElement.props.id)
+        }))}
       </View>
     </View>
   );

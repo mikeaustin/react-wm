@@ -8,6 +8,7 @@ const Window = ({
   id,
   title,
   noPadding,
+  zIndex,
   style,
   children,
   onWindowFocus,
@@ -63,7 +64,7 @@ const Window = ({
   const windowStyle = {
     alignSelf: 'flex-start',
     position: 'absolute',
-    zIndex: 1,
+    zIndex: zIndex + 100,
     ...style
   };
 

@@ -11,8 +11,8 @@ const Clock = () => {
   useEffect(() => {
     timerRef.current = setInterval(() => {
       const now = new Date();
-      const hourAngle = (now.getHours() * 30 + 180) * (Math.PI / 180);
-      const minuteAngle = (now.getMinutes() * 6 + 180) * (Math.PI / 180);
+      const hourAngle = ((now.getHours() + now.getMinutes() / 60) * 30 + 180) * (Math.PI / 180);
+      const minuteAngle = ((now.getMinutes() + now.getSeconds() / 60) * 6 + 180) * (Math.PI / 180);
       const secondAngle = (now.getSeconds() * 6 + 180) * (Math.PI / 180);
 
       const hour = {
@@ -67,7 +67,7 @@ const Clock = () => {
         stroke="#343a40"
         stroke-width={12}
         stroke-linecap="round"
-        style={{ filter: 'drop-shadow(0 0 1px hsla(0, 0%, 100%, 0.1))' }}
+        style={{ filter: 'drop-shadow(0 0 2px hsla(0, 0%, 0%, 0.1))' }}
       />
       <line
         x1={-(second.x / 5) + 100}
