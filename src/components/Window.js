@@ -51,10 +51,10 @@ const Window = ({
   };
 
   const handleResizeMouseMove = (event) => {
-    console.log(event);
-    if (mouseIsDownRef.current) {
-      windowRef.current.style.width = windowRef.current.offsetWidth + event.movementX + 'px';
-    }
+    // console.log(event);
+    // if (mouseIsDownRef.current) {
+    //   windowRef.current.style.width = windowRef.current.offsetWidth + event.movementX + 'px';
+    // }
   };
 
   const handleResizeMouseUp = (event) => {
@@ -69,7 +69,15 @@ const Window = ({
   };
 
   return (
-    <View ref={windowRef} background="white" boxShadow borderRadius="small" style={windowStyle} onMouseDown={handleWindowMouseDown} {...props}>
+    <View
+      ref={windowRef}
+      background="white"
+      boxShadow
+      borderRadius="small"
+      style={windowStyle}
+      onMouseDown={handleWindowMouseDown}
+      {...props}
+    >
       <View
         absolute
         style={{ margin: -15, cursor: 'ew-resize' }}

@@ -73,10 +73,17 @@ const Preferences = ({ onSetBackground }) => {
             <SwatchRow hue={color} onColorSelect={handleColorSelect} />
           ))}
         </View>
-        <View padding="medium">
-          <Field itemFlex title="Username" />
-          <Spacer size="large" />
-          <Field itemFlex title="Password" />
+        <View horizontal alignItems="center">
+          <View flex padding="medium" style={{ xwidth: '100%', maxWidth: 300 }}>
+            <Field itemFlex title="Username" options={['john@example.com']} />
+            <Spacer size="large" />
+            <Field itemFlex title="Password" />
+          </View>
+          <View flex padding="medium" style={{ xwidth: '100%', maxWidth: 300 }}>
+            <Field variant="document" title="Username" options={['john@example.com']} />
+            <Spacer size="large" />
+            <Field variant="document" title="Password" />
+          </View>
         </View>
       </Panel>
       <Divider size="medium" />

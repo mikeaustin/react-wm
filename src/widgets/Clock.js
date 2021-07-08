@@ -4,9 +4,9 @@ import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable, W
 
 const Clock = () => {
   const timerRef = useRef(null);
-  const [hour, setHour] = useState(0);
-  const [minute, setMinute] = useState(0);
-  const [second, setSecond] = useState(0);
+  const [hour, setHour] = useState({ x: 0, y: 0 });
+  const [minute, setMinute] = useState({ x: 0, y: 0 });
+  const [second, setSecond] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
@@ -42,7 +42,7 @@ const Clock = () => {
 
   return (
     <View tag="svg" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="98" stroke="#343a40" fill="none" stroke-width="3" />
+      <circle cx="100" cy="100" r="98" stroke="#343a40" fill="none" strokeWidth="3" />
       {Array.from({ length: 12 }, (_, index, angle = (index * 30 + 180) * (Math.PI / 180)) => (
         <circle
           cx={Math.cos(angle) * 0 - Math.sin(angle) * 80 + 100}
@@ -57,16 +57,16 @@ const Clock = () => {
         x2={hour.x + 100}
         y2={hour.y + 100}
         stroke="#343a40"
-        stroke-width={12}
-        stroke-linecap="round"
+        strokeWidth={12}
+        strokeLinecap="round"
       />
       <line
         x1={100}
         y1={100}
         x2={minute.x + 100} y2={minute.y + 100}
         stroke="#343a40"
-        stroke-width={12}
-        stroke-linecap="round"
+        strokeWidth={12}
+        strokeLinecap="round"
         style={{ filter: 'drop-shadow(0 0 2px hsla(0, 0%, 0%, 0.1))' }}
       />
       <line
@@ -74,8 +74,8 @@ const Clock = () => {
         y1={-(second.y / 5) + 100} x2={second.x + 100}
         y2={second.y + 100}
         stroke="#adb5bd"
-        stroke-width={2}
-        stroke-linecap="round"
+        strokeWidth={2}
+        strokeLinecap="round"
       />
       <circle cx="100" cy="100" r="2" fill="white" />
     </View>

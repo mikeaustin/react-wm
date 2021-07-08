@@ -1,3 +1,5 @@
+@import 'open-color/open-color';
+
 // .field {
 //   line-height: 20px;
 //   padding-bottom: 2px;
@@ -16,7 +18,18 @@
 //   }
 // }
 
-.field {
+.input:not(.document) {
+  line-height: 20px;
+  box-shadow: inset 0 0 0 1px var(--oc-gray-3);
+  padding: 5px 10px;
+  border-radius: 2.5px;
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px var(--primary-color);
+  }
+}
+
+.input.document {
   line-height: 20px;
   padding-bottom: 5px;
   margin-top: -5px;

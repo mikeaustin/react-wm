@@ -27,6 +27,11 @@
 
 /* Horizontal */
 
+.horizontal > .xxsmall {
+  min-width: 2.5px;
+  align-self: stretch;
+}
+
 .horizontal > .xsmall {
   min-width: 5px;
   align-self: stretch;

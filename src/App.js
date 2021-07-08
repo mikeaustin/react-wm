@@ -36,6 +36,10 @@ function App() {
   console.log('App()', windowElements);
 
   const handleWindowActivate = (windowId) => {
+    // if (windowIndexes.indexOf(windowId) === windowIndexes.length - 1) {
+    //   return;
+    // }
+
     setWindowIndexes((windowIndexes) => {
       return [...windowIndexes.filter(id => id !== windowId), windowId];
     });
@@ -50,7 +54,15 @@ function App() {
     windowElementRef.current = null;
   }, []);
 
+  const handleMouseDown = (event) => {
+    console.log('handleMouseDown()');
+
+    event.preventDefault();
+  };
+
   const handleMouseMove = useCallback((event) => {
+    // console.log('handleMouseMove()');
+
     if (windowElementRef.current) {
       event.preventDefault();
 
@@ -170,6 +182,7 @@ function App() {
       background="gray-3"
       className={styles.App}
       style={{ background: `center / cover url(${backgroundUrl})` }}
+      onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
     >
       <MenuBar />
