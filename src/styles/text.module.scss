@@ -1,3 +1,5 @@
+@import 'open-color/open-color';
+
 .small {
   cursor: default;
   font-size: 14px;
@@ -49,30 +51,38 @@
   color: hsl(210, 100%, 60%);
 }
 
-.gray-1 {
-  color: var(--oc-gray-1);
+@each $oc-color, $color in $oc-color-list {
+  @for $i from 0 through 9 {
+    .#{$color}-#{$i} {
+      color: map-get($oc-color, '#{$i}');
+    }
+  }
 }
 
-.gray-3 {
-  color: var(--oc-gray-3);
-}
+// .gray-1 {
+//   color: var(--oc-gray-1);
+// }
 
-.gray-5 {
-  color: var(--oc-gray-5);
-}
+// .gray-3 {
+//   color: var(--oc-gray-3);
+// }
 
-.gray-6 {
-  color: var(--oc-gray-6);
-}
+// .gray-5 {
+//   color: var(--oc-gray-5);
+// }
 
-.gray-7 {
-  color: var(--oc-gray-7);
-}
+// .gray-6 {
+//   color: var(--oc-gray-6);
+// }
 
-.blue-5 {
-  color: var(--oc-blue-5);
-}
+// .gray-7 {
+//   color: var(--oc-gray-7);
+// }
 
-.blue-6 {
-  color: var(--oc-blue-6);
-}
+// .blue-5 {
+//   color: var(--oc-blue-5);
+// }
+
+// .blue-6 {
+//   color: var(--oc-blue-6);
+// }

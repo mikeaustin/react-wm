@@ -14,7 +14,7 @@ import backgroundColorStyles from '../styles/backgroundColor.module.scss';
 import paddingStyles from '../styles/padding.module.css';
 import verticalPaddingStyles from '../styles/verticalPadding.module.css';
 import horizontalPaddingStyles from '../styles/horizontalPadding.module.css';
-import textStyles from '../styles/text.module.css';
+import textStyles from '../styles/text.module.scss';
 import fontWeightStyles from '../styles/fontWeight.module.css';
 import borderRadiusStyles from '../styles/borderRadius.module.css';
 import topBorderRadiusStyles from '../styles/topBorderRadius.module.css';

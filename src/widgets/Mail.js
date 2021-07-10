@@ -17,7 +17,7 @@ const Mail = () => {
             <Button solid title="Sort By" />
           </List>
         </View>
-        <View xpadding="small" xhorizontalPadding="medium" background="gray-1" style={{ position: 'sticky', top: 0, zIndex: 1 }}>
+        <View xpadding="small" background="gray-1" style={{ position: 'sticky', top: 0, zIndex: 1 }}>
           <Spacer size="small" />
           <Text fontSize="xxsmall" fontWeight="semibold" padding="small" horizontalPadding="medium" color="gray-6">TODAY</Text>
           <Divider size="none" />

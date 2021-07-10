@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: 1,
-    padding: 1,
+    // padding: 1,
   }
 });
 
@@ -33,7 +33,7 @@ const Calculator = ({ components }) => {
 
   return (
     <View>
-      <Text fontSize="xlarge" fontWeight="light" padding="small" style={{ textAlign: 'right' }}>3.14159</Text>
+      <Text fontSize="xlarge" fontWeight="light" color="white" padding="small" style={{ textAlign: 'right' }}>3.14159</Text>
       <View className={styles.buttons} xstyle={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gridGap: 1, padding: 1 }}>
         <CalculatorButton itemFlex title="C" components={components} />
         <CalculatorButton itemFlex title="×" components={components} />
