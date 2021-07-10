@@ -15,6 +15,8 @@ import Clock from './widgets/Clock';
 
 import { Window, MenuBar } from './components';
 
+window.React = React;
+
 const editorText = (
   `const Image = ({ src, width, height, ...props }) => {
   return (
@@ -127,7 +129,7 @@ function App() {
 
       addWindow(
         <Widget components={{ View, Text, Button, Spacer, Divider, List }} />, {
-        title: 'Calculator', background: 'gray-1', style: { left: 950, top: 60 }
+        title: 'Calculator', noPadding: true, background: 'gray-1', style: { left: 950, top: 60 }
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {

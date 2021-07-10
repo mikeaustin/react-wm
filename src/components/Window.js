@@ -64,6 +64,7 @@ const Window = ({
   const windowStyle = {
     alignSelf: 'flex-start',
     position: 'absolute',
+    overflow: 'hidden',
     zIndex: zIndex + 100,
     ...style
   };

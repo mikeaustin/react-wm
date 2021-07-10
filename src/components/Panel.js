@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '../components';
 
 const Tab = ({ title, index, active, onSelectTab }) => {
-  console.log('Tab()', index);
+  // console.log('Tab()', index);
 
   const handleClick = () => {
     onSelectTab(index);

@@ -45,6 +45,7 @@ const Clock = () => {
       <circle cx="100" cy="100" r="98" stroke="#343a40" fill="none" strokeWidth="3" />
       {Array.from({ length: 12 }, (_, index, angle = (index * 30 + 180) * (Math.PI / 180)) => (
         <circle
+          key={index}
           cx={Math.cos(angle) * 0 - Math.sin(angle) * 80 + 100}
           cy={Math.cos(angle) * 80 + Math.sin(angle) * 0 + 100}
           r={index % 3 == 0 ? 4 : 2}
