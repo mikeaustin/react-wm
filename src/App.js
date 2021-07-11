@@ -18,9 +18,9 @@ import { Window, MenuBar } from './components';
 window.React = React;
 
 const editorText = (
-  `const Image = ({ src, width, height, ...props }) => {
+  `const <strong>Image</strong> = ({ src, width, height, ...props }) =&gt; {
   return (
-    <View tag="img" src={src} style={{ width, height }} {...props} />
+    &lt;<strong>View</strong> tag="img" src={src} style={{ width, height }} {...props} /&gt;
   );
 };
 
@@ -129,7 +129,7 @@ function App() {
 
       addWindow(
         <Widget components={{ View, Text, Button, Spacer, Divider, List }} />, {
-        title: 'Calculator', noPadding: true, background: 'gray-4', style: { left: 950, top: 60 }
+        title: 'Calculator', noPadding: true, background: 'gray-4', style: { left: 1600, top: 60 }
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
@@ -157,7 +157,8 @@ function App() {
                 onInput={handleInput}
                 onPaste={handlePaste}
               >
-                {editorText}
+                {/* {editorText} */}
+                <div dangerouslySetInnerHTML={{ __html: editorText }} />
               </View>
             </View>
           </View>
@@ -169,7 +170,7 @@ function App() {
 
       addWindow(
         <Clock />,
-        { title: 'Clock', style: { left: 1100, top: 140, width: 200, height: 230 } }
+        { title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 } }
       );
     })();
 
