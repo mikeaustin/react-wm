@@ -59,7 +59,7 @@ function App() {
   const handleMouseDown = (event) => {
     console.log('handleMouseDown()');
 
-    event.preventDefault();
+    // event.preventDefault();
   };
 
   const handleMouseMove = useCallback((event) => {
