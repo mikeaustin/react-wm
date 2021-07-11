@@ -10,7 +10,6 @@ import { View, Text, Image, Button, Spacer, Divider, List, Heading } from './com
 import VideoPlayer from './VideoPlayer';
 import Examples from './widgets/Examples';
 import Preferences from './widgets/Preferences';
-import Mail from './widgets/Mail';
 import Clock from './widgets/Clock';
 
 import { Window, MenuBar } from './components';
@@ -52,7 +51,7 @@ function App() {
   const handleWindowFocus = useCallback((windowElement, mouseX, mouseY, id) => {
     windowElementRef.current = windowElement;
     firstMouseRef.current = { mouseX, mouseY };
-  }, [setWindowElements]);
+  }, []);
 
   const handleWindowBlur = useCallback(() => {
     windowElementRef.current = null;

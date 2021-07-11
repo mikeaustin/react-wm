@@ -212,14 +212,14 @@ const Heading = ({ image, title, subtitle, note, label, children, ...props }) =>
       <View flex>
         <View horizontal>
           <Text flex fontWeight="semibold" style={{ height: 10, overflow: 'hidden' }}>{title}</Text>
-          <Text xfontSize="xsmall" xcolor="gray-6" style={{ whiteSpace: 'nowrap' }}>{note}</Text>
+          <Text fontSize="xsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{note}</Text>
         </View>
         {subtitle && (
           <>
             <Spacer />
             <View horizontal>
               <Text flex fontSize="xsmall" color="gray-6">{subtitle}</Text>
-              <Text fontSize="xxsmall" xcolor="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
+              <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
             </View>
             {children && (
               <>

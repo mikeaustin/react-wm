@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable, Window } from '../components';
@@ -48,7 +50,7 @@ const Clock = () => {
           key={index}
           cx={Math.cos(angle) * 0 - Math.sin(angle) * 80 + 100}
           cy={Math.cos(angle) * 80 + Math.sin(angle) * 0 + 100}
-          r={index % 3 == 0 ? 4 : 2}
+          r={index % 3 === 0 ? 4 : 2}
           fill="#343a40"
         />
       ))}

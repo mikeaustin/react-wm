@@ -69,8 +69,8 @@ const Preferences = ({ onSetBackground }) => {
           </List>
         </View>
         <View>
-          {colors.map(color => (
-            <SwatchRow hue={color} onColorSelect={handleColorSelect} />
+          {colors.map((color, index) => (
+            <SwatchRow key={index} hue={color} onColorSelect={handleColorSelect} />
           ))}
         </View>
         <View horizontal alignItems="center">
