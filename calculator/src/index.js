@@ -8,51 +8,50 @@ const useStyles = createUseStyles({
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: 1,
-    // padding: 1,
-  }
+  },
+  button: {
+    minWidth: '50px',
+    minHeight: 40,
+  },
+  '=': { gridColumnStart: 4, gridRow: '4 / 6' },
+  '0': { gridColumn: '1 / 3' },
 });
 
-const CalculatorButton = ({ components, style, ...props }) => {
+const buttons = [
+  'C', '×', '÷', 'M',
+  '7', '8', '9', '+',
+  '4', '5', '6', '-',
+  '1', '2', '3', '=',
+  '0', '.',
+];
+
+const CalculatorButton = ({ components, className, ...props }) => {
   const { View, Text, Button, Spacer, List } = components;
 
-  const buttonStyle = {
-    minWidth: 50,
-    minHeight: 40,
-    ...style,
-  };
+  const styles = useStyles();
+
+  const buttonClassName = [
+    styles.button,
+    className,
+  ].filter(className => !!className).join(' ');
 
   return (
-    <Button solid itemFlex flex borderRadius="none" style={buttonStyle} {...props} />
+    <Button solid flex borderRadius="none" className={buttonClassName} {...props} />
   );
 };
 
 const Calculator = ({ components }) => {
-  const styles = useStyles();
-
   const { View, Text, Button, Spacer, List } = components;
+
+  const styles = useStyles();
 
   return (
     <View>
-      <Text fontSize="xlarge" fontWeight="light" color="white" padding="small" style={{ textAlign: 'right' }}>3.14159</Text>
-      <View className={styles.buttons} xstyle={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gridGap: 1, padding: 1 }}>
-        <CalculatorButton itemFlex title="C" components={components} />
-        <CalculatorButton itemFlex title="×" components={components} />
-        <CalculatorButton itemFlex title="÷" components={components} />
-        <CalculatorButton itemFlex title="M" components={components} />
-        <CalculatorButton itemFlex title="7" components={components} />
-        <CalculatorButton itemFlex title="8" components={components} />
-        <CalculatorButton itemFlex title="9" components={components} />
-        <CalculatorButton itemFlex title="+" components={components} />
-        <CalculatorButton itemFlex title="4" components={components} />
-        <CalculatorButton itemFlex title="5" components={components} />
-        <CalculatorButton itemFlex title="6" components={components} />
-        <CalculatorButton itemFlex title="–" components={components} />
-        <CalculatorButton itemFlex title="1" components={components} />
-        <CalculatorButton itemFlex title="2" components={components} />
-        <CalculatorButton itemFlex title="3" components={components} />
-        <CalculatorButton itemFlex title="=" components={components} style={{ gridColumnStart: 4, gridRow: '4 / 6', xgridRowStart: 4, xgridRowEnd: 6 }} />
-        <CalculatorButton itemFlex title="0" components={components} style={{ gridColumn: '1 / 3' }} />
-        <CalculatorButton itemFlex title="." components={components} />
+      <Text fontSize="xlarge" fontWeight="light" color="white" padding="small" style={{ textAlign: 'right', textShadow: '0 0 1px hsla(0, 0%, 0%, 0.1)' }}>3.14159</Text>
+      <View className={styles.buttons}>
+        {buttons.map(button => (
+          <CalculatorButton key={button} title={button} className={styles[button]} components={components} />
+        ))}
       </View>
     </View>
   );

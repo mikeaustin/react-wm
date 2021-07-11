@@ -112,7 +112,7 @@ const Clickable = ({ className, ...props }) => {
   return <View className={clickableStyles.clickable} {...props} />;
 };
 
-const Button = ({ title, link, primary, solid, secondary, disabled, ...props }) => {
+const Button = ({ title, link, primary, solid, secondary, disabled, className, ...props }) => {
   const textColor = primary && solid
     ? 'white'
     : primary ? 'blue-5' : undefined;
@@ -123,6 +123,7 @@ const Button = ({ title, link, primary, solid, secondary, disabled, ...props }) 
     primary && buttonStyles.primary,
     solid && buttonStyles.solid,
     disabled && buttonStyles.disabled,
+    className,
   ].filter(className => !!className).join(' ');
 
   return (
