@@ -16,7 +16,7 @@ const Window = ({
   onWindowActivate,
   ...props
 }) => {
-  console.log('Window()');
+  // console.log('Window()');
 
   const windowRef = useRef();
   const mouseIsDownRef = useRef(false);

@@ -6,7 +6,7 @@
   "// type": "module",
   "scripts": {
     "build": "webpack",
-    "copy": "cp dist/calculator.js ../public/widgets",
+    "copy": "cp dist/calculator.js ../../public/widgets",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

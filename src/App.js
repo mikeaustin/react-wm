@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import 'open-color/open-color.css';
 import styles from './App.module.css';
 
-import { View, Text, Image, Button, Spacer, Divider, List } from './components';
+import { View, Text, Image, Button, Spacer, Divider, List, Heading } from './components';
 import VideoPlayer from './VideoPlayer';
 import Examples from './widgets/Examples';
 import Preferences from './widgets/Preferences';
@@ -26,6 +26,8 @@ const editorText = (
 
 `);
 
+const components = { View, Text, Image, Button, Spacer, Divider, List, Heading };
+
 function App() {
   const windowElementRef = useRef(null);
   const firstMouseRef = useRef(null);
@@ -35,7 +37,7 @@ function App() {
   const nextWindowIdRef = useRef(0);
   const editorRef = useRef();
 
-  console.log('App()', windowElements);
+  // console.log('App()', windowElements);
 
   const handleWindowActivate = (windowId) => {
     // if (windowIndexes.indexOf(windowId) === windowIndexes.length - 1) {
@@ -110,10 +112,15 @@ function App() {
     document.execCommand("inserttext", false, event.clipboardData.getData("text/plain"));
   };
 
+  const importModule = async (name) => {
+    const module = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '.'}/widgets/${name}`);
+    console.log(module);
+    return module.default;
+  };
+
   useEffect(() => {
     (async () => {
-      const calculator = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '.'}/widgets/calculator.js`);
-      const Widget = calculator.default;
+      const Calculator = await importModule('calculator.js');
 
       addWindow(<VideoPlayer src="videos/trailer.webm" />, {
         title: 'Video', noPadding: true, style: { left: 890, top: 15 }
@@ -123,12 +130,19 @@ function App() {
         title: 'Examples', style: { left: 15, top: 15 }
       });
 
-      addWindow(<Mail />, {
+      // addWindow(<Mail />, {
+      //   title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900 }
+      // });
+
+      const Mail = await importModule('mail.js');
+
+      addWindow(
+        <Mail components={components} />, {
         title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900 }
       });
 
       addWindow(
-        <Widget components={{ View, Text, Button, Spacer, Divider, List }} />, {
+        <Calculator components={components} />, {
         title: 'Calculator', noPadding: true, background: 'gray-4', style: { left: 1600, top: 60 }
       });
 
