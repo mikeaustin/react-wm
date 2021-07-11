@@ -114,7 +114,7 @@ function App() {
 
   const importModule = async (name) => {
     const module = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '.'}/widgets/${name}`);
-    console.log(module);
+
     return module.default;
   };
 
