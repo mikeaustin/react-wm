@@ -31,7 +31,6 @@ module.exports = {
     'react': 'React',
   },
   mode: 'development',
-  watch: true,
   entry: path.resolve(__dirname, './src/index.js'),
   module: {
     rules: [

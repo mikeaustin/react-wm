@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: 1,
-    padding: 1,
+    // padding: 1,
   },
   button: {
     minWidth: '50px',
