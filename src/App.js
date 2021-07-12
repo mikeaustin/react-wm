@@ -179,7 +179,7 @@ function App() {
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
-        title: 'Preferences', xbackground: 'gray-1', style: { left: 1050, top: 450, width: 500 }
+        title: 'Preferences', xbackground: 'gray-1', style: { left: 1000, top: 450, width: 500 }
       });
 
       addWindow(
