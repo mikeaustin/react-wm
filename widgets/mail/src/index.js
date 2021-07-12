@@ -4,8 +4,8 @@ const Mail = ({ components, children }) => {
   const { View, Text, Image, Button, Spacer, Divider, List, Heading } = components;
 
   return (
-    <View horizontal style={{ height: 400 }}>
-      <View style={{ minWidth: 375, overflow: 'auto' }}>
+    <View horizontal flex style={{ xheight: 400, overflow: 'hidden' }}>
+      <View flex style={{ minWidth: 375, overflow: 'auto' }}>
         <View background="gray-1">
           <Spacer size="medium" />
           <List horizontal horizontalPadding="medium">
@@ -42,7 +42,7 @@ const Mail = ({ components, children }) => {
           >
             <Text fontSize="xsmall" style={{ height: 30, overflow: 'hidden' }}>
               Thank you for the payment confirmation. I’ve uploaded the declaration page of my car insurance, as requested.
-            </Text>
+              </Text>
           </Heading>
         </List>
         <Divider size="none" />

@@ -14,12 +14,13 @@ const Window = ({
   onWindowFocus,
   onWindowBlur,
   onWindowActivate,
+  onWindowResizeStart,
+  onWindowResizeEnd,
   ...props
 }) => {
   // console.log('Window()');
 
   const windowRef = useRef();
-  const mouseIsDownRef = useRef(false);
 
   const handleWindowMouseDown = (event) => {
     onWindowActivate(id);
@@ -39,32 +40,58 @@ const Window = ({
   };
 
   const handleTitleMouseUp = (event) => {
-    console.log('here', event);
-
     onWindowBlur(windowRef.current, event.nativeEvent.offsetX, event.nativeEvent.offsetY);
   };
 
   const handleResizeMouseDown = (event) => {
     event.preventDefault();
 
-    mouseIsDownRef.current = true;
+    let resizeMode = [null, null];
+
+    if (event.clientX - windowRef.current.offsetLeft > windowRef.current.offsetWidth) {
+      resizeMode[0] = 'right';
+    } else if (event.clientX - windowRef.current.offsetLeft < 0) {
+      resizeMode[0] = 'left';
+    }
+
+    if (event.clientY - windowRef.current.offsetTop > windowRef.current.offsetHeight + 30) {
+      resizeMode[1] = 'bottom';
+    } else if (event.clientY - windowRef.current.offsetTop < 30) {
+      resizeMode[1] = 'top';
+    }
+
+    onWindowResizeStart(windowRef.current, resizeMode);
   };
 
   const handleResizeMouseMove = (event) => {
-    // console.log(event);
-    // if (mouseIsDownRef.current) {
-    //   windowRef.current.style.width = windowRef.current.offsetWidth + event.movementX + 'px';
-    // }
+    const left = event.clientX - windowRef.current.offsetLeft < 0;
+    const right = event.clientX - windowRef.current.offsetLeft > windowRef.current.offsetWidth;
+    const top = event.clientY - windowRef.current.offsetTop < 30;
+    const bottom = event.clientY - windowRef.current.offsetTop > windowRef.current.offsetHeight + 30;
+
+    let cursor = null;
+
+    if (top && left || bottom && right) {
+      cursor = 'nwse-resize';
+    } else if (top && right || bottom && left) {
+      cursor = 'nesw-resize';
+    } else if (top || bottom) {
+      cursor = 'ns-resize';
+    } else if (left || right) {
+      cursor = 'ew-resize';
+    }
+
+    windowRef.current.children[0].style.cursor = cursor;
   };
 
   const handleResizeMouseUp = (event) => {
-    mouseIsDownRef.current = false;
+    onWindowResizeEnd();
   };
 
   const windowStyle = {
     alignSelf: 'flex-start',
     position: 'absolute',
-    overflow: 'hidden',
+    // overflow: 'hidden',
     zIndex: zIndex + 100,
     ...style
   };
@@ -97,7 +124,7 @@ const Window = ({
         <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
       </View>
       <Divider size="none" color="gray-4" />
-      <View flex padding={!noPadding && 'medium'} style={{ overflowX: 'clip', overflowY: 'auto' }}>
+      <View flex padding={!noPadding && 'medium'} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
         {children}
       </View>
     </View>

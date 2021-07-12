@@ -29,6 +29,7 @@ const components = { View, Text, Image, Button, Spacer, Divider, List, Heading }
 
 function App() {
   const windowElementRef = useRef(null);
+  const mouseModeRef = useRef(null);
   const firstMouseRef = useRef(null);
   const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.jpg');
   const [windowElements, setWindowElements] = useState([]);
@@ -51,10 +52,12 @@ function App() {
   const handleWindowFocus = useCallback((windowElement, mouseX, mouseY, id) => {
     windowElementRef.current = windowElement;
     firstMouseRef.current = { mouseX, mouseY };
+    mouseModeRef.current = ['move'];
   }, []);
 
   const handleWindowBlur = useCallback(() => {
     windowElementRef.current = null;
+    mouseModeRef.current = null;
   }, []);
 
   const handleMouseDown = (event) => {
@@ -66,13 +69,41 @@ function App() {
   const handleMouseMove = useCallback((event) => {
     // console.log('handleMouseMove()');
 
-    if (windowElementRef.current) {
+    if (!mouseModeRef.current) {
+      return;
+    }
+
+    if (mouseModeRef.current.includes('move')) {
       event.preventDefault();
 
       windowElementRef.current.style.left = `${event.clientX - firstMouseRef.current.mouseX}px`;
       windowElementRef.current.style.top = `${event.clientY - firstMouseRef.current.mouseY - 30}px`;
     }
+
+    if (mouseModeRef.current[0] === 'right') {
+      windowElementRef.current.style.width = `${windowElementRef.current.offsetWidth + event.movementX}px`;
+    } else if (mouseModeRef.current[0] === 'left') {
+      windowElementRef.current.style.left = `${windowElementRef.current.offsetLeft + event.movementX}px`;
+      windowElementRef.current.style.width = `${windowElementRef.current.offsetWidth - event.movementX}px`;
+    }
+
+    if (mouseModeRef.current[1] === 'bottom') {
+      windowElementRef.current.style.height = `${windowElementRef.current.offsetHeight + event.movementY}px`;
+    } else if (mouseModeRef.current[1] === 'top') {
+      windowElementRef.current.style.top = `${windowElementRef.current.offsetTop + event.movementY}px`;
+      windowElementRef.current.style.height = `${windowElementRef.current.offsetHeight - event.movementY}px`;
+    }
   }, []);
+
+  const handleWindowResizeStart = (windowElement, mode) => {
+    windowElementRef.current = windowElement;
+    mouseModeRef.current = mode;
+  };
+
+  const handleWindowResizeEnd = () => {
+    windowElementRef.current = null;
+    mouseModeRef.current = null;
+  };
 
   const handleSetBackground = useCallback((event) => {
     setBackgroundUrl(event.target.src);
@@ -87,6 +118,8 @@ function App() {
         onWindowActivate={handleWindowActivate}
         onWindowFocus={handleWindowFocus}
         onWindowBlur={handleWindowBlur}
+        onWindowResizeStart={handleWindowResizeStart}
+        onWindowResizeEnd={handleWindowResizeEnd}
         {...props}
       >
         {element}
@@ -137,7 +170,7 @@ function App() {
 
       addWindow(
         <Mail components={components} />, {
-        title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900 }
+        title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900, height: 400 }
       });
 
       addWindow(

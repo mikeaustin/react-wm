@@ -9,13 +9,15 @@ var Mail = function Mail(_ref) {
       Divider = components.Divider,
       List = components.List,
       Heading = components.Heading;
-      components.Clickable;
   return /*#__PURE__*/React.createElement(View, {
     horizontal: true,
+    flex: true,
     style: {
-      height: 400
+      xheight: 400,
+      overflow: 'hidden'
     }
   }, /*#__PURE__*/React.createElement(View, {
+    flex: true,
     style: {
       minWidth: 375,
       overflow: 'auto'
