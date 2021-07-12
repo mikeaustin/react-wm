@@ -37,7 +37,7 @@ function App() {
   const nextWindowIdRef = useRef(0);
   const editorRef = useRef();
 
-  // console.log('App()', windowElements);
+  console.log('App()', windowElements);
 
   const handleWindowActivate = (windowId) => {
     // if (windowIndexes.indexOf(windowId) === windowIndexes.length - 1) {
@@ -73,11 +73,13 @@ function App() {
       return;
     }
 
-    if (mouseModeRef.current.includes('move')) {
+    if (mouseModeRef.current[0] === 'move') {
       event.preventDefault();
 
       windowElementRef.current.style.left = `${event.clientX - firstMouseRef.current.mouseX}px`;
       windowElementRef.current.style.top = `${event.clientY - firstMouseRef.current.mouseY - 30}px`;
+
+      return;
     }
 
     if (mouseModeRef.current[0] === 'right') {
@@ -145,7 +147,7 @@ function App() {
   };
 
   const importModule = async (name) => {
-    const module = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '.'}/widgets/${name}`);
+    const module = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '../..'}/widgets/${name}`);
 
     return module.default;
   };

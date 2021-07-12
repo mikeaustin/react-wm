@@ -1,5 +1,7 @@
 .slider {
   --slider-width: 100px;
+  border-radius: 2.5px;;
+  overflow: hidden;
 }
 
 .slider::before {
