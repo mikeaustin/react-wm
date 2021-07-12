@@ -43,7 +43,7 @@ const Clock = () => {
   }, []);
 
   return (
-    <View tag="svg" viewBox="0 0 200 200">
+    <View tag="svg" viewBox="0 0 200 200" flex>
       <circle cx="100" cy="100" r="98" stroke="#343a40" fill="none" strokeWidth="3" />
       {Array.from({ length: 12 }, (_, index, angle = (index * 30 + 180) * (Math.PI / 180)) => (
         <circle

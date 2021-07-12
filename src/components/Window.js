@@ -117,6 +117,7 @@ const Window = ({
         alignItems="center"
         padding="small"
         background="gray-3"
+        // background="gray-0-gradient"
         topBorderRadius="small"
         onMouseDown={handleTitleMouseDown}
         onMouseUp={handleTitleMouseUp}

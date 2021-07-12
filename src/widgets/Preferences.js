@@ -63,7 +63,7 @@ const Preferences = ({ onSetBackground }) => {
           <List horizontal wrap spacerSize="none">
             {backgroundUrls.map(url => (
               <Clickable key={url} itemWidth="33.33%" tabIndex="0" onClick={onSetBackground}>
-                <Image src={url} borderRadius />
+                <Image src={url} width="100%" borderRadius />
               </Clickable>
             ))}
           </List>

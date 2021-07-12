@@ -96,7 +96,7 @@ const VideoPlayer = ({ src }) => {
   };
 
   return (
-    <View onMouseMove={handleVideoMouseMove} style={{ position: 'relative', overflow: 'hidden' }}>
+    <View flex background="black" justifyContent="center" onMouseMove={handleVideoMouseMove}>
       <Video ref={videoRef} src={src} autoPlay muted onLoadedMetadata={handleLoadMetaData} onTimeUpdate={handleTimeUpdate} />
       <View absolute className={classNames(overlayIsVisible && styles.visible)}>
         <View className={styles.background} onClick={handleVideoPlayClick} />
