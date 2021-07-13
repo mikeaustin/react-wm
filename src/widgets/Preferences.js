@@ -6,7 +6,7 @@ import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } 
 import { MenuBar, Panel, Field } from '../components';
 
 const backgroundUrls = [
-  './images/d1e91a4058a8a1082da711095b4e0163.png',
+  './images/d1e91a4058a8a1082da711095b4e0163.jpg',
   './images/modern_abstract-wallpaper-3440x1440.jpg',
   './images/781767.jpg',
   './images/16933.jpg',
