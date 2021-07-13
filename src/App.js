@@ -276,7 +276,7 @@ function App() {
             ))}
           </View>
         </View>,
-        { title: 'S3 Browser', noPadding: true, xstyle: { width: 400, height: 300 } }
+        { title: 'S3 Browser', noPadding: true, style: { left: 1000, top: 100, xwidth: 400, xheight: 300 } }
       );
     })();
 
