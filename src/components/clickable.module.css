@@ -11,6 +11,10 @@
   filter: brightness(80%);
 }
 
+.clickable:hover {
+  background: hsla(0, 0%, 100%, 0.25);
+}
+
 x.clickable:focus:before {
   content: '';
   position: absolute;

@@ -8,6 +8,7 @@ const Window = ({
   id,
   title,
   noPadding,
+  noBorder,
   zIndex,
   style,
   children,
@@ -119,12 +120,13 @@ const Window = ({
         background="gray-3"
         // background="gray-0-gradient"
         topBorderRadius="small"
+        // style={{ boxShadow: '0 0 0 1px hsla(0, 0%, 0%, 0.2)', zIndex: 10000 }}
         onMouseDown={handleTitleMouseDown}
         onMouseUp={handleTitleMouseUp}
       >
         <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
       </View>
-      <Divider size="none" color="gray-4" />
+      {!noBorder && <Divider size="none" color="gray-4" />}
       <View flex padding={!noPadding && 'medium'} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
         {children}
       </View>

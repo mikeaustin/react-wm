@@ -5,6 +5,11 @@
   pointer-events: none;;
 } */
 
+.vertical > .xxsmall {
+  min-height: 2.5px;
+  align-self: stretch;
+}
+
 .vertical > .xsmall {
   min-height: 5px;
   align-self: stretch;

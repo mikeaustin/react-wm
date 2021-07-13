@@ -27,6 +27,8 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
           <Spacer background="gray-1" />
           <Text fontSize="xsmall" style={{ zIndex: 1 }}>Extra Small (12px)</Text>
           <Spacer background="gray-1" />
+          <Text fontSize="xxsmall" style={{ zIndex: 1 }}>X Extra Small (11px)</Text>
+          <Spacer background="gray-1" />
           <List horizontal spacerSize="small" alignItems="flex-end">
             <Text fontWeight="bold" style={{ zIndex: 1 }}>Bold</Text>
             <Text fontWeight="semibold" style={{ zIndex: 1 }}>Semibold</Text>
@@ -79,7 +81,8 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
       <Divider size="medium" />
       <View>
         <Text ref={textRef}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          {/* Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. */}
         </Text>
       </View>
       <Divider size="medium" />

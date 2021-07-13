@@ -98,9 +98,15 @@ const Text = React.forwardRef(({ children, fontSize, fontWeight, color, ...props
   );
 });
 
-const Image = ({ src, width, height, ...props }) => {
+const Image = ({ src, width, height, style, ...props }) => {
+  const imageStyle = {
+    width,
+    height,
+    ...props,
+  };
+
   return (
-    <View tag="img" src={src} style={{ width, height }} {...props} />
+    <View tag="img" src={src} style={imageStyle} {...props} />
   );
 };
 

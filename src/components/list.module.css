@@ -7,6 +7,10 @@
 
 /* Horizontal */
 
+.list.xsmall.horizontal > li:not(:first-child) {
+  margin-left: 5px;
+}
+
 .list.small.horizontal > li:not(:first-child) {
   margin-left: 10px;
 }

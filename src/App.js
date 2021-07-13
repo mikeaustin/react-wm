@@ -1,6 +1,7 @@
 /* eslint no-unused-vars: "off" */
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import AWS from 'aws-sdk';
 import classNames from 'classnames';
 
 import 'open-color/open-color.css';
@@ -11,15 +12,33 @@ import VideoPlayer from './VideoPlayer';
 import Examples from './widgets/Examples';
 import Preferences from './widgets/Preferences';
 import Clock from './widgets/Clock';
+import AppBar from './components/AppBar';
 
 import { Window, MenuBar } from './components';
 
 window.React = React;
 
+console.log(AWS);
+
+AWS.config.region = 'us-east-1';
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+  IdentityPoolId: 'us-east-1:1ed7544c-871f-4749-9c13-73429fd73a4c',
+});
+
+var s3 = new AWS.S3({
+  apiVersion: '2006-03-01',
+  params: { Bucket: 'mike-austin' }
+});
+
+const numberToKB = (number) => `${(number / 1000).toLocaleString(undefined, {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+})} KB`;
+
 const editorText = (
   `const <strong>Image</strong> = ({ src, width, height, ...props }) =&gt; {
   return (
-    &lt;<strong>View</strong> tag="img" src={src} style={{ width, height }} {...props} /&gt;
+    &lt;<strong>View</strong> tag="img" src={src} {...props} /&gt;
   );
 };
 
@@ -40,11 +59,11 @@ function App() {
   console.log('App()', windowElements);
 
   const handleWindowActivate = (windowId) => {
-    // if (windowIndexes.indexOf(windowId) === windowIndexes.length - 1) {
-    //   return;
-    // }
-
     setWindowIndexes((windowIndexes) => {
+      if (windowId === windowIndexes[windowIndexes.length - 1]) {
+        return windowIndexes;
+      }
+
       return [...windowIndexes.filter(id => id !== windowId), windowId];
     });
   };
@@ -117,6 +136,7 @@ function App() {
       <Window
         key={nextWindowIdRef.current}
         id={nextWindowIdRef.current}
+        title={props.title}
         onWindowActivate={handleWindowActivate}
         onWindowFocus={handleWindowFocus}
         onWindowBlur={handleWindowBlur}
@@ -154,35 +174,9 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const Calculator = await importModule('calculator.js');
 
-      addWindow(<VideoPlayer src="videos/trailer.webm" />, {
-        title: 'Video', noPadding: true, style: { left: 890, top: 15 }
-      });
-
-      addWindow(<Examples />, {
-        title: 'Examples', style: { left: 15, top: 15 }
-      });
-
-      // addWindow(<Mail />, {
-      //   title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900 }
-      // });
-
-      const Mail = await importModule('mail.js');
-
-      addWindow(
-        <Mail components={components} />, {
-        title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900, height: 400 }
-      });
-
-      addWindow(
-        <Calculator components={components} />, {
-        title: 'Calculator', noPadding: true, background: 'gray-4', style: { left: 1600, top: 60 }
-      });
-
-      addWindow(<Preferences onSetBackground={handleSetBackground} />, {
-        title: 'Preferences', xbackground: 'gray-1', style: { left: 1000, top: 450, width: 500 }
-      });
+      const s3objects = await s3.listObjectsV2({ Delimiter: '/', Prefix: 'photos/', StartAfter: 'photos/' }).promise();
+      console.log('s3objects', s3objects);
 
       addWindow(
         <View flex>
@@ -212,13 +206,77 @@ function App() {
           </View>
         </View>, {
         title: 'Editor', noPadding: true, background: 'gray-1', style: {
-          left: 1000, top: 100, width: 500, height: 300
+          left: 950, top: 100, width: 550, height: 300
         }
+      });
+
+      const Calculator = await importModule('calculator.js');
+
+      addWindow(<VideoPlayer src="videos/trailer.webm" />, {
+        title: 'Video', noPadding: true, noBorder: true, style: { left: 890, top: 15 }
+      });
+
+      addWindow(<Examples />, {
+        title: 'Examples', style: { left: 15, top: 15 }
+      });
+
+      const Mail = await importModule('mail.js');
+
+      addWindow(
+        <Mail components={components} />, {
+        title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900, height: 450 }
+      });
+
+      addWindow(
+        <Calculator components={components} />, {
+        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-4', style: { left: 1600, top: 60 }
+      });
+
+      addWindow(<Preferences onSetBackground={handleSetBackground} />, {
+        title: 'Preferences', xbackground: 'gray-1', style: { left: 1000, top: 450, width: 500 }
       });
 
       addWindow(
         <Clock />,
         { title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 } }
+      );
+
+      const Column = ({ width, header, children, ...props }) => {
+        return (
+          <Text
+            fontSize={header && 'xxsmall'}
+            fontWeight={header && 'bold'}
+            color={header && 'gray-6'}
+            style={{ width: width, whiteSpace: 'nowrap' }}
+            {...props}
+          >
+            {header ? children.toUpperCase() : children}
+          </Text>
+        );
+      };
+
+      addWindow(
+        <View>
+          <View horizontalPadding="medium" verticalPadding="small" background="gray-1">
+            <Spacer size="xsmall" />
+            <View horizontal >
+              <Column header width={250} xstyle={{ fontSize: 11 }}>Name</Column>
+              <Column header width={100}>Size</Column>
+              <Column header >Modified</Column>
+            </View>
+          </View>
+          <Divider size="none" />
+          <View verticalPadding="xsmall">
+            {s3objects.Contents.map(object => (
+              <View key={object.Key} horizontal horizontalPadding="medium" verticalPadding="small">
+                <Column width={250}>{object.Key}</Column>
+                <Column width={100}>{numberToKB(object.Size)}</Column>
+                <Column>{object.LastModified.toLocaleDateString()}</Column>
+              </View>
+            ))}
+          </View>
+        </View>,
+        { title: 'S3 Browser', noPadding: true, xstyle: { width: 400, height: 300 } }
       );
     })();
 
@@ -242,6 +300,28 @@ function App() {
           zIndex: windowIndexes.indexOf(windowElement.props.id)
         }))}
       </View>
+      <View horizontal>
+        <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
+          <View background="white" borderRadius style={{ width: 50, height: 50 }} />
+          <Spacer />
+          <Text>Clock</Text>
+        </View>
+        <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
+          <View background="white" borderRadius style={{ width: 50, height: 50 }} />
+          <Spacer />
+          <Text>Calculator</Text>
+        </View>
+        <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
+          <View background="white" borderRadius style={{ width: 50, height: 50 }} />
+          <Spacer />
+          <Text>Preferences</Text>
+        </View>
+      </View>
+      <AppBar
+        windowElements={windowElements}
+        activeWindowId={windowIndexes[windowIndexes.length - 1]}
+        onWindowActivate={handleWindowActivate}
+      />
     </View>
   );
 }
