@@ -13,8 +13,8 @@ const lorem = new LoremIpsum({
 });
 
 const data = Array.from({ length: 10 }, (_, index) => ({
-  from: lorem.generateWords(5),
-  subject: lorem.generateWords(10),
+  from: lorem.generateWords(10),
+  subject: lorem.generateSentences(1),
   body: lorem.generateParagraphs(5)
 }));
 
@@ -38,7 +38,7 @@ const ListItem = ({ components, from, subject, date, body, selected }) => {
 
   return (
     <Heading
-      image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10 }} />}
+      image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10, marginRight: -5 }} />}
       title={from}
       subtitle={subject}
       label="📎 ★"
@@ -47,7 +47,7 @@ const ListItem = ({ components, from, subject, date, body, selected }) => {
       background={selected && 'blue-0'}
     >
       {body && (
-        <Text fontSize="xsmall" style={{ height: 30, overflow: 'hidden' }}>
+        <Text fontSize="xsmall" style={{ height: 30, overflow: 'clip' }}>
           {body}
         </Text>
       )}
@@ -129,7 +129,7 @@ const Mail = ({ components }) => {
   const formattedText = childrenArray.map((str, index) => <p key={index} style={{ marginBlockStart: 0 }}>{str}</p>);
 
   return (
-    <View horizontal flex style={{ overflow: 'hidden' }}>
+    <View horizontal flex style={{ overflow: 'clip' }}>
       <MessageList data={data} components={components} />
       <Divider size="none" />
       <MessageBody data={data} components={components} />

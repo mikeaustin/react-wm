@@ -1,7 +1,7 @@
 .slider {
   --slider-width: 100px;
   border-radius: 1000px;;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .slider::before {

@@ -21,7 +21,7 @@ const Slider = React.forwardRef(({ ...props }, ref) => {
       type="range"
       step="0.1"
       // xborderRadius="rounded"
-      style={{ height: 7, background: 'hsla(0, 0%, 100%, 0.25)', xoverflow: 'hidden' }}
+      style={{ height: 7, background: 'hsla(0, 0%, 100%, 0.25)' }}
       {...props}
     />
   );

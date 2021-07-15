@@ -245,19 +245,45 @@ function App() {
         { title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 } }
       );
 
-      const Column = ({ width, header, icon, level, selected, children, ...props }) => {
+      const Header = ({ width, children, ...props }) => {
         return (
-          <View horizontal alignItems="center" horizontalPadding="medium" xverticalPadding="small" style={{ paddingLeft: (level + 1) * 17 }}>
-            {icon}
+          <View horizontalPadding="medium">
             <Text
-              fontSize={header && 'xxsmall'}
-              fontWeight={header && 'bold'}
-              color={header && 'gray-6'}
-              style={{ width: width, whiteSpace: 'nowrap' }}
+              fontSize="xxsmall"
+              fontWeight="bold"
+              color="gray-6"
+              style={{ width }}
               {...props}
             >
-              {header ? children.toUpperCase() : children}
+              {children.toUpperCase()}
             </Text>
+          </View>
+        );
+      };
+
+      const Column = ({ width, icon, level, selected, children, ...props }) => {
+        const content = typeof children === 'string' ? (
+          <Text style={{ whiteSpace: 'nowrap' }}>
+            {children}
+          </Text>
+        ) : children;
+
+        return (
+          <View
+            horizontal
+            horizontalPadding="medium"
+            style={{ width, overflowX: 'clip', paddingLeft: (level + 1) * 17 }}
+            {...props}
+          >
+            {icon}
+            {content}
+            <View
+              style={{
+                position: 'absolute',
+                top: 0, right: 0, bottom: 0, width: 30,
+                background: 'linear-gradient(90deg, hsla(0, 0%, 100%, 0.0), hsla(0, 0%, 100%, 1.0))'
+              }}
+            />
           </View>
         );
       };
@@ -277,13 +303,12 @@ function App() {
               <Spacer size="xsmall" />
               <View horizontal>
                 {columns.map(({ title, width }, index) => (
-                  <Column key={index} header width={width}>{title}</Column>
+                  <Header key={index} width={width}>{title}</Header>
                 ))}
               </View>
             </View>
             <Divider size="none" />
-
-            <List verticalPadding="small" spacerSize="none">
+            <List verticalPadding="small" spacerSize="none" >
               {data.map((item, rowIndex) => (
                 <View key={rowIndex} horizontal verticalPadding="small">
                   {columns.map(({ key, width, onRender = (column, item) => column }, index) => (
@@ -304,11 +329,10 @@ function App() {
             <View verticalPadding="small" background="gray-1">
               <Spacer size="xsmall" />
               <View horizontal>
-                <Column header width={150} xstyle={{ fontSize: 11 }}>Folder</Column>
+                <Header width={150}>Folder</Header>
               </View>
             </View>
             <Divider size="none" />
-
             <List verticalPadding="small" spacerSize="none">
               <View>
                 <Column icon={openFolder} verticalPadding="small">Folder</Column>
@@ -322,10 +346,17 @@ function App() {
             </List>
           </View>
           <Divider size="none" />
-
           <Table
             columns={[
-              { key: 'Key', title: 'Name', width: 250 },
+              {
+                key: 'Key', title: 'Name', width: 200, onRender: (name, { Size }) => (
+                  <Heading
+                    image={<Image src={`http://mike-austin.com/new/images/Escher_Circle_Limit_III.jpg`} width={40} height={40} />}
+                    imageAlign='center'
+                    title={name} subtitle={Size}
+                  />
+                )
+              },
               { key: 'Size', title: 'Size', width: 100, onRender: numberToKB },
               { key: 'LastModified', title: 'Modified', onRender: dateToString },
             ]}
@@ -333,27 +364,6 @@ function App() {
           >
             //
           </Table>
-
-          {/* <View>
-            <View background="gray-1">
-              <Spacer size="xsmall" />
-              <View horizontal>
-                <Column header width={250} xstyle={{ fontSize: 11 }}>Name</Column>
-                <Column header width={100}>Size</Column>
-                <Column header >Modified</Column>
-              </View>
-            </View>
-            <Divider size="none" />
-            <View verticalPadding="small">
-              {s3objects.Contents.map(object => (
-                <View key={object.Key} horizontal>
-                  <Column icon={<Text>📄&nbsp;</Text>} width={250}>{object.Key}</Column>
-                  <Column width={100}>{numberToKB(object.Size)}</Column>
-                  <Column>{object.LastModified.toLocaleDateString()}</Column>
-                </View>
-              ))}
-            </View>
-          </View> */}
         </View>,
         { title: 'S3 Browser', noPadding: true, style: { left: 850, top: 70 } }
       );

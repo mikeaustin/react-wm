@@ -102,6 +102,7 @@ const Image = ({ src, width, height, style, ...props }) => {
   const imageStyle = {
     width,
     height,
+    objectFit: 'contain',
     ...props,
   };
 
@@ -200,31 +201,33 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
   );
 };
 
-const Heading = ({ image, title, subtitle, note, label, children, ...props }) => {
+const Heading = ({ image, imageAlign = 'flex-start', title, subtitle, note, label, children, ...props }) => {
   const imageElement = typeof image === 'string'
     ? <Image src={image} height={40} borderRadius />
     : image;
 
   return (
-    <View horizontal horizontalPadding="medium" {...props}>
+    <View horizontal alignItems={imageAlign} {...props}>
       {imageElement && (
         <>
-          <View>
+          <View style={imageAlign === 'center' ? { marginTop: -6, marginBottom: -6 } : {}}>
             {imageElement}
           </View>
-          <Spacer size="xsmall" />
+          <Spacer size="small" />
         </>
       )}
-      <View flex>
+      <View flex style={{ minWidth: 0 }}>
         <View horizontal>
-          <Text flex fontWeight="semibold" style={{ height: 10, overflow: 'hidden' }}>{title}</Text>
+          <Text flex fontWeight="semibold" style={{ height: 10, whiteSpace: 'nowrap', overflowX: 'clip', minWidth: 0 }}>{title}</Text>
+          <Spacer />
           <Text fontSize="xsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{note}</Text>
         </View>
         {subtitle && (
           <>
             <Spacer />
             <View horizontal>
-              <Text flex fontSize="xsmall" color="gray-6">{subtitle}</Text>
+              <Text flex fontSize="xsmall" color="gray-6" style={{ whiteSpace: 'nowrap', overflowX: 'clip', minWidth: 0 }}>{subtitle}</Text>
+              <Spacer />
               <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
             </View>
             {children && (

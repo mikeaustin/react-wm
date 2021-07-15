@@ -92,7 +92,6 @@ const Window = ({
   const windowStyle = {
     alignSelf: 'flex-start',
     position: 'absolute',
-    // overflow: 'hidden',
     zIndex: zIndex + 100,
     ...style
   };
@@ -127,7 +126,7 @@ const Window = ({
         <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
       </View>
       {!noBorder && <Divider size="none" color="gray-4" />}
-      <View flex padding={!noPadding && 'medium'} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
+      <View flex padding={!noPadding && 'medium'} style={{ overflow: 'clip', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
         {children}
       </View>
     </View>

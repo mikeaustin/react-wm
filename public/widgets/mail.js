@@ -640,8 +640,8 @@ var data = Array.from({
   length: 10
 }, function (_, index) {
   return {
-    from: lorem.generateWords(5),
-    subject: lorem.generateWords(10),
+    from: lorem.generateWords(10),
+    subject: lorem.generateSentences(1),
     body: lorem.generateParagraphs(5)
   };
 });
@@ -704,7 +704,8 @@ var ListItem = function ListItem(_ref2) {
       borderRadius: "rounded",
       style: {
         width: 10,
-        height: 10
+        height: 10,
+        marginRight: -5
       }
     }),
     title: from,
@@ -717,7 +718,7 @@ var ListItem = function ListItem(_ref2) {
     fontSize: "xsmall",
     style: {
       height: 30,
-      overflow: 'hidden'
+      overflow: 'clip'
     }
   }, body));
 };
@@ -902,7 +903,7 @@ var Mail = function Mail(_ref6) {
     horizontal: true,
     flex: true,
     style: {
-      overflow: 'hidden'
+      overflow: 'clip'
     }
   }, /*#__PURE__*/React.createElement(MessageList, {
     data: data,
