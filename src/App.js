@@ -277,13 +277,13 @@ function App() {
           >
             {icon}
             {content}
-            <View
+            {/* <View
               style={{
                 position: 'absolute',
                 top: 0, right: 0, bottom: 0, width: 30,
                 background: 'linear-gradient(90deg, hsla(0, 0%, 100%, 0.0), hsla(0, 0%, 100%, 1.0))'
               }}
-            />
+            /> */}
           </View>
         );
       };

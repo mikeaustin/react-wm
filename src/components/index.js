@@ -207,7 +207,7 @@ const Heading = ({ image, imageAlign = 'flex-start', title, subtitle, note, labe
     : image;
 
   return (
-    <View horizontal alignItems={imageAlign} {...props}>
+    <View horizontal alignItems={imageAlign} style={{ minWidth: 0 }} {...props}>
       {imageElement && (
         <>
           <View style={imageAlign === 'center' ? { marginTop: -6, marginBottom: -6 } : {}}>
@@ -218,17 +218,32 @@ const Heading = ({ image, imageAlign = 'flex-start', title, subtitle, note, labe
       )}
       <View flex style={{ minWidth: 0 }}>
         <View horizontal>
-          <Text flex fontWeight="semibold" style={{ height: 10, whiteSpace: 'nowrap', overflowX: 'clip', minWidth: 0 }}>{title}</Text>
-          <Spacer />
-          <Text fontSize="xsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{note}</Text>
+          <Text
+            flex
+            fontWeight="semibold"
+            style={{ height: 10, whiteSpace: 'nowrap', minWidth: 0 }}
+            title={title}
+          >
+            {title}
+          </Text>
+          {note && (
+            <>
+              <Spacer />
+              <Text fontSize="xsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{note}</Text>
+            </>
+          )}
         </View>
         {subtitle && (
           <>
             <Spacer />
             <View horizontal>
-              <Text flex fontSize="xsmall" color="gray-6" style={{ whiteSpace: 'nowrap', overflowX: 'clip', minWidth: 0 }}>{subtitle}</Text>
-              <Spacer />
-              <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
+              <Text flex fontSize="xsmall" color="gray-6" style={{ whiteSpace: 'nowrap', minWidth: 0 }}>{subtitle}</Text>
+              {label && (
+                <>
+                  <Spacer />
+                  <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
+                </>
+              )}
             </View>
             {children && (
               <>
