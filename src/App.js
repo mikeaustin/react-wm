@@ -247,7 +247,7 @@ function App() {
 
       const Column = ({ width, header, icon, level, selected, children, ...props }) => {
         return (
-          <View horizontal alignItems="center" horizontalPadding="medium" verticalPadding="small" background={selected && 'blue-0'} style={{ paddingLeft: (level + 1) * 17 }}>
+          <View horizontal alignItems="center" horizontalPadding="medium" xverticalPadding="small" style={{ paddingLeft: (level + 1) * 17 }}>
             {icon}
             <Text
               fontSize={header && 'xxsmall'}
@@ -273,7 +273,7 @@ function App() {
       const Table = ({ columns, data }) => {
         return (
           <View>
-            <View background="gray-1">
+            <View verticalPadding="small" background="gray-1">
               <Spacer size="xsmall" />
               <View horizontal>
                 {columns.map(({ title, width }, index) => (
@@ -282,15 +282,16 @@ function App() {
               </View>
             </View>
             <Divider size="none" />
-            <View verticalPadding="small">
+
+            <List verticalPadding="small" spacerSize="none">
               {data.map((item, rowIndex) => (
-                <View key={rowIndex} horizontal>
+                <View key={rowIndex} horizontal verticalPadding="small">
                   {columns.map(({ key, width, onRender = (column, item) => column }, index) => (
                     <Column key={index} width={width}>{onRender(item[key], item)}</Column>
                   ))}
                 </View>
               ))}
-            </View>
+            </List>
           </View>
         );
       };
@@ -300,27 +301,25 @@ function App() {
       addWindow(
         <View horizontal>
           <View>
-            <View background="gray-1">
+            <View verticalPadding="small" background="gray-1">
               <Spacer size="xsmall" />
               <View horizontal>
                 <Column header width={150} xstyle={{ fontSize: 11 }}>Folder</Column>
               </View>
             </View>
             <Divider size="none" />
-            <View verticalPadding="small">
+
+            <List verticalPadding="small" spacerSize="none">
               <View>
-                <Column icon={openFolder} >Folder</Column>
-                <View>
-                  <Column selected level={1} icon={closedFolder}>Subolder</Column>
-                </View>
+                <Column icon={openFolder} verticalPadding="small">Folder</Column>
+                <List spacerSize="none">
+                  <Column itemSelected level={1} icon={closedFolder} verticalPadding="small">Subolder</Column>
+                  <Column level={1} icon={closedFolder} verticalPadding="small">Subolder</Column>
+                </List>
               </View>
-              <View xverticalPadding="xsmall">
-                <Column icon={closedFolder}>Folder</Column>
-              </View>
-              <View xverticalPadding="xsmall">
-                <Column icon={closedFolder}>Folder</Column>
-              </View>
-            </View>
+              <Column icon={closedFolder} verticalPadding="small">Folder</Column>
+              <Column icon={closedFolder} verticalPadding="small">Folder</Column>
+            </List>
           </View>
           <Divider size="none" />
 

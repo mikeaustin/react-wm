@@ -5,6 +5,10 @@
   flex-wrap: wrap;
 }
 
+.list li.selected {
+  background: var(--oc-blue-0);
+}
+
 /* Horizontal */
 
 .list.xsmall.horizontal > li:not(:first-child) {
