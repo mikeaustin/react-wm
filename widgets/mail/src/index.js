@@ -1,4 +1,22 @@
 import React from 'react';
+import { LoremIpsum } from 'lorem-ipsum';
+
+const lorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 8,
+    min: 4
+  },
+  wordsPerSentence: {
+    max: 16,
+    min: 4
+  }
+});
+
+const data = Array.from({ length: 10 }, (_, index) => ({
+  from: lorem.generateWords(5),
+  subject: lorem.generateWords(10),
+  body: lorem.generateParagraphs(5)
+}));
 
 const SectionHeader = ({ noBorder, children, components }) => {
   const { View, Text, Image, Button, Spacer, Divider, List, Heading } = components;
@@ -50,21 +68,59 @@ const ButtonGroup = ({ components, children, ...props }) => {
   );
 };
 
-const data = [
-  {
-    from: 'Tech for Less Orders',
-    subject: 'Tech for Less Order Confirmation ABC12345',
-    body:
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+const MessageList = ({ data, components }) => {
+  const { View, Text, Image, Button, Spacer, Divider, List, Heading } = components;
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  return (
+    <View flex style={{ minWidth: 375, overflow: 'auto' }}>
+      <ButtonGroup background="gray-1" components={components}>
+        <Button solid title="⋮" />
+        <Button solid title="Compose" />
+        <Spacer itemFlex />
+        <Button solid title="Sort By" />
+      </ButtonGroup>
+      <SectionHeader noBorder components={components}>Today</SectionHeader>
+      <List divider="gray-2" level={2} spacerSize="none">
+        <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
+        <ListItem selected itemSelected from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
+      </List>
+      <SectionHeader components={components}>Yesterday</SectionHeader>
+      <List divider="gray-2" level={2} spacerSize="none">
+        <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
+        <ListItem selected itemSelected from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
+        <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
+        <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
+      </List>
+    </View>
+  );
+};
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+const MessageBody = ({ data, components }) => {
+  const { View, Text, Image, Button, Spacer, Divider, List, Heading } = components;
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-`
-  }
-];
+  const childrenArray = React.Children.toArray(data[0].body)?.toString().split(/\n|\\n/);
+  const formattedText = childrenArray.map((str, index) => <p key={index} style={{ marginBlockStart: 0 }}>{str}</p>);
+
+  return (
+    <View xbackground="gray-0">
+      <ButtonGroup components={components}>
+        <Button title="Reply" />
+        <Button title="Reply All" />
+        <Spacer itemFlex />
+        <Button title="Delete" />
+        <Button title="⋮" />
+      </ButtonGroup>
+      <ListItem from={data[0].from} subject={data[0].subject} components={components} />
+      <Divider size="none" />
+      <View horizontalPadding="medium" background="white" style={{ overflowY: 'auto' }}>
+        <Spacer size="medium" />
+        <Text>
+          {formattedText}
+        </Text>
+      </View>
+    </View>
+  );
+};
 
 const Mail = ({ components }) => {
   const { View, Text, Image, Button, Spacer, Divider, List, Heading } = components;
@@ -74,44 +130,9 @@ const Mail = ({ components }) => {
 
   return (
     <View horizontal flex style={{ overflow: 'hidden' }}>
-      <View flex style={{ minWidth: 375, overflow: 'auto' }}>
-        <ButtonGroup background="gray-1" components={components}>
-          <Button solid title="⋮" />
-          <Button solid title="Compose" />
-          <Spacer itemFlex />
-          <Button solid title="Sort By" />
-        </ButtonGroup>
-        <SectionHeader noBorder components={components}>Today</SectionHeader>
-        <List divider="gray-2" level={2} spacerSize="none">
-          <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
-          <ListItem selected itemSelected from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
-        </List>
-        <SectionHeader components={components}>Yesterday</SectionHeader>
-        <List divider="gray-2" level={2} spacerSize="none">
-          <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
-          <ListItem selected itemSelected from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
-          <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
-          <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
-        </List>
-      </View>
+      <MessageList data={data} components={components} />
       <Divider size="none" />
-      <View xbackground="gray-0" style={{ xoverflowY: 'scroll' }}>
-        <ButtonGroup components={components}>
-          <Button title="Reply" />
-          <Button title="Reply All" />
-          <Spacer itemFlex />
-          <Button title="Delete" />
-          <Button title="⋮" />
-        </ButtonGroup>
-        <ListItem from={data[0].from} subject={data[0].subject} components={components} />
-        <Divider size="none" />
-        <View horizontalPadding="medium" background="white" style={{ overflowY: 'auto' }}>
-          <Spacer size="medium" />
-          <Text>
-            {formattedText}
-          </Text>
-        </View>
-      </View>
+      <MessageBody data={data} components={components} />
     </View>
   );
 };

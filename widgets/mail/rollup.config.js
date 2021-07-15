@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
 import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 import externalGlobals from "rollup-plugin-external-globals";
 
 const execHandler = (err, stdout, stderr) => {
@@ -21,12 +22,14 @@ export default {
   input: 'src/index.js',
   output: {
     file: 'dist/mail.js',
+    // format: 'esm'
   },
   plugins: [
     resolve(),
     babel({
       babelHelpers: 'bundled'
     }),
+    commonjs(),
     externalGlobals({
       react: "React",
     }),
