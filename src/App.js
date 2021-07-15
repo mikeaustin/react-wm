@@ -253,13 +253,11 @@ function App() {
 
       const Header = ({ width, children, ...props }) => {
         return (
-          <View horizontalPadding="medium">
+          <View horizontalPadding="medium" style={{ width }} {...props}>
             <Text
               fontSize="xxsmall"
               fontWeight="bold"
               color="gray-6"
-              style={{ width }}
-              {...props}
             >
               {children.toUpperCase()}
             </Text>
@@ -302,14 +300,14 @@ function App() {
         <Text color="gray-7">📁&nbsp;</Text>
       );
 
-      const Table = ({ columns, data }) => {
+      const Table = ({ columns, data, ...props }) => {
         return (
-          <View>
+          <View {...props}>
             <View verticalPadding="small" background="gray-1">
               <Spacer size="xsmall" />
               <View horizontal>
                 {columns.map(({ title, width }, index) => (
-                  <Header key={index} width={width}>{title}</Header>
+                  <Header key={index} xflex width={width}>{title}</Header>
                 ))}
               </View>
             </View>
@@ -330,7 +328,7 @@ function App() {
       const dateToString = (date) => date.toLocaleDateString();
 
       addWindow(
-        <View horizontal>
+        <View flex horizontal>
           <View>
             <View verticalPadding="small" background="gray-1">
               <Spacer size="xsmall" />
@@ -353,6 +351,7 @@ function App() {
           </View>
           <Divider size="none" />
           <Table
+            flex
             columns={[
               {
                 key: 'Key', title: 'Name', width: 200, onRender: (name, { Size }) => (
