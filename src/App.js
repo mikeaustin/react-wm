@@ -72,9 +72,13 @@ function App() {
     windowElementRef.current = windowElement;
     firstMouseRef.current = { mouseX, mouseY };
     mouseModeRef.current = ['move'];
+
+    windowElement.style.willChange = 'left, top';
   }, []);
 
   const handleWindowBlur = useCallback(() => {
+    windowElementRef.current.style.willChange = '';
+
     windowElementRef.current = null;
     mouseModeRef.current = null;
   }, []);
