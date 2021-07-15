@@ -228,7 +228,7 @@ function App() {
 
       addWindow(
         <Mail components={components} />, {
-        title: 'Mail', noPadding: true, style: { left: 15, top: 450, width: 900, height: 450 }
+        title: 'Mail', noPadding: true, style: { left: 15, top: 420, width: 900, height: 400 }
       });
 
       addWindow(
@@ -270,6 +270,33 @@ function App() {
         <Text color="gray-7">📁&nbsp;</Text>
       );
 
+      const Table = ({ columns, data }) => {
+        return (
+          <View>
+            <View background="gray-1">
+              <Spacer size="xsmall" />
+              <View horizontal>
+                {columns.map(({ title, width }, index) => (
+                  <Column key={index} header width={width}>{title}</Column>
+                ))}
+              </View>
+            </View>
+            <Divider size="none" />
+            <View verticalPadding="small">
+              {data.map((item, rowIndex) => (
+                <View key={rowIndex} horizontal>
+                  {columns.map(({ key, width, onRender = (column, item) => column }, index) => (
+                    <Column key={index} width={width}>{onRender(item[key], item)}</Column>
+                  ))}
+                </View>
+              ))}
+            </View>
+          </View>
+        );
+      };
+
+      const dateToString = (date) => date.toLocaleDateString();
+
       addWindow(
         <View horizontal>
           <View>
@@ -296,7 +323,19 @@ function App() {
             </View>
           </View>
           <Divider size="none" />
-          <View>
+
+          <Table
+            columns={[
+              { key: 'Key', title: 'Name', width: 250 },
+              { key: 'Size', title: 'Size', width: 100, onRender: numberToKB },
+              { key: 'LastModified', title: 'Modified', onRender: dateToString },
+            ]}
+            data={s3objects.Contents}
+          >
+            //
+          </Table>
+
+          {/* <View>
             <View background="gray-1">
               <Spacer size="xsmall" />
               <View horizontal>
@@ -315,9 +354,9 @@ function App() {
                 </View>
               ))}
             </View>
-          </View>
+          </View> */}
         </View>,
-        { title: 'S3 Browser', noPadding: true, style: { left: 1000, top: 100, xwidth: 400, xheight: 300 } }
+        { title: 'S3 Browser', noPadding: true, style: { left: 850, top: 70 } }
       );
     })();
 
