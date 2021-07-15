@@ -102,7 +102,7 @@ const MessageBody = ({ data, components }) => {
   const formattedText = childrenArray.map((str, index) => <p key={index} style={{ marginBlockStart: 0 }}>{str}</p>);
 
   return (
-    <View xbackground="gray-0">
+    <View xbackground="gray-0" style={{ minWidth: 0 }}>
       <ButtonGroup components={components}>
         <Button title="Reply" />
         <Button title="Reply All" />

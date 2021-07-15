@@ -217,7 +217,7 @@ const Heading = ({ image, imageAlign = 'flex-start', title, subtitle, note, labe
         </>
       )}
       <View flex style={{ minWidth: 0 }}>
-        <View horizontal>
+        <View horizontal alignItems="flex-end">
           <Text
             flex
             fontWeight="semibold"

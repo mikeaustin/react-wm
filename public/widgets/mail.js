@@ -848,7 +848,10 @@ var MessageBody = function MessageBody(_ref5) {
     }, str);
   });
   return /*#__PURE__*/React.createElement(View, {
-    xbackground: "gray-0"
+    xbackground: "gray-0",
+    style: {
+      minWidth: 0
+    }
   }, /*#__PURE__*/React.createElement(ButtonGroup, {
     components: components
   }, /*#__PURE__*/React.createElement(Button, {
