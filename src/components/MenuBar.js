@@ -54,8 +54,8 @@ const MenuBar = () => {
   return (
     <>
       <List horizontal horizontalPadding="small" spacerSize="none" background="gray-1" boxShadow style={{ zIndex: 1000 }}>
-        <MenuItem title="React WM" onMouseDown={handleMouseDown} onMouseEnter={handleMouseEnter} />
-        <MenuItem title="File" onMouseDown={handleMouseDown} onMouseEnter={handleMouseEnter} />
+        <MenuItem title="React WM" onPointerDown={handleMouseDown} onPointerEnter={handleMouseEnter} />
+        <MenuItem title="File" onPointerDown={handleMouseDown} onPointerEnter={handleMouseEnter} />
       </List>
       {menuIsVisible && (
         <View ref={menuRef} verticalPadding="xsmall" background="gray-1" bottomBorderRadius="small" boxShadow style={{ position: 'absolute', zIndex: 1000, left: 10, top: 30 }}>

@@ -718,7 +718,7 @@ var ListItem = function ListItem(_ref2) {
     fontSize: "xsmall",
     style: {
       height: 30,
-      overflow: 'clip'
+      overflow: 'hidden'
     }
   }, body));
 };

@@ -96,7 +96,7 @@ const VideoPlayer = ({ src }) => {
   };
 
   return (
-    <View flex background="black" justifyContent="center" onMouseMove={handleVideoMouseMove}>
+    <View flex background="black" justifyContent="center" onPointerMove={handleVideoMouseMove}>
       <Video ref={videoRef} src={src} autoPlay muted onLoadedMetadata={handleLoadMetaData} onTimeUpdate={handleTimeUpdate} />
       <View absolute className={classNames(overlayIsVisible && styles.visible)}>
         <View className={styles.background} onClick={handleVideoPlayClick} />
@@ -123,8 +123,8 @@ const VideoPlayer = ({ src }) => {
               ref={sliderRef}
               max={videoRef.current?.duration}
               className={styles.slider}
-              onMouseDown={handleSliderMouseDown}
-              onMouseUp={handleSliderMouseUp}
+              onPointerDown={handleSliderMouseDown}
+              onPointerUp={handleSliderMouseUp}
               onInput={handleSliderInput}
             />
           </View>

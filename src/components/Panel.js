@@ -15,7 +15,7 @@ const Tab = ({ title, index, active, onSelectTab }) => {
     <View
       horizontalPadding="medium"
       style={{ borderBottom: active && '2px solid var(--primary-color)', marginBottom: -1 }}
-      onMouseDown={handleClick}
+      onPointerDown={handleClick}
     >
       <Text fontWeight={active && 'bold'} style={{ letterSpacing: active && -0.6 }}>{title}</Text>
       <Spacer size="small" />

@@ -47,7 +47,7 @@ const ListItem = ({ components, from, subject, date, body, selected }) => {
       background={selected && 'blue-0'}
     >
       {body && (
-        <Text fontSize="xsmall" style={{ height: 30, overflow: 'clip' }}>
+        <Text fontSize="xsmall" style={{ height: 30, overflow: 'hidden' }}>
           {body}
         </Text>
       )}

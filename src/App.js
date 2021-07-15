@@ -50,6 +50,7 @@ function App() {
   const windowElementRef = useRef(null);
   const mouseModeRef = useRef(null);
   const firstMouseRef = useRef(null);
+  const lastMouseRef = useRef(null);
   const [backgroundUrl, setBackgroundUrl] = useState('./images/d1e91a4058a8a1082da711095b4e0163.jpg');
   const [windowElements, setWindowElements] = useState([]);
   const [windowIndexes, setWindowIndexes] = useState([]);
@@ -86,7 +87,7 @@ function App() {
   const handleMouseDown = (event) => {
     console.log('handleMouseDown()');
 
-    // event.preventDefault();
+    lastMouseRef.current = { clientX: event.clientX, clientY: event.clientY };
   };
 
   const handleMouseMove = useCallback((event) => {
@@ -95,6 +96,11 @@ function App() {
     if (!mouseModeRef.current) {
       return;
     }
+
+    const movementX = event.clientX - lastMouseRef.current.clientX;
+    const movementY = event.clientY - lastMouseRef.current.clientY;
+
+    lastMouseRef.current = { clientX: event.clientX, clientY: event.clientY };
 
     if (mouseModeRef.current[0] === 'move') {
       event.preventDefault();
@@ -106,17 +112,17 @@ function App() {
     }
 
     if (mouseModeRef.current[0] === 'right') {
-      windowElementRef.current.style.width = `${windowElementRef.current.offsetWidth + event.movementX}px`;
+      windowElementRef.current.style.width = `${windowElementRef.current.offsetWidth + movementX}px`;
     } else if (mouseModeRef.current[0] === 'left') {
-      windowElementRef.current.style.left = `${windowElementRef.current.offsetLeft + event.movementX}px`;
-      windowElementRef.current.style.width = `${windowElementRef.current.offsetWidth - event.movementX}px`;
+      windowElementRef.current.style.left = `${windowElementRef.current.offsetLeft + movementX}px`;
+      windowElementRef.current.style.width = `${windowElementRef.current.offsetWidth - movementX}px`;
     }
 
     if (mouseModeRef.current[1] === 'bottom') {
-      windowElementRef.current.style.height = `${windowElementRef.current.offsetHeight + event.movementY}px`;
+      windowElementRef.current.style.height = `${windowElementRef.current.offsetHeight + movementY}px`;
     } else if (mouseModeRef.current[1] === 'top') {
-      windowElementRef.current.style.top = `${windowElementRef.current.offsetTop + event.movementY}px`;
-      windowElementRef.current.style.height = `${windowElementRef.current.offsetHeight - event.movementY}px`;
+      windowElementRef.current.style.top = `${windowElementRef.current.offsetTop + movementY}px`;
+      windowElementRef.current.style.height = `${windowElementRef.current.offsetHeight - movementY}px`;
     }
   }, []);
 
@@ -272,7 +278,7 @@ function App() {
           <View
             horizontal
             horizontalPadding="medium"
-            style={{ width, overflowX: 'clip', paddingLeft: (level + 1) * 17 }}
+            style={{ width, paddingLeft: (level + 1) * 17 }}
             {...props}
           >
             {icon}
@@ -380,8 +386,8 @@ function App() {
       background="gray-3"
       className={styles.App}
       style={{ background: `center / cover url(${backgroundUrl})` }}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
+      onPointerDown={handleMouseDown}
+      onPointerMove={handleMouseMove}
     >
       <MenuBar />
       <View flex>

@@ -103,15 +103,15 @@ const Window = ({
       boxShadow
       borderRadius="small"
       style={windowStyle}
-      onMouseDown={handleWindowMouseDown}
+      onPointerDown={handleWindowMouseDown}
       {...props}
     >
       <View
         absolute
         style={{ margin: -15, cursor: 'ew-resize' }}
-        onMouseDown={handleResizeMouseDown}
-        onMouseMove={handleResizeMouseMove}
-        onMouseUp={handleResizeMouseUp}
+        onPointerDown={handleResizeMouseDown}
+        onPointerMove={handleResizeMouseMove}
+        onPointerUp={handleResizeMouseUp}
       />
       <View
         alignItems="center"
@@ -120,8 +120,8 @@ const Window = ({
         // background="gray-0-gradient"
         topBorderRadius="small"
         // style={{ boxShadow: '0 0 0 1px hsla(0, 0%, 0%, 0.2)', zIndex: 10000 }}
-        onMouseDown={handleTitleMouseDown}
-        onMouseUp={handleTitleMouseUp}
+        onPointerDown={handleTitleMouseDown}
+        onPointerUp={handleTitleMouseUp}
       >
         <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
       </View>

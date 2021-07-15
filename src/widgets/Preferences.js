@@ -38,7 +38,7 @@ const Swatch = ({ color, onColorSelect, ...props }) => {
   };
 
   return (
-    <Clickable flex style={{ height: 25 }} background={color} onMouseDown={handleClick} {...props} />
+    <Clickable flex style={{ height: 25 }} background={color} onPointerDown={handleClick} {...props} />
   );
 };
 
