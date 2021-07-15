@@ -357,9 +357,10 @@ function App() {
               {
                 key: 'Key', title: 'Name', width: 200, onRender: (name, { Size }) => (
                   <Heading
+                    flex
                     image={<Image src={`http://mike-austin.com/new/images/Escher_Circle_Limit_III.jpg`} width={40} height={40} />}
                     imageAlign='center'
-                    title={name} subtitle={Size}
+                    title={name} subtitle={numberToKB(Size)}
                   />
                 )
               },
@@ -385,7 +386,7 @@ function App() {
       flex
       background="gray-3"
       className={styles.App}
-      style={{ background: `center / cover url(${backgroundUrl})` }}
+      style={{ background: `center / cover url(${backgroundUrl})`, WebkitUserSelect: 'none' }}
       onPointerDown={handleMouseDown}
       onPointerMove={handleMouseMove}
     >

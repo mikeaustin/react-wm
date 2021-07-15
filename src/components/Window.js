@@ -93,6 +93,7 @@ const Window = ({
     alignSelf: 'flex-start',
     position: 'absolute',
     zIndex: zIndex + 100,
+    // WebkitUserSelect: 'none',
     ...style
   };
 
@@ -108,7 +109,7 @@ const Window = ({
     >
       <View
         absolute
-        style={{ margin: -15, cursor: 'ew-resize' }}
+        style={{ margin: -15, cursor: 'ew-resize', WebkitUserSelect: 'none' }}
         onPointerDown={handleResizeMouseDown}
         onPointerMove={handleResizeMouseMove}
         onPointerUp={handleResizeMouseUp}
@@ -123,7 +124,7 @@ const Window = ({
         onPointerDown={handleTitleMouseDown}
         onPointerUp={handleTitleMouseUp}
       >
-        <Text fontWeight="bold" style={{ top: 1 }}>{title}</Text>
+        <Text fontWeight="bold" style={{ top: 1, WebkitUserSelect: 'none' }}>{title}</Text>
       </View>
       {!noBorder && <Divider size="none" color="gray-4" />}
       <View flex padding={!noPadding && 'medium'} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>

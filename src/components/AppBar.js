@@ -8,6 +8,7 @@ const Item = ({ windowId, title, active, onWindowActivate }) => {
   };
 
   const itemStyle = {
+    WebkitUserSelect: 'none',
     ...(active ? { background: 'hsla(0, 0%, 100%, 0.5)', letterSpacing: '-0.5px' } : {})
   };
 
