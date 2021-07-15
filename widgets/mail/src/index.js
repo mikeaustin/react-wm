@@ -84,12 +84,12 @@ const Mail = ({ components }) => {
         <SectionHeader noBorder components={components}>Today</SectionHeader>
         <List divider="gray-2" level={2} spacerSize="none">
           <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
-          <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
+          <ListItem selected itemSelected from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
         </List>
         <SectionHeader components={components}>Yesterday</SectionHeader>
         <List divider="gray-2" level={2} spacerSize="none">
           <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
-          <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
+          <ListItem selected itemSelected from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
           <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
           <ListItem from={data[0].from} subject={data[0].subject} body={data[0].body} components={components} />
         </List>

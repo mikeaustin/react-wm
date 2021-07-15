@@ -54,9 +54,19 @@
 .list.divider.vertical > li:not(:first-child)::before {
   content: '';
   position: absolute;
+  top: 0;
   left: 30px;
   right: 0;
   border-top: 1px solid var(--divider-color);
+  z-index: 1;
+}
+
+.list.divider.vertical > li:not(:first-child).selected::before {
+  left: 0;
+}
+
+.list.divider.vertical > li:not(:first-child).selected + li::before {
+  left: 0;
 }
 
 .list.divider.vertical.gray-2 > li:not(:first-child)::before {

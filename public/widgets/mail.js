@@ -200,6 +200,8 @@ var Mail = function Mail(_ref4) {
     body: data[0].body,
     components: components
   }), /*#__PURE__*/React.createElement(ListItem, {
+    selected: true,
+    itemSelected: true,
     from: data[0].from,
     subject: data[0].subject,
     body: data[0].body,
@@ -216,6 +218,8 @@ var Mail = function Mail(_ref4) {
     body: data[0].body,
     components: components
   }), /*#__PURE__*/React.createElement(ListItem, {
+    selected: true,
+    itemSelected: true,
     from: data[0].from,
     subject: data[0].subject,
     body: data[0].body,

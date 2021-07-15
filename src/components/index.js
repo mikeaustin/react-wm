@@ -188,7 +188,7 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
   return (
     <View tag="ul" horizontal={horizontal} className={listClassName} style={listStyle} {...props}>
       {React.Children.map(children, (child, index) => (
-        <View key={index} tag="li" flex={child.props.itemFlex} style={{
+        <View key={index} tag="li" flex={child.props.itemFlex} className={child.props.itemSelected && listStyles.selected} style={{
           width: `calc(${child.props.itemWidth} - 10px)`,
           marginLeft: wrap && 10,
           marginTop: wrap && 10,

@@ -241,39 +241,76 @@ function App() {
         { title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 } }
       );
 
-      const Column = ({ width, header, children, ...props }) => {
+      const Column = ({ width, header, icon, level, selected, children, ...props }) => {
         return (
-          <Text
-            fontSize={header && 'xxsmall'}
-            fontWeight={header && 'bold'}
-            color={header && 'gray-6'}
-            style={{ width: width, whiteSpace: 'nowrap' }}
-            {...props}
-          >
-            {header ? children.toUpperCase() : children}
-          </Text>
+          <View horizontal alignItems="center" horizontalPadding="medium" verticalPadding="small" background={selected && 'blue-0'} style={{ paddingLeft: (level + 1) * 17 }}>
+            {icon}
+            <Text
+              fontSize={header && 'xxsmall'}
+              fontWeight={header && 'bold'}
+              color={header && 'gray-6'}
+              style={{ width: width, whiteSpace: 'nowrap' }}
+              {...props}
+            >
+              {header ? children.toUpperCase() : children}
+            </Text>
+          </View>
         );
       };
 
+      const openFolder = (
+        <Text color="gray-7">📂&nbsp;</Text>
+      );
+
+      const closedFolder = (
+        <Text color="gray-7">📁&nbsp;</Text>
+      );
+
       addWindow(
-        <View>
-          <View horizontalPadding="medium" verticalPadding="small" background="gray-1">
-            <Spacer size="xsmall" />
-            <View horizontal >
-              <Column header width={250} xstyle={{ fontSize: 11 }}>Name</Column>
-              <Column header width={100}>Size</Column>
-              <Column header >Modified</Column>
+        <View horizontal>
+          <View>
+            <View background="gray-1">
+              <Spacer size="xsmall" />
+              <View horizontal>
+                <Column header width={150} xstyle={{ fontSize: 11 }}>Folder</Column>
+              </View>
+            </View>
+            <Divider size="none" />
+            <View verticalPadding="small">
+              <View>
+                <Column icon={openFolder} >Folder</Column>
+                <View>
+                  <Column selected level={1} icon={closedFolder}>Subolder</Column>
+                </View>
+              </View>
+              <View xverticalPadding="xsmall">
+                <Column icon={closedFolder}>Folder</Column>
+              </View>
+              <View xverticalPadding="xsmall">
+                <Column icon={closedFolder}>Folder</Column>
+              </View>
             </View>
           </View>
           <Divider size="none" />
-          <View verticalPadding="xsmall">
-            {s3objects.Contents.map(object => (
-              <View key={object.Key} horizontal horizontalPadding="medium" verticalPadding="small">
-                <Column width={250}>{object.Key}</Column>
-                <Column width={100}>{numberToKB(object.Size)}</Column>
-                <Column>{object.LastModified.toLocaleDateString()}</Column>
+          <View>
+            <View background="gray-1">
+              <Spacer size="xsmall" />
+              <View horizontal>
+                <Column header width={250} xstyle={{ fontSize: 11 }}>Name</Column>
+                <Column header width={100}>Size</Column>
+                <Column header >Modified</Column>
               </View>
-            ))}
+            </View>
+            <Divider size="none" />
+            <View verticalPadding="small">
+              {s3objects.Contents.map(object => (
+                <View key={object.Key} horizontal>
+                  <Column icon={<Text>📄&nbsp;</Text>} width={250}>{object.Key}</Column>
+                  <Column width={100}>{numberToKB(object.Size)}</Column>
+                  <Column>{object.LastModified.toLocaleDateString()}</Column>
+                </View>
+              ))}
+            </View>
           </View>
         </View>,
         { title: 'S3 Browser', noPadding: true, style: { left: 1000, top: 100, xwidth: 400, xheight: 300 } }
