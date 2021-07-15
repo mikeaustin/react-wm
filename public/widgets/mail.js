@@ -906,7 +906,7 @@ var Mail = function Mail(_ref6) {
     horizontal: true,
     flex: true,
     style: {
-      overflow: 'clip'
+      overflow: 'hidden'
     }
   }, /*#__PURE__*/React.createElement(MessageList, {
     data: data,

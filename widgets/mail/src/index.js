@@ -129,7 +129,7 @@ const Mail = ({ components }) => {
   const formattedText = childrenArray.map((str, index) => <p key={index} style={{ marginBlockStart: 0 }}>{str}</p>);
 
   return (
-    <View horizontal flex style={{ overflow: 'clip' }}>
+    <View horizontal flex style={{ overflow: 'hidden' }}>
       <MessageList data={data} components={components} />
       <Divider size="none" />
       <MessageBody data={data} components={components} />
