@@ -97,8 +97,12 @@ function App() {
       return;
     }
 
-    const movementX = event.clientX - lastMouseRef.current.clientX;
-    const movementY = event.clientY - lastMouseRef.current.clientY;
+    const movementX = event.movementX !== 0
+      ? event.movementX
+      : event.clientX - lastMouseRef.current.clientX;
+    const movementY = event.movementY !== 0
+      ? event.movementY
+      : event.clientY - lastMouseRef.current.clientY;
 
     lastMouseRef.current = { clientX: event.clientX, clientY: event.clientY };
 
@@ -267,7 +271,7 @@ function App() {
 
       const Column = ({ width, icon, level, selected, children, ...props }) => {
         const content = typeof children === 'string' ? (
-          <Text style={{ whiteSpace: 'nowrap' }}>
+          <Text style={{ whiteSpace: 'nowrap', minWidth: 0 }}>
             {children}
           </Text>
         ) : children;
@@ -276,7 +280,7 @@ function App() {
           <View
             horizontal
             horizontalPadding="medium"
-            style={{ width, paddingLeft: (level + 1) * 17 }}
+            style={{ width, paddingLeft: (level + 1) * 17, minWidth: 0 }}
             {...props}
           >
             {icon}
@@ -316,7 +320,7 @@ function App() {
               {data.map((item, rowIndex) => (
                 <View key={rowIndex} horizontal verticalPadding="small">
                   {columns.map(({ key, width, onRender = (column, item) => column }, index) => (
-                    <Column key={index} width={width}>{onRender(item[key], item)}</Column>
+                    <Column key={index} xflex={1} width={width}>{onRender(item[key], item)}</Column>
                   ))}
                 </View>
               ))}
@@ -363,6 +367,9 @@ function App() {
                   />
                 )
               },
+              // {
+              //   key: 'Key', title: 'Name', width: 200, onRender: (name, { Size }) => (name)
+              // },
               { key: 'Size', title: 'Size', width: 100, onRender: numberToKB },
               { key: 'LastModified', title: 'Modified', onRender: dateToString },
             ]}
