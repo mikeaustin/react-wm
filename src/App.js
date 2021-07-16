@@ -255,9 +255,9 @@ function App() {
         { title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 } }
       );
 
-      const Header = ({ width, children, ...props }) => {
+      const Header = ({ flex, children, ...props }) => {
         return (
-          <View horizontalPadding="medium" style={{ width }} {...props}>
+          <View horizontalPadding="medium" style={{ flex }} {...props}>
             <Text
               fontSize="xxsmall"
               fontWeight="bold"
@@ -269,7 +269,7 @@ function App() {
         );
       };
 
-      const Column = ({ width, icon, level, selected, children, ...props }) => {
+      const Column = ({ flex, icon, level, selected, children, ...props }) => {
         const content = typeof children === 'string' ? (
           <Text style={{ whiteSpace: 'nowrap', minWidth: 0 }}>
             {children}
@@ -280,18 +280,11 @@ function App() {
           <View
             horizontal
             horizontalPadding="medium"
-            style={{ width, paddingLeft: (level + 1) * 17, minWidth: 0 }}
+            style={{ flex, paddingLeft: (level + 1) * 17, minWidth: 0 }}
             {...props}
           >
             {icon}
             {content}
-            {/* <View
-              style={{
-                position: 'absolute',
-                top: 0, right: 0, bottom: 0, width: 30,
-                background: 'linear-gradient(90deg, hsla(0, 0%, 100%, 0.0), hsla(0, 0%, 100%, 1.0))'
-              }}
-            /> */}
           </View>
         );
       };
@@ -310,8 +303,8 @@ function App() {
             <View verticalPadding="small" background="gray-1">
               <Spacer size="xsmall" />
               <View horizontal>
-                {columns.map(({ title, width }, index) => (
-                  <Header key={index} xflex width={width}>{title}</Header>
+                {columns.map(({ title, flex }, index) => (
+                  <Header key={index} flex={flex}>{title}</Header>
                 ))}
               </View>
             </View>
@@ -319,8 +312,8 @@ function App() {
             <List verticalPadding="small" spacerSize="none" >
               {data.map((item, rowIndex) => (
                 <View key={rowIndex} horizontal verticalPadding="small">
-                  {columns.map(({ key, width, onRender = (column, item) => column }, index) => (
-                    <Column key={index} xflex={1} width={width}>{onRender(item[key], item)}</Column>
+                  {columns.map(({ key, flex, onRender = (column, item) => column }, index) => (
+                    <Column key={index} flex={flex}>{onRender(item[key], item)}</Column>
                   ))}
                 </View>
               ))}
@@ -358,9 +351,8 @@ function App() {
             flex
             columns={[
               {
-                key: 'Key', title: 'Name', width: 200, onRender: (name, { Size }) => (
+                key: 'Key', title: 'Name', flex: '1 1 300px', onRender: (name, { Size }) => (
                   <Heading
-                    flex
                     image={<Image src={`http://mike-austin.com/new/images/Escher_Circle_Limit_III.jpg`} width={40} height={40} />}
                     imageAlign='center'
                     title={name} subtitle={numberToKB(Size)}
@@ -370,8 +362,8 @@ function App() {
               // {
               //   key: 'Key', title: 'Name', width: 200, onRender: (name, { Size }) => (name)
               // },
-              { key: 'Size', title: 'Size', width: 100, onRender: numberToKB },
-              { key: 'LastModified', title: 'Modified', onRender: dateToString },
+              { key: 'Size', title: 'Size', flex: '0 0 100px', onRender: numberToKB },
+              { key: 'LastModified', title: 'Modified', flex: '0 0 100px', onRender: dateToString },
             ]}
             data={s3objects.Contents}
           >
