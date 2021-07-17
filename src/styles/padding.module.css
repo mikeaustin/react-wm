@@ -1,19 +1,23 @@
-.xxsmall {
-  padding: 3px;
+.tiny {
+  padding: var(--spacing-tiny);
 }
 
 .xsmall {
-  padding: 5px;
+  padding: var(--spacing-xsmall);
 }
 
 .small {
-  padding: 10px;
+  padding: var(--spacing-small);
 }
 
 .medium {
-  padding: 15px;
+  padding: var(--spacing-medium);
 }
 
 .large {
-  padding: 20px;
+  padding: var(--spacing-large);
+}
+
+.xlarge {
+  padding: var(--spacing-xlarge)
 }

@@ -673,7 +673,7 @@ var SectionHeader = function SectionHeader(_ref) {
   }), /*#__PURE__*/React.createElement(Spacer, {
     size: "xsmall"
   }), /*#__PURE__*/React.createElement(Text, {
-    fontSize: "xxsmall",
+    fontSize: "tiny",
     fontWeight: "semibold",
     padding: "small",
     horizontalPadding: "medium",

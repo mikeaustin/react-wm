@@ -25,7 +25,7 @@ const SectionHeader = ({ noBorder, children, components }) => {
     <View background="gray-1" style={{ position: 'sticky', top: -1, zIndex: 1 }}>
       <Divider size="none" style={noBorder && { visibility: 'hidden' }} />
       <Spacer size="xsmall" />
-      <Text fontSize="xxsmall" fontWeight="semibold" padding="small" horizontalPadding="medium" color="gray-6">
+      <Text fontSize="tiny" fontWeight="semibold" padding="small" horizontalPadding="medium" color="gray-6">
         {children.toUpperCase()}
       </Text>
       <Divider size="none" />

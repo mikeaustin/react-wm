@@ -1,19 +1,19 @@
 .xsmall {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: var(--spacing-xsmall);
+  padding-right: var(--spacing-xsmall);
 }
 
 .small {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: var(--spacing-small);
+  padding-right: var(--spacing-small);
 }
 
 .medium {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
 }
 
 .large {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--spacing-large);
+  padding-right: var(--spacing-large);
 }

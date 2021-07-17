@@ -241,7 +241,7 @@ const Heading = ({ image, imageAlign = 'flex-start', title, subtitle, note, labe
               {label && (
                 <>
                   <Spacer />
-                  <Text fontSize="xxsmall" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
+                  <Text fontSize="tiny" color="gray-6" style={{ whiteSpace: 'nowrap' }}>{label}</Text>
                 </>
               )}
             </View>

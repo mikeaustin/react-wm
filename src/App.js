@@ -6,19 +6,19 @@ import classNames from 'classnames';
 
 import 'open-color/open-color.css';
 import styles from './App.module.css';
+import './styles/spacing.css';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading } from './components';
 import VideoPlayer from './VideoPlayer';
 import Examples from './widgets/Examples';
 import Preferences from './widgets/Preferences';
 import Clock from './widgets/Clock';
+import Calendar from './widgets/Calendar';
 import AppBar from './components/AppBar';
 
 import { Window, MenuBar } from './components';
 
 window.React = React;
-
-console.log(AWS);
 
 AWS.config.region = 'us-east-1';
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -259,7 +259,7 @@ function App() {
         return (
           <View horizontalPadding="medium" style={{ flex }} {...props}>
             <Text
-              fontSize="xxsmall"
+              fontSize="tiny"
               fontWeight="bold"
               color="gray-6"
             >
@@ -372,6 +372,8 @@ function App() {
         </View>,
         { title: 'S3 Browser', noPadding: true, style: { left: 850, top: 70 } }
       );
+
+      addWindow(<Calendar />, { title: 'Calendar', noPadding: true });
     })();
 
     return () => {

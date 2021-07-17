@@ -5,7 +5,7 @@
   pointer-events: none;;
 } */
 
-.vertical > .xxsmall {
+.vertical > .tiny {
   min-height: 2.5px;
   align-self: stretch;
 }
@@ -32,7 +32,7 @@
 
 /* Horizontal */
 
-.horizontal > .xxsmall {
+.horizontal > .tiny {
   min-width: 2.5px;
   align-self: stretch;
 }

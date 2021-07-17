@@ -19,7 +19,7 @@ const Field = ({ title, options, variant }) => {
         <Text fontSize="xsmall" color="gray-6">{title}</Text>
         {options && (
           <>
-            <Spacer size="xxsmall" />
+            <Spacer size="tiny" />
             <View tag="svg" xviewBox="0 0 10 10" style={{ width: 5, height: 5, marginTop: 2 }}>
               <polygon points="0,0 5,0 2.5,5" style={{ fill: '#adb5bd' }} />
             </View>

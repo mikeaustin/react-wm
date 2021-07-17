@@ -1,0 +1,17 @@
+:root {
+  --spacing-tiny: 2.5px;
+  --spacing-xsmall: 5px;
+  --spacing-small: 10px;
+  --spacing-medium: 15px;
+  --spacing-large: 20px;
+  --spacing-xlarge: 30px;
+  --spacing-huge: 50px;
+}
+
+/* :root {
+  --spacing-xsmall: 4px;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-xlarge: 32px;
+} */
