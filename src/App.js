@@ -1,7 +1,6 @@
 /* eslint no-unused-vars: "off" */
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import AWS from 'aws-sdk';
 import classNames from 'classnames';
 
 import 'open-color/open-color.css';
@@ -14,26 +13,25 @@ import Examples from './widgets/Examples';
 import Preferences from './widgets/Preferences';
 import Clock from './widgets/Clock';
 import Calendar from './widgets/Calendar';
+import S3Browser from './widgets/S3Browser';
 import AppBar from './components/AppBar';
 
 import { Window, MenuBar } from './components';
 
+import { LoremIpsum } from 'lorem-ipsum';
+
+const lorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    min: 4,
+    max: 8,
+  },
+  wordsPerSentence: {
+    min: 2,
+    max: 3,
+  }
+});
+
 window.React = React;
-
-AWS.config.region = 'us-east-1';
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: 'us-east-1:1ed7544c-871f-4749-9c13-73429fd73a4c',
-});
-
-var s3 = new AWS.S3({
-  apiVersion: '2006-03-01',
-  params: { Bucket: 'mike-austin' }
-});
-
-const numberToKB = (number) => `${(number / 1000).toLocaleString(undefined, {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2
-})} KB`;
 
 const editorText = (
   `const <strong>Image</strong> = ({ src, width, height, ...props }) =&gt; {
@@ -188,10 +186,6 @@ function App() {
 
   useEffect(() => {
     (async () => {
-
-      const s3objects = await s3.listObjectsV2({ Delimiter: '/', Prefix: 'photos/', StartAfter: 'photos/' }).promise();
-      console.log('s3objects', s3objects);
-
       addWindow(
         <View flex>
           <View flex horizontal>
@@ -255,125 +249,33 @@ function App() {
         { title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 } }
       );
 
-      const Header = ({ flex, children, ...props }) => {
-        return (
-          <View horizontalPadding="medium" style={{ flex }} {...props}>
-            <Text
-              fontSize="tiny"
-              fontWeight="bold"
-              color="gray-6"
-            >
-              {children.toUpperCase()}
-            </Text>
-          </View>
-        );
-      };
-
-      const Column = ({ flex, icon, level, selected, children, ...props }) => {
-        const content = typeof children === 'string' ? (
-          <Text style={{ whiteSpace: 'nowrap', minWidth: 0 }}>
-            {children}
-          </Text>
-        ) : children;
-
-        return (
-          <View
-            horizontal
-            horizontalPadding="medium"
-            style={{ flex, paddingLeft: (level + 1) * 17, minWidth: 0 }}
-            {...props}
-          >
-            {icon}
-            {content}
-          </View>
-        );
-      };
-
-      const openFolder = (
-        <Text color="gray-7">📂&nbsp;</Text>
-      );
-
-      const closedFolder = (
-        <Text color="gray-7">📁&nbsp;</Text>
-      );
-
-      const Table = ({ columns, data, ...props }) => {
-        return (
-          <View {...props}>
-            <View verticalPadding="small" background="gray-1">
-              <Spacer size="xsmall" />
-              <View horizontal>
-                {columns.map(({ title, flex }, index) => (
-                  <Header key={index} flex={flex}>{title}</Header>
-                ))}
-              </View>
-            </View>
-            <Divider size="none" />
-            <List verticalPadding="small" spacerSize="none" >
-              {data.map((item, rowIndex) => (
-                <View key={rowIndex} horizontal verticalPadding="small">
-                  {columns.map(({ key, flex, onRender = (column, item) => column }, index) => (
-                    <Column key={index} flex={flex}>{onRender(item[key], item)}</Column>
-                  ))}
-                </View>
-              ))}
-            </List>
-          </View>
-        );
-      };
-
-      const dateToString = (date) => date.toLocaleDateString();
-
       addWindow(
-        <View flex horizontal>
-          <View>
-            <View verticalPadding="small" background="gray-1">
-              <Spacer size="xsmall" />
-              <View horizontal>
-                <Header width={150}>Folder</Header>
-              </View>
-            </View>
-            <Divider size="none" />
-            <List verticalPadding="small" spacerSize="none">
-              <View>
-                <Column icon={openFolder} verticalPadding="small">Folder</Column>
-                <List spacerSize="none">
-                  <Column itemSelected level={1} icon={closedFolder} verticalPadding="small">Subolder</Column>
-                  <Column level={1} icon={closedFolder} verticalPadding="small">Subolder</Column>
-                </List>
-              </View>
-              <Column icon={closedFolder} verticalPadding="small">Folder</Column>
-              <Column icon={closedFolder} verticalPadding="small">Folder</Column>
-            </List>
-          </View>
-          <Divider size="none" />
-          <Table
-            flex
-            columns={[
-              {
-                key: 'Key', title: 'Name', flex: '1 1 300px', onRender: (name, { Size }) => (
-                  <Heading
-                    image={<Image src={`http://mike-austin.com/new/images/Escher_Circle_Limit_III.jpg`} width={40} height={40} />}
-                    imageAlign='center'
-                    title={name} subtitle={numberToKB(Size)}
-                  />
-                )
-              },
-              // {
-              //   key: 'Key', title: 'Name', width: 200, onRender: (name, { Size }) => (name)
-              // },
-              { key: 'Size', title: 'Size', flex: '0 0 100px', onRender: numberToKB },
-              { key: 'LastModified', title: 'Modified', flex: '0 0 100px', onRender: dateToString },
-            ]}
-            data={s3objects.Contents}
-          >
-            //
-          </Table>
-        </View>,
+        <S3Browser />,
         { title: 'S3 Browser', noPadding: true, style: { left: 850, top: 70 } }
       );
 
       addWindow(<Calendar />, { title: 'Calendar', noPadding: true });
+
+      const textProps = {
+        fontSize: 'large',
+        color: 'white',
+        style: { whiteSpace: 'nowrap', flex: '1 0 50%' }
+      };
+
+      addWindow(
+        <View flex background="black">
+          <List spacerSize="large" style={{ paddingTop: '400px', animation: `${styles.scroll} 40s linear` }}>
+            {Array.from({ length: 30 }, (_, index) => (
+              <View horizontal itemFlex flex alignItems="flex-end">
+                <Text {...textProps} fontSize="medium" style={{ ...textProps.style, textAlign: 'right' }}>{lorem.generateWords(3).toUpperCase()}</Text>
+                <Spacer size="xlarge" />
+                <Text  {...textProps}>{lorem.generateWords(3).toUpperCase()}</Text>
+              </View>
+            ))}
+          </List>
+        </View>,
+        { title: 'Credits', noPadding: true, style: { width: 1000, height: 400 } }
+      );
     })();
 
     return () => {

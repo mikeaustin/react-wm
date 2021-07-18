@@ -45,6 +45,14 @@
   margin-top: 15px;
 }
 
+.list.large.vertical > li:not(:first-child) {
+  margin-top: 20px;
+}
+
+.list.xlarge.vertical > li:not(:first-child) {
+  margin-top: 30px;
+}
+
 .list.none.vertical > li:not(:first-child) {
   margin-top: 0;
 }

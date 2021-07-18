@@ -30,6 +30,16 @@
   align-self: stretch;
 }
 
+.vertical > .xlarge {
+  min-height: 30px;
+  align-self: stretch;
+}
+
+.vertical > .huge {
+  min-height: 50px;
+  align-self: stretch;
+}
+
 /* Horizontal */
 
 .horizontal > .tiny {
@@ -54,5 +64,15 @@
 
 .horizontal > .large {
   min-width: 20px;
+  align-self: stretch;
+}
+
+.horizontal > .xlarge {
+  min-width: 30px;
+  align-self: stretch;
+}
+
+.horizontal > .huge {
+  min-width: 50px;
   align-self: stretch;
 }

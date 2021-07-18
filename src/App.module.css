@@ -47,3 +47,13 @@
   left: 0;
   background: linear-gradient(0deg, hsla(0, 0%, 0%, 0.05), hsla(0, 0%, 0%, 0.0));
 }
+
+@keyframes scroll {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: translate(0, -100%);
+  }
+}
