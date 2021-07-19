@@ -79,11 +79,18 @@ const Preferences = ({ onSetBackground }) => {
             <Spacer size="large" />
             <Field itemFlex title="Password" />
           </View>
+
           <View flex padding="medium" style={{ xwidth: '100%', maxWidth: 300 }}>
-            <Field variant="document" title="Username" options={['john@example.com']} />
+            <Field variant="document" title="Name" value="John Smith" />
             <Spacer size="large" />
-            <Field variant="document" title="Password" />
+            <List horizontal>
+              <Field variant="document" title="Phone" value="650.555.1212" />
+              <Field variant="document" title="Type" value="Mobile" options={['Mobile']} />
+            </List>
+            <Spacer size="large" />
+            <Field variant="document" title="Address" value="123 First St." />
           </View>
+
         </View>
       </Panel>
       <Divider size="medium" />

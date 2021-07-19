@@ -7,7 +7,7 @@ import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } 
 
 import styles from './Field.module.scss';
 
-const Field = ({ title, options, variant }) => {
+const Field = ({ title, options, variant, value }) => {
   const inputClassName = classNames(
     styles.input,
     variant === 'document' && styles.document,
@@ -27,7 +27,7 @@ const Field = ({ title, options, variant }) => {
         )}
       </View>
       <Spacer size="small" />
-      <View tag="input" placeholder={variant === 'document' && '—'} className={inputClassName} />
+      <View tag="input" size={15} placeholder={variant === 'document' && '—'} value={value} className={inputClassName} />
     </View>
   );
 };

@@ -1,0 +1,10 @@
+.true {
+  /* box-shadow: 0 0px 10px hsla(0, 0%, 0%, 0.1), 0 0 1px hsla(0, 0%, 0%, 0.5); */
+  box-shadow: 0 0 0 1px hsla(210, 50%, 20%, 0.05);
+  /* box-shadow: 0 0 1px hsla(0, 0%, 0%, 0.5); */
+  /* transition: box-shadow 0.2s linear; */
+}
+
+/* .true:hover {
+  box-shadow: 0 5px 10px 5px hsla(0, 0%, 0%, 0.25), 0 0 0 1px hsla(210, 50%, 20%, 0.1);
+} */

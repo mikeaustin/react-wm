@@ -6,8 +6,8 @@
 .App {
   position: fixed !important;
   top: 0;
-  right: 0;
-  bottom: 0;
+  right: -1000px;
+  bottom: -1000px;
   left: 0;
 }
 
@@ -56,4 +56,8 @@
   to {
     transform: translate(0, -100%);
   }
+}
+
+.noScrollbar::-webkit-scrollbar {
+  display: none;
 }

@@ -21,7 +21,7 @@ import { Window, MenuBar } from './components';
 
 import { LoremIpsum } from 'lorem-ipsum';
 
-const lorem = new LoremIpsum({
+const creditsLorem = new LoremIpsum({
   sentencesPerParagraph: {
     min: 4,
     max: 8,
@@ -29,6 +29,17 @@ const lorem = new LoremIpsum({
   wordsPerSentence: {
     min: 2,
     max: 3,
+  }
+});
+
+const placesLorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    min: 4,
+    max: 8,
+  },
+  wordsPerSentence: {
+    min: 4,
+    max: 16,
   }
 });
 
@@ -86,10 +97,10 @@ function App() {
       return;
     }
 
-    const movementX = event.movementX !== 0
+    const movementX = event.movementX !== null
       ? event.movementX
       : event.clientX - lastMouseRef.current.clientX;
-    const movementY = event.movementY !== 0
+    const movementY = event.movementY !== null
       ? event.movementY
       : event.clientY - lastMouseRef.current.clientY;
 
@@ -175,9 +186,9 @@ function App() {
 
       const Calculator = await importModule('calculator.js');
 
-      addWindow(<VideoPlayer src="videos/trailer.webm" />, {
-        title: 'Video', noPadding: true, noBorder: true, style: { left: 890, top: 15 }
-      });
+      // addWindow(<VideoPlayer src="videos/trailer.webm" />, {
+      //   title: 'Video', noPadding: true, noBorder: true, style: { left: 890, top: 15 }
+      // });
 
       addWindow(<Examples />, {
         title: 'Examples', style: { left: 15, top: 15 }
@@ -217,21 +228,54 @@ function App() {
         style: { whiteSpace: 'nowrap', flex: '1 0 50%' }
       };
 
+      const capitalize = words => {
+        return words.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
+      };
+
+      // addWindow(
+      //   <View flex background="black">
+      //     <List spacerSize="medium" style={{ paddingTop: '400px', animation: `${styles.scroll} 40s linear` }}>
+      //       {Array.from({ length: 30 }, (_, index) => (
+      //         <View horizontal itemFlex flex alignItems="flex-end">
+      //           <Text {...textProps} fontSize="small" style={{ ...textProps.style, textAlign: 'right' }}>
+      //             {creditsLorem.generateWords(2).toUpperCase()}
+      //           </Text>
+      //           <Spacer size="large" />
+      //           <Text  {...textProps}>{creditsLorem.generateWords(2).toUpperCase()}</Text>
+      //         </View>
+      //       ))}
+      //     </List>
+      //   </View>,
+      //   { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } }
+      // );
+
       addWindow(
-        <View flex background="black">
-          <List spacerSize="medium" style={{ paddingTop: '400px', animation: `${styles.scroll} 40s linear` }}>
-            {Array.from({ length: 30 }, (_, index) => (
-              <View horizontal itemFlex flex alignItems="flex-end">
-                <Text {...textProps} fontSize="small" style={{ ...textProps.style, textAlign: 'right' }}>
-                  {lorem.generateWords(2).toUpperCase()}
-                </Text>
-                <Spacer size="large" />
-                <Text  {...textProps}>{lorem.generateWords(2).toUpperCase()}</Text>
+        <View flex padding="medium" background="gray-1">
+          <List horizontal wrap spacerSize="medium">
+            {Array.from({ length: 3 }, (_, index) => (
+              <View itemFlex itemMinWidth={350} flex padding="medium" background="white" border borderRadius xstyle={{ minWidth: 350 }}>
+                <Text fontSize="medium" fontWeight="semibold">{capitalize(creditsLorem.generateWords(3))}</Text>
+                <Spacer />
+                <List horizontal>
+                  <Text color="yellow-5">★★★★✩</Text>
+                  <Text xcolor="yellow-5">$$</Text>
+                </List>
+                <Spacer size="medium" />
+                <Text>{placesLorem.generateSentences(2)}</Text>
+                <Divider flex size="medium" />
+                <Text fontWeight="semibold">Reserve a Table</Text>
+                <List horizontal spacerSize="small" horizontalPadding="medium" style={{ overflowX: 'auto', marginLeft: -15, marginRight: -15 }} className={styles.noScrollbar}>
+                  <Button fontWeight="normal" borderRadius="rounded" solid title="10:00 AM" />
+                  <Button fontWeight="normal" borderRadius="rounded" solid title="10:30 AM" />
+                  <Button fontWeight="normal" borderRadius="rounded" solid title="10:00 AM" />
+                  <Button fontWeight="normal" borderRadius="rounded" solid title="10:30 AM" />
+                </List>
               </View>
             ))}
+            <View itemFlex itemMinWidth={350} xstyle={{ minWidth: 350 }} />
           </List>
         </View>,
-        { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } }
+        { title: 'Places', noPadding: true, style: { width: 900, xheight: 400 } }
       );
     })();
 

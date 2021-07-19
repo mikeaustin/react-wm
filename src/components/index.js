@@ -20,6 +20,7 @@ import borderRadiusStyles from '../styles/borderRadius.module.css';
 import topBorderRadiusStyles from '../styles/topBorderRadius.module.css';
 import bottomBorderRadiusStyles from '../styles/bottomBorderRadius.module.css';
 import boxShadowStyles from '../styles/boxShadow.module.css';
+import borderStyles from '../styles/border.module.css';
 import opacityStyles from '../styles/opacity.module.css';
 
 import buttonStyles from './button.module.css';
@@ -41,6 +42,7 @@ const View = React.forwardRef(({
   borderRadius,
   topBorderRadius,
   bottomBorderRadius,
+  border,
   boxShadow,
   absolute,
   opacity,
@@ -65,6 +67,7 @@ const View = React.forwardRef(({
     borderRadius && borderRadiusStyles[borderRadius],
     topBorderRadius && topBorderRadiusStyles[topBorderRadius],
     bottomBorderRadius && bottomBorderRadiusStyles[bottomBorderRadius],
+    border && borderStyles[border],
     boxShadow && boxShadowStyles[boxShadow],
     absolute && styles.absolute,
     opacity && opacityStyles[`opacity-${opacity}`],
@@ -119,7 +122,7 @@ const Clickable = ({ className, ...props }) => {
   return <View className={clickableStyles.clickable} {...props} />;
 };
 
-const Button = ({ title, link, primary, solid, secondary, disabled, className, ...props }) => {
+const Button = ({ title, link, primary, solid, secondary, fontWeight, disabled, className, ...props }) => {
   const textColor = primary && solid
     ? 'white'
     : primary ? 'blue-5' : undefined;
@@ -145,7 +148,7 @@ const Button = ({ title, link, primary, solid, secondary, disabled, className, .
       className={buttonClassName}
       {...props}
     >
-      <Text fontWeight="bold" color={textColor}>{title}</Text>
+      <Text fontWeight={fontWeight ?? "bold"} color={textColor}>{title}</Text>
     </View>
   );
 };
@@ -156,12 +159,13 @@ const Spacer = ({ size = 'small', ...props }) => {
   );
 };
 
-const Divider = ({ size, level, color, ...props }) => {
+const Divider = ({ size, level, color, flex, ...props }) => {
   const dividerClassName = [
     dividerStyles.divider,
     size && dividerStyles[size],
     level && dividerStyles[`level-${level}`],
     color && dividerStyles[color],
+    flex && dividerStyles.flex,
   ].filter(className => !!className).join(' ');
 
   return (
@@ -169,7 +173,7 @@ const Divider = ({ size, level, color, ...props }) => {
   );
 };
 
-const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, ...props }) => {
+const List = ({ horizontal, divider, level, wrap, spacerSize, style, className, children, ...props }) => {
   const listClassName = [
     listStyles.list,
     (horizontal && 'horizontal') || 'vertical',
@@ -178,6 +182,7 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
     level && listStyles[`level-${level}`],
     (spacerSize && listStyles[spacerSize]) || listStyles.small,
     wrap && listStyles.wrap,
+    className,
   ].filter(className => !!className).join(' ');
 
   const listStyle = {
@@ -191,6 +196,7 @@ const List = ({ horizontal, divider, level, wrap, spacerSize, style, children, .
       {React.Children.map(children, (child, index) => (
         <View key={index} tag="li" flex={child.props.itemFlex} className={child.props.itemSelected && listStyles.selected} style={{
           width: `calc(${child.props.itemWidth} - 10px)`,
+          minWidth: child.props.itemMinWidth,
           marginLeft: wrap && 10,
           marginTop: wrap && 10,
         }}>
