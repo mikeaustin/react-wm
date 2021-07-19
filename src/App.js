@@ -14,6 +14,7 @@ import Preferences from './widgets/Preferences';
 import Clock from './widgets/Clock';
 import Calendar from './widgets/Calendar';
 import S3Browser from './widgets/S3Browser';
+import Editor from './widgets/Editor';
 import AppBar from './components/AppBar';
 
 import { Window, MenuBar } from './components';
@@ -33,15 +34,6 @@ const lorem = new LoremIpsum({
 
 window.React = React;
 
-const editorText = (
-  `const <strong>Image</strong> = ({ src, width, height, ...props }) =&gt; {
-  return (
-    &lt;<strong>View</strong> tag="img" src={src} {...props} /&gt;
-  );
-};
-
-`);
-
 const components = { View, Text, Image, Button, Spacer, Divider, List, Heading };
 
 function App() {
@@ -53,7 +45,6 @@ function App() {
   const [windowElements, setWindowElements] = useState([]);
   const [windowIndexes, setWindowIndexes] = useState([]);
   const nextWindowIdRef = useRef(0);
-  const editorRef = useRef();
 
   console.log('App()', windowElements);
 
@@ -168,16 +159,6 @@ function App() {
     nextWindowIdRef.current += 1;
   }, [handleWindowFocus, handleWindowBlur]);
 
-  const handleInput = event => {
-    console.log(event.currentTarget.childNodes.length);
-  };
-
-  const handlePaste = event => {
-    event.preventDefault();
-
-    document.execCommand("inserttext", false, event.clipboardData.getData("text/plain"));
-  };
-
   const importModule = async (name) => {
     const module = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '../..'}/widgets/${name}`);
 
@@ -186,33 +167,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      addWindow(
-        <View flex>
-          <View flex horizontal>
-            <View style={{ margin: '0 9px 0 10px' }} verticalPadding="medium">
-              <Text color="gray-5" style={{ fontFamily: 'monospace', textAlign: 'right' }}>
-                1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />
-                11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20
-              </Text>
-            </View>
-            <Divider size="none" />
-            <View flex horizontalPadding="small" padding="medium" background="white" style={{ overflowX: 'auto' }}>
-              <View
-                ref={editorRef}
-                tag="pre"
-                flex
-                contentEditable
-                spellCheck="false"
-                style={{ margin: '-5px 0', lineHeight: '20px' }}
-                onInput={handleInput}
-                onPaste={handlePaste}
-              >
-                {/* {editorText} */}
-                <div dangerouslySetInnerHTML={{ __html: editorText }} />
-              </View>
-            </View>
-          </View>
-        </View>, {
+      addWindow(<Editor />, {
         title: 'Editor', noPadding: true, background: 'gray-1', style: {
           left: 950, top: 100, width: 550, height: 300
         }
@@ -230,13 +185,11 @@ function App() {
 
       const Mail = await importModule('mail.js');
 
-      addWindow(
-        <Mail components={components} />, {
+      addWindow(<Mail components={components} />, {
         title: 'Mail', noPadding: true, style: { left: 15, top: 420, width: 900, height: 400 }
       });
 
-      addWindow(
-        <Calculator components={components} />, {
+      addWindow(<Calculator components={components} />, {
         title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-4', style: { left: 1600, top: 60 }
       });
 
@@ -244,17 +197,19 @@ function App() {
         title: 'Preferences', xbackground: 'gray-1', style: { left: 1000, top: 450, width: 500 }
       });
 
-      addWindow(
-        <Clock />,
-        { title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 } }
+      addWindow(<Clock />, {
+        title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 }
+      }
       );
 
-      addWindow(
-        <S3Browser />,
-        { title: 'S3 Browser', noPadding: true, style: { left: 850, top: 70 } }
+      addWindow(<S3Browser />, {
+        title: 'S3 Browser', noPadding: true, style: { left: 850, top: 70 }
+      }
       );
 
-      addWindow(<Calendar />, { title: 'Calendar', noPadding: true });
+      addWindow(<Calendar />, {
+        title: 'Calendar', noPadding: true
+      });
 
       const textProps = {
         fontSize: 'large',
@@ -264,17 +219,19 @@ function App() {
 
       addWindow(
         <View flex background="black">
-          <List spacerSize="large" style={{ paddingTop: '400px', animation: `${styles.scroll} 40s linear` }}>
+          <List spacerSize="medium" style={{ paddingTop: '400px', animation: `${styles.scroll} 40s linear` }}>
             {Array.from({ length: 30 }, (_, index) => (
               <View horizontal itemFlex flex alignItems="flex-end">
-                <Text {...textProps} fontSize="medium" style={{ ...textProps.style, textAlign: 'right' }}>{lorem.generateWords(3).toUpperCase()}</Text>
-                <Spacer size="xlarge" />
-                <Text  {...textProps}>{lorem.generateWords(3).toUpperCase()}</Text>
+                <Text {...textProps} fontSize="small" style={{ ...textProps.style, textAlign: 'right' }}>
+                  {lorem.generateWords(2).toUpperCase()}
+                </Text>
+                <Spacer size="large" />
+                <Text  {...textProps}>{lorem.generateWords(2).toUpperCase()}</Text>
               </View>
             ))}
           </List>
         </View>,
-        { title: 'Credits', noPadding: true, style: { width: 1000, height: 400 } }
+        { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } }
       );
     })();
 
