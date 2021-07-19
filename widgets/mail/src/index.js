@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { LoremIpsum } from 'lorem-ipsum';
 
 const lorem = new LoremIpsum({
@@ -71,8 +71,14 @@ const ButtonGroup = ({ components, children, ...props }) => {
 const MessageList = ({ data, components }) => {
   const { View, Text, Image, Button, Spacer, Divider, List, Heading } = components;
 
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    listRef.current.style.setProperty('--left-inset', `${30}px`);
+  }, []);
+
   return (
-    <View flex style={{ minWidth: 375, overflow: 'auto' }}>
+    <View ref={listRef} flex style={{ minWidth: 375, overflow: 'auto' }}>
       <ButtonGroup background="gray-1" components={components}>
         <Button solid title="⋮" />
         <Button solid title="Compose" />

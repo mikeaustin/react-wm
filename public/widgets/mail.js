@@ -755,7 +755,12 @@ var MessageList = function MessageList(_ref4) {
       components.Divider;
       var List = components.List;
       components.Heading;
+  var listRef = React.useRef(null);
+  React.useEffect(function () {
+    listRef.current.style.setProperty('--left-inset', "".concat(30, "px"));
+  }, []);
   return /*#__PURE__*/React.createElement(View, {
+    ref: listRef,
     flex: true,
     style: {
       minWidth: 375,

@@ -63,11 +63,16 @@
   padding-top: 11px;
 }
 
+.list.divider.vertical.medium > li:not(:first-child) {
+  padding-top: 16px;
+}
+
 .list.divider.vertical > li:not(:first-child)::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 30px;
+  /* left: 30px; */
+  left: var(--left-inset, 0);
   right: 0;
   border-top: 1px solid var(--divider-color);
   z-index: 1;
