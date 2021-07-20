@@ -131,9 +131,16 @@ const Window = ({
       >
         <Text fontWeight="bold" style={{ top: 1, WebkitUserSelect: 'none' }}>{title}</Text>
       </View>
-      <Clickable absolute horizontal alignItems="center" style={{ right: 'auto', height: 30, borderTopLeftRadius: 5 }} onClick={handleWindowCloseClick}>
-        <Text style={{ top: 1, width: 30, textAlign: 'center' }}>✖️</Text>
-      </Clickable>
+      <View absolute horizontal alignItems="center" style={{ top: 1, left: 4, right: 'auto', height: 29 }} >
+        <Button
+          size="xsmall"
+          hover
+          title={<Text style={{ margin: '-11px -7px', padding: '11px 7px' }}>✖️</Text>}
+          style={{ padding: 0, width: 20, height: 20 }}
+          onClick={handleWindowCloseClick}
+        />
+      </View>
+
       {!noBorder && <Divider size="none" color="gray-4" />}
       <View flex padding={!noPadding && 'medium'} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
         {children}

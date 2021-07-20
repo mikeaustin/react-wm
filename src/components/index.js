@@ -122,15 +122,19 @@ const Clickable = ({ className, ...props }) => {
   return <View className={clickableStyles.clickable} {...props} />;
 };
 
-const Button = ({ title, link, primary, solid, secondary, size = 'small', fontWeight, disabled, className, ...props }) => {
+const Button = ({ title, link, hover, primary, solid, secondary, size = 'small', fontWeight, disabled, className, ...props }) => {
   const textColor = primary && solid
     ? 'white'
     : primary ? 'blue-5' : undefined;
+  const buttonTitle = typeof title === 'string'
+    ? <Text fontSize={size} fontWeight={fontWeight ?? "bold"} color={textColor}>{title}</Text>
+    : title;
 
   const buttonClassName = [
     buttonStyles.button,
     size && buttonStyles[size],
     link && buttonStyles.link,
+    hover && buttonStyles.hover,
     primary && buttonStyles.primary,
     solid && buttonStyles.solid,
     disabled && buttonStyles.disabled,
@@ -149,7 +153,7 @@ const Button = ({ title, link, primary, solid, secondary, size = 'small', fontWe
       className={buttonClassName}
       {...props}
     >
-      <Text fontSize={size} fontWeight={fontWeight ?? "bold"} color={textColor}>{title}</Text>
+      {buttonTitle}
     </View>
   );
 };

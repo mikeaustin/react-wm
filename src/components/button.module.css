@@ -10,6 +10,14 @@
   white-space: nowrap;
 }
 
+.button.hover {
+  box-shadow: none;
+}
+
+.button.hover:hover {
+  background: hsla(210, 14%, 77%, 0.75);
+}
+
 .button.solid {
   background: var(--oc-gray-3);
   box-shadow: none;
