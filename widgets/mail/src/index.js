@@ -38,7 +38,7 @@ const ListItem = ({ components, from, subject, date, body, selected }) => {
 
   return (
     <Heading
-      image={<View background="primary" borderRadius="rounded" style={{ width: 10, height: 10, marginRight: -5 }} />}
+      image={<View background="primary" borderRadius="max" style={{ width: 10, height: 10, marginRight: -5 }} />}
       title={from}
       subtitle={subject}
       label="📎 ★"

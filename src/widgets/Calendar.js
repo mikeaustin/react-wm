@@ -14,6 +14,14 @@ const Calendar = () => {
   return (
     <View>
       <View background="gray-1">
+        <Spacer size="medium" />
+        <View horizontal horizontalPadding="small" background="gray-1">
+          <Button size="xsmall" title="Today" solid borderRadius="max" />
+          <Spacer flex />
+          <Button size="xsmall" title="❮" solid borderRadius="max" />
+          <Spacer size="xsmall" />
+          <Button size="xsmall" title="❯" solid borderRadius="max" />
+        </View>
         <Spacer size="xsmall" />
         <View horizontal horizontalPadding="small">
           {Array.from({ length: 7 }, (_, index) => (

@@ -20,7 +20,7 @@ const Slider = React.forwardRef(({ ...props }, ref) => {
       tag="input"
       type="range"
       step="0.1"
-      // xborderRadius="rounded"
+      // xborderRadius="max"
       style={{ height: 7, background: 'hsla(0, 0%, 100%, 0.25)' }}
       {...props}
     />
@@ -103,7 +103,7 @@ const VideoPlayer = ({ src }) => {
         <View flex>
           <View flex justifyContent="center" alignItems="center" className={styles.playButton} onClick={handleVideoPlayClick}>
             <View padding="medium" />
-            <View background="white" borderRadius="rounded" opacity="25" justifyContent="center" alignItems="center" style={{ width: 50, height: 50 }}>
+            <View background="white" borderRadius="max" opacity="25" justifyContent="center" alignItems="center" style={{ width: 50, height: 50 }}>
               <Text fontSize="large" style={{ position: 'relative', right: !isPlaying ? -1 : 0, top: 0 }}>
                 {isPlaying ? '❙❙' : '▶'}
               </Text>

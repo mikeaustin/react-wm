@@ -701,7 +701,7 @@ var ListItem = function ListItem(_ref2) {
   return /*#__PURE__*/React.createElement(Heading, {
     image: /*#__PURE__*/React.createElement(View, {
       background: "primary",
-      borderRadius: "rounded",
+      borderRadius: "max",
       style: {
         width: 10,
         height: 10,

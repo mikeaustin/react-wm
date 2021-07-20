@@ -69,10 +69,10 @@ const ExampleWindow = ({ onWindowFocus, onWindowBlur }) => {
           </List>
           <Spacer />
           <List horizontal alignItems="center" spacerSize="small">
-            <Button title="Default" borderRadius="rounded" />
-            <Button solid title="Solid" borderRadius="rounded" />
-            <Button primary title="Primary" borderRadius="rounded" />
-            <Button primary solid title="Primary Solid" borderRadius="rounded" />
+            <Button title="Default" borderRadius="max" />
+            <Button solid title="Solid" borderRadius="max" />
+            <Button primary title="Primary" borderRadius="max" />
+            <Button primary solid title="Primary Solid" borderRadius="max" />
           </List>
         </View>
       </View>

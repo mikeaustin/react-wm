@@ -186,9 +186,9 @@ function App() {
 
       const Calculator = await importModule('calculator.js');
 
-      // addWindow(<VideoPlayer src="videos/trailer.webm" />, {
-      //   title: 'Video', noPadding: true, noBorder: true, style: { left: 890, top: 15 }
-      // });
+      addWindow(<VideoPlayer src="videos/trailer.webm" />, {
+        title: 'Video', noPadding: true, noBorder: true, style: { left: 890, top: 15 }
+      });
 
       addWindow(<Examples />, {
         title: 'Examples', style: { left: 15, top: 15 }
@@ -232,22 +232,22 @@ function App() {
         return words.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
       };
 
-      // addWindow(
-      //   <View flex background="black">
-      //     <List spacerSize="medium" style={{ paddingTop: '400px', animation: `${styles.scroll} 40s linear` }}>
-      //       {Array.from({ length: 30 }, (_, index) => (
-      //         <View horizontal itemFlex flex alignItems="flex-end">
-      //           <Text {...textProps} fontSize="small" style={{ ...textProps.style, textAlign: 'right' }}>
-      //             {creditsLorem.generateWords(2).toUpperCase()}
-      //           </Text>
-      //           <Spacer size="large" />
-      //           <Text  {...textProps}>{creditsLorem.generateWords(2).toUpperCase()}</Text>
-      //         </View>
-      //       ))}
-      //     </List>
-      //   </View>,
-      //   { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } }
-      // );
+      addWindow(
+        <View flex background="black">
+          <List spacerSize="medium" style={{ paddingTop: '400px', animation: `${styles.scroll} 40s linear` }}>
+            {Array.from({ length: 30 }, (_, index) => (
+              <View horizontal itemFlex flex alignItems="flex-end">
+                <Text {...textProps} fontSize="small" style={{ ...textProps.style, textAlign: 'right' }}>
+                  {creditsLorem.generateWords(2).toUpperCase()}
+                </Text>
+                <Spacer size="large" />
+                <Text  {...textProps}>{creditsLorem.generateWords(2).toUpperCase()}</Text>
+              </View>
+            ))}
+          </List>
+        </View>,
+        { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } }
+      );
 
       addWindow(
         <View flex padding="medium" background="gray-1">
@@ -268,10 +268,10 @@ function App() {
                   <Text fontWeight="semibold">Reserve a Table</Text>
                   <Spacer />
                   <List horizontal spacerSize="small" horizontalPadding="medium" style={{ overflowX: 'auto', marginLeft: -15, marginRight: -15 }} className={styles.noScrollbar}>
-                    <Button fontWeight="normal" borderRadius="rounded" solid title="10:00 AM" />
-                    <Button fontWeight="normal" borderRadius="rounded" solid title="10:30 AM" />
-                    <Button fontWeight="normal" borderRadius="rounded" solid title="10:00 AM" />
-                    <Button fontWeight="normal" borderRadius="rounded" solid title="10:30 AM" />
+                    <Button fontWeight="normal" borderRadius="max" solid title="10:00 AM" />
+                    <Button fontWeight="normal" borderRadius="max" solid title="10:30 AM" />
+                    <Button fontWeight="normal" borderRadius="max" solid title="10:00 AM" />
+                    <Button fontWeight="normal" borderRadius="max" solid title="10:30 AM" />
                   </List>
                 </View>
               </List>
@@ -298,7 +298,7 @@ function App() {
       onPointerMove={handleMouseMove}
     >
       <MenuBar />
-      <View flex>
+      <View flex xstyle={{ position: 'absolute', top: 30, right: 0, bottom: 0, left: 0 }}>
         {windowElements.map(windowElement => React.cloneElement(windowElement, {
           zIndex: windowIndexes.indexOf(windowElement.props.id)
         }))}
