@@ -12,7 +12,7 @@ const Calendar = () => {
   const today = new Date();
 
   return (
-    <View>
+    <View flex>
       <View background="gray-1">
         <Spacer size="medium" />
         <View horizontal horizontalPadding="small" background="gray-1">
@@ -32,8 +32,8 @@ const Calendar = () => {
         </View>
         <Divider size="none" />
       </View>
-      <View padding="small" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
-        {Array.from({ length: new Date().getDay() }, (_, index) => (
+      <View flex padding="small" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
+        {Array.from({ length: 5 - new Date().getDay() }, (_, index) => (
           <Text style={{ textAlign: 'right' }} padding="small"></Text>
         ))}
         {Array.from({ length: daysInMonth() }, (_, index) => (

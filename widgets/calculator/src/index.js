@@ -47,7 +47,17 @@ const Calculator = ({ components }) => {
 
   return (
     <View flex>
-      <Text fontSize="xlarge" fontWeight="light" color="white" background="gray-5" padding="small" style={{ textAlign: 'right', xtextShadow: '0 0 1px hsla(0, 0%, 0%, 0.1)' }}>3.14159</Text>
+      <Text
+        fontSize="xlarge"
+        fontWeight="light"
+        color="white"
+        color="gray-1"
+        background="gray-6"
+        padding="small"
+        style={{ textAlign: 'right', xtextShadow: '0 0 1px hsla(0, 0%, 0%, 0.1)' }}
+      >
+        3.14159
+      </Text>
       <View flex className={styles.buttons}>
         {buttons.map(button => (
           <CalculatorButton key={button} title={button} className={styles[button]} components={components} />

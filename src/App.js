@@ -8,6 +8,7 @@ import styles from './App.module.css';
 import './styles/spacing.css';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading } from './components';
+
 import VideoPlayer from './VideoPlayer';
 import Examples from './widgets/Examples';
 import Preferences from './widgets/Preferences';
@@ -140,6 +141,12 @@ function App() {
     mouseModeRef.current = null;
   };
 
+  const handleWindowClose = (windowId) => {
+    console.log('here');
+
+    setWindowElements(windowList => windowList.filter((window) => window.props.id !== windowId));
+  };
+
   const handleSetBackground = useCallback((event) => {
     setBackgroundUrl(event.target.src);
   }, []);
@@ -156,6 +163,7 @@ function App() {
         onWindowBlur={handleWindowBlur}
         onWindowResizeStart={handleWindowResizeStart}
         onWindowResizeEnd={handleWindowResizeEnd}
+        onWindowClose={handleWindowClose}
         {...props}
       >
         {element}
