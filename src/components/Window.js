@@ -126,6 +126,10 @@ const Window = ({
       >
         <Text fontWeight="bold" style={{ top: 1, WebkitUserSelect: 'none' }}>{title}</Text>
       </View>
+      <View absolute horizontal alignItems="center" style={{ top: 1, right: 'auto', height: 30, left: 8 }}>
+        <Text>✖️</Text>
+      </View>
+
       {!noBorder && <Divider size="none" color="gray-4" />}
       <View flex padding={!noPadding && 'medium'} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
         {children}

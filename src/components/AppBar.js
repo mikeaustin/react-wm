@@ -26,9 +26,8 @@ const Item = ({ windowId, title, active, onWindowActivate }) => {
 };
 
 const AppBar = ({ windowElements, activeWindowId, onWindowActivate }) => {
-
   return (
-    <List horizontal spacerSize="xsmall" justifyContent="center" alignItems="center" style={{ height: 50, background: 'hsla(0, 0%, 100%, 0.5)' }}>
+    <List horizontal spacerSize="xsmall" justifyContent="center" alignItems="center" style={{ zIndex: 1000, height: 50, background: 'hsla(0, 0%, 100%, 0.5)' }}>
       {windowElements.map(windowElement => (
         <Item
           key={windowElement.props.id}
