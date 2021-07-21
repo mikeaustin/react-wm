@@ -15,7 +15,7 @@
 }
 
 .button.hover:hover {
-  background: hsla(210, 14%, 77%, 0.75);
+  background: hsla(210, 14%, 50%, 0.23);
 }
 
 .button.solid {
