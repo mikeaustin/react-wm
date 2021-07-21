@@ -853,6 +853,7 @@ var MessageBody = function MessageBody(_ref5) {
     }, str);
   });
   return /*#__PURE__*/React.createElement(View, {
+    flex: true,
     xbackground: "gray-0",
     style: {
       minWidth: 0
@@ -876,6 +877,7 @@ var MessageBody = function MessageBody(_ref5) {
   }), /*#__PURE__*/React.createElement(Divider, {
     size: "none"
   }), /*#__PURE__*/React.createElement(View, {
+    flex: true,
     horizontalPadding: "medium",
     background: "white",
     style: {

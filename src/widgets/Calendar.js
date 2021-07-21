@@ -15,7 +15,7 @@ const Calendar = () => {
     <View flex>
       <View background="gray-1">
         <Spacer size="medium" />
-        <View horizontal horizontalPadding="small" background="gray-1">
+        <View horizontal horizontalPadding="medium" background="gray-1">
           <Button size="xsmall" title="Today" solid borderRadius="max" />
           <Spacer flex />
           <Button size="xsmall" title="❮" solid borderRadius="max" />

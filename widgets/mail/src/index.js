@@ -108,7 +108,7 @@ const MessageBody = ({ data, components }) => {
   const formattedText = childrenArray.map((str, index) => <p key={index} style={{ marginBlockStart: 0 }}>{str}</p>);
 
   return (
-    <View xbackground="gray-0" style={{ minWidth: 0 }}>
+    <View flex xbackground="gray-0" style={{ minWidth: 0 }}>
       <ButtonGroup components={components}>
         <Button title="Reply" />
         <Button title="Reply All" />
@@ -118,7 +118,7 @@ const MessageBody = ({ data, components }) => {
       </ButtonGroup>
       <ListItem from={data[0].from} subject={data[0].subject} components={components} />
       <Divider size="none" />
-      <View horizontalPadding="medium" background="white" style={{ overflowY: 'auto' }}>
+      <View flex horizontalPadding="medium" background="white" style={{ overflowY: 'auto' }}>
         <Spacer size="medium" />
         <Text>
           {formattedText}

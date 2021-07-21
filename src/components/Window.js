@@ -7,6 +7,7 @@ import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } 
 const Window = ({
   id,
   title,
+  background,
   noPadding,
   noBorder,
   zIndex,
@@ -140,9 +141,8 @@ const Window = ({
           onClick={handleWindowCloseClick}
         />
       </View>
-
       {!noBorder && <Divider size="none" color="gray-4" />}
-      <View flex padding={!noPadding && 'medium'} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
+      <View flex padding={!noPadding && 'medium'} background={background} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
         {children}
       </View>
     </View>
