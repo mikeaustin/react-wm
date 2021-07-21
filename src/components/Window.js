@@ -10,6 +10,7 @@ const Window = ({
   noPadding,
   noBorder,
   zIndex,
+  focused,
   style,
   children,
   onWindowFocus,
@@ -122,10 +123,9 @@ const Window = ({
       <View
         alignItems="center"
         padding="small"
-        background="gray-3"
+        background={focused && 'gray-3'}
         // background="gray-0-gradient"
         topBorderRadius="small"
-        // style={{ boxShadow: '0 0 0 1px hsla(0, 0%, 0%, 0.2)', zIndex: 10000 }}
         onPointerDown={handleTitleMouseDown}
         onPointerUp={handleTitleMouseUp}
       >

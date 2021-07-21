@@ -333,7 +333,8 @@ function App() {
       <MenuBar />
       <View flex xstyle={{ position: 'absolute', top: 30, right: 0, bottom: 0, left: 0 }}>
         {windowElements.map(windowElement => React.cloneElement(windowElement, {
-          zIndex: windowIndexes.indexOf(windowElement.props.id)
+          zIndex: windowIndexes.indexOf(windowElement.props.id),
+          focused: windowIndexes.indexOf(windowElement.props.id) === windowIndexes.length - 1,
         }))}
       </View>
 
