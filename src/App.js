@@ -46,7 +46,32 @@ const placesLorem = new LoremIpsum({
 
 window.React = React;
 
+const importModule = async (name) => {
+  const module = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost'
+    ? ''
+    : '../..'}/widgets/${name}`);
+
+  return module.default;
+};
+
 const components = { View, Text, Image, Button, Spacer, Divider, List, Heading };
+
+const Module = ({ path }) => {
+  const [Component, setComponent] = useState(null);
+  importModule(path).then((c) => setComponent(() => c));
+
+  if (!Component) {
+    return null;
+  }
+
+  return <Component components={components} />;
+};
+
+const widgets = [
+  { element: <Examples />, props: { title: 'Examples' } },
+  { element: <Module path="calculator.js" />, props: { title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5' } },
+  { element: <Module path="mail.js" />, props: { title: 'Mail', noPadding: true, style: { width: 1000, height: 600 } } },
+];
 
 function App() {
   const windowElementRef = useRef(null);
@@ -205,7 +230,7 @@ function App() {
       const Mail = await importModule('mail.js');
 
       addWindow(<Mail components={components} />, {
-        title: 'Mail', noPadding: true, style: { left: 15, top: 420, width: 900, height: 400 }
+        title: 'Mail', noPadding: true, style: { left: 15, top: 420, width: 900, height: 490 }
       });
 
       addWindow(<Calculator components={components} />, {
@@ -311,8 +336,21 @@ function App() {
           zIndex: windowIndexes.indexOf(windowElement.props.id)
         }))}
       </View>
+
       <View horizontal>
-        <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
+        {widgets.map(widget => (
+          <View
+            alignItems="center"
+            verticalPadding="medium"
+            style={{ width: 100 }}
+            onClick={() => addWindow(widget.element, widget.props)}
+          >
+            <View background="white" borderRadius style={{ width: 50, height: 50 }} />
+            <Spacer />
+            <Text>{widget.props.title}</Text>
+          </View>
+        ))}
+        {/* <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
           <View background="white" borderRadius style={{ width: 50, height: 50 }} />
           <Spacer />
           <Text>Clock</Text>
@@ -326,8 +364,9 @@ function App() {
           <View background="white" borderRadius style={{ width: 50, height: 50 }} />
           <Spacer />
           <Text>Preferences</Text>
-        </View>
+        </View> */}
       </View>
+
       <AppBar
         windowElements={windowElements}
         activeWindowId={windowIndexes[windowIndexes.length - 1]}
