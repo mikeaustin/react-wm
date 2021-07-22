@@ -25,7 +25,7 @@ const Calendar = () => {
         <Spacer size="xsmall" />
         <View horizontal horizontalPadding="small">
           {Array.from({ length: 7 }, (_, index) => (
-            <Text flex fontSize="tiny" fontWeight="bold" color="gray-6" verticalPadding="small" style={{ textAlign: 'right', xpaddingLeft: 5, paddingRight: 7 }}>
+            <Text key={index} flex fontSize="tiny" fontWeight="bold" color="gray-6" verticalPadding="small" style={{ textAlign: 'right', xpaddingLeft: 5, paddingRight: 7 }}>
               {days[index].toUpperCase()}
             </Text>
           ))}
@@ -38,6 +38,7 @@ const Calendar = () => {
         ))}
         {Array.from({ length: daysInMonth() }, (_, index) => (
           <View
+            key={index}
             borderRadius
             background={index + 1 === today.getDate() && 'primary'}
           >

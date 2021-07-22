@@ -262,6 +262,7 @@ function App() {
       <View horizontal>
         {widgets.map(widget => (
           <View
+            key={widget.props.title}
             alignItems="center"
             verticalPadding="medium"
             style={{ width: 100 }}

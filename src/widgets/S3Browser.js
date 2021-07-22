@@ -34,7 +34,7 @@ const Header = ({ flex, children, ...props }) => {
   );
 };
 
-const Column = ({ flex, icon, level, selected, children, ...props }) => {
+const Column = ({ flex, icon, level = 0, selected, children, ...props }) => {
   const content = typeof children === 'string' ? (
     <Text style={{ whiteSpace: 'nowrap', minWidth: 0 }}>
       {children}

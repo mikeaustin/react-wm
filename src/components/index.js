@@ -48,6 +48,7 @@ const View = React.forwardRef(({
   opacity,
   itemFlex,
   itemWidth,
+  itemSelected,
   style,
   className,
   children,
