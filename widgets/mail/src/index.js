@@ -78,7 +78,7 @@ const MessageList = ({ data, components }) => {
   }, []);
 
   return (
-    <View ref={listRef} flex style={{ minWidth: 375, overflow: 'auto' }}>
+    <View ref={listRef} style={{ width: 375, overflow: 'auto' }}>
       <ButtonGroup background="gray-1" components={components}>
         <Button solid title="⋮" />
         <Button solid title="Compose" />

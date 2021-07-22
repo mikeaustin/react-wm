@@ -148,8 +148,6 @@ function App() {
   };
 
   const handleWindowClose = (windowId) => {
-    console.log('here');
-
     setWindowElements(windowList => windowList.filter((window) => window.props.id !== windowId));
   };
 
@@ -184,56 +182,64 @@ function App() {
     nextWindowIdRef.current += 1;
   }, [handleWindowFocus, handleWindowBlur]);
 
-  const importModule = async (name) => {
-    const module = await import(/* webpackIgnore: true */ `${window.location.hostname === 'localhost' ? '' : '../..'}/widgets/${name}`);
-
-    return module.default;
-  };
-
   useEffect(() => {
     (async () => {
       addWindow(<Editor />, {
         title: 'Editor', noPadding: true, background: 'gray-1', style: {
-          left: 950, top: 100, width: 550, height: 300
+          left: 830, top: 580, width: 640, height: 220
         }
       });
 
       const Calculator = await importModule('calculator.js');
 
       addWindow(<VideoPlayer src="videos/trailer.webm" />, {
-        title: 'Video', noPadding: true, noBorder: true, style: { left: 890, top: 15 }
+        title: 'Video', noPadding: true, noBorder: true, style: {
+          left: 830, top: 15
+        }
       });
 
       addWindow(<Examples />, {
-        title: 'Examples', style: { left: 15, top: 15 }
+        title: 'Examples', style: {
+          left: 15, top: 15
+        }
       });
 
       const Mail = await importModule('mail.js');
 
       addWindow(<Mail components={components} />, {
-        title: 'Mail', noPadding: true, style: { left: 15, top: 420, width: 900, height: 490 }
+        title: 'Mail', noPadding: true, style: {
+          left: 1490, top: 15, width: 900, height: 490
+        }
       });
 
       addWindow(<Calculator components={components} />, {
-        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-4', style: { left: 1600, top: 60 }
+        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5', style: {
+          left: 1490, top: 520
+        }
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
-        title: 'Preferences', xbackground: 'gray-1', style: { left: 1000, top: 450, width: 500 }
+        title: 'Preferences', xbackground: 'gray-1', style: {
+          left: 15, top: 420, width: 500
+        }
       });
 
       addWindow(<Clock />, {
-        title: 'Clock', style: { left: 1600, top: 450, width: 200, height: 230 }
-      }
-      );
+        title: 'Clock', style: {
+          left: 1710, top: 540, width: 200, height: 230
+        }
+      });
 
       addWindow(<S3Browser />, {
-        title: 'S3 Browser', noPadding: true, style: { left: 850, top: 70 }
-      }
-      );
+        title: 'S3 Browser', noPadding: true, style: {
+          left: 830, top: 330
+        }
+      });
 
       addWindow(<Calendar />, {
-        title: 'Calendar', noPadding: true
+        title: 'Calendar', noPadding: true, style: {
+          left: 530, top: 460
+        }
       });
     })();
 
@@ -258,7 +264,6 @@ function App() {
           focused: windowIndexes.indexOf(windowElement.props.id) === windowIndexes.length - 1,
         }))}
       </View>
-
       <View horizontal>
         {widgets.map(widget => (
           <View
@@ -284,7 +289,6 @@ function App() {
           <Text>Preferences</Text>
         </View> */}
       </View>
-
       <AppBar
         windowElements={windowElements}
         activeWindowId={windowIndexes[windowIndexes.length - 1]}

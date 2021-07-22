@@ -761,9 +761,8 @@ var MessageList = function MessageList(_ref4) {
   }, []);
   return /*#__PURE__*/React.createElement(View, {
     ref: listRef,
-    flex: true,
     style: {
-      minWidth: 375,
+      width: 375,
       overflow: 'auto'
     }
   }, /*#__PURE__*/React.createElement(ButtonGroup, {
