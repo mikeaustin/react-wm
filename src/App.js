@@ -8,6 +8,7 @@ import styles from './App.module.css';
 import './styles/spacing.css';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading } from './components';
+import AppBar from './components/AppBar';
 
 import VideoPlayer from './VideoPlayer';
 import Examples from './widgets/Examples';
@@ -16,33 +17,10 @@ import Clock from './widgets/Clock';
 import Calendar from './widgets/Calendar';
 import S3Browser from './widgets/S3Browser';
 import Editor from './widgets/Editor';
-import AppBar from './components/AppBar';
+import Places from './widgets/Places';
+import Credits from './widgets/Credits';
 
 import { Window, MenuBar } from './components';
-
-import { LoremIpsum } from 'lorem-ipsum';
-
-const creditsLorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    min: 4,
-    max: 8,
-  },
-  wordsPerSentence: {
-    min: 2,
-    max: 3,
-  }
-});
-
-const placesLorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    min: 4,
-    max: 8,
-  },
-  wordsPerSentence: {
-    min: 4,
-    max: 16,
-  }
-});
 
 window.React = React;
 
@@ -69,8 +47,11 @@ const Module = ({ path }) => {
 
 const widgets = [
   { element: <Examples />, props: { title: 'Examples' } },
+  { element: <Clock />, props: { title: 'Clock', style: { width: 200, height: 230 } } },
   { element: <Module path="calculator.js" />, props: { title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5' } },
   { element: <Module path="mail.js" />, props: { title: 'Mail', noPadding: true, style: { width: 1000, height: 600 } } },
+  { element: <Places />, props: { title: 'Places', noPadding: true, style: { width: 900, xheight: 400 } } },
+  { element: <Credits />, props: { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } } },
 ];
 
 function App() {
@@ -197,7 +178,7 @@ function App() {
 
     setWindowIndexes(windowIndexes => [
       ...windowIndexes,
-      nextWindowIdRef.current
+      nextWindowIdRef.current,
     ]);
 
     nextWindowIdRef.current += 1;
@@ -254,66 +235,6 @@ function App() {
       addWindow(<Calendar />, {
         title: 'Calendar', noPadding: true
       });
-
-      const textProps = {
-        fontSize: 'large',
-        color: 'white',
-        style: { whiteSpace: 'nowrap', flex: '1 0 50%' }
-      };
-
-      const capitalize = words => {
-        return words.split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
-      };
-
-      addWindow(
-        <View flex background="black">
-          <List spacerSize="medium" style={{ paddingTop: '400px', animation: `${styles.scroll} 40s linear` }}>
-            {Array.from({ length: 30 }, (_, index) => (
-              <View horizontal itemFlex flex alignItems="flex-end">
-                <Text {...textProps} fontSize="small" style={{ ...textProps.style, textAlign: 'right' }}>
-                  {creditsLorem.generateWords(2).toUpperCase()}
-                </Text>
-                <Spacer size="large" />
-                <Text  {...textProps}>{creditsLorem.generateWords(2).toUpperCase()}</Text>
-              </View>
-            ))}
-          </List>
-        </View>,
-        { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } }
-      );
-
-      addWindow(
-        <View flex padding="medium" background="gray-1">
-          <List horizontal wrap spacerSize="medium">
-            {Array.from({ length: 3 }, (_, index) => (
-              <List divider spacerSize="medium" itemFlex itemMinWidth={350} flex padding="medium" background="white" border borderRadius>
-                <View itemFlex>
-                  <Text fontSize="medium" fontWeight="semibold">{capitalize(creditsLorem.generateWords(3))}</Text>
-                  <Spacer />
-                  <List horizontal>
-                    <Text color="yellow-5">★★★★✩</Text>
-                    <Text xcolor="yellow-5">$$</Text>
-                  </List>
-                  <Spacer size="medium" />
-                  <Text>{placesLorem.generateSentences(2)}</Text>
-                </View>
-                <View>
-                  <Text fontWeight="semibold">Reserve a Table</Text>
-                  <Spacer />
-                  <List horizontal spacerSize="small" horizontalPadding="medium" style={{ overflowX: 'auto', marginLeft: -15, marginRight: -15 }} className={styles.noScrollbar}>
-                    <Button fontWeight="normal" borderRadius="max" solid title="10:00 AM" />
-                    <Button fontWeight="normal" borderRadius="max" solid title="10:30 AM" />
-                    <Button fontWeight="normal" borderRadius="max" solid title="10:00 AM" />
-                    <Button fontWeight="normal" borderRadius="max" solid title="10:30 AM" />
-                  </List>
-                </View>
-              </List>
-            ))}
-            <View itemFlex itemMinWidth={350} xstyle={{ minWidth: 350 }} />
-          </List>
-        </View>,
-        { title: 'Places', noPadding: true, style: { width: 900, xheight: 400 } }
-      );
     })();
 
     return () => {
@@ -355,11 +276,6 @@ function App() {
           <View background="white" borderRadius style={{ width: 50, height: 50 }} />
           <Spacer />
           <Text>Clock</Text>
-        </View>
-        <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
-          <View background="white" borderRadius style={{ width: 50, height: 50 }} />
-          <Spacer />
-          <Text>Calculator</Text>
         </View>
         <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
           <View background="white" borderRadius style={{ width: 50, height: 50 }} />
