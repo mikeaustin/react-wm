@@ -174,13 +174,15 @@ function App() {
       </Window>
     ]);
 
-    setWindowIndexes(windowIndexes => [
-      ...windowIndexes,
-      nextWindowIdRef.current,
-    ]);
+    ((windowId) => {
+      setWindowIndexes(windowIndexes => [
+        ...windowIndexes,
+        windowId,
+      ]);
+    })(nextWindowIdRef.current);
 
     nextWindowIdRef.current += 1;
-  }, [handleWindowFocus, handleWindowBlur]);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -245,6 +247,7 @@ function App() {
 
     return () => {
       setWindowElements([]);
+      setWindowIndexes([]);
     };
   }, [addWindow, handleSetBackground]);
 

@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 import React, { useState, useEffect } from 'react';
 import AWS from 'aws-sdk';
 

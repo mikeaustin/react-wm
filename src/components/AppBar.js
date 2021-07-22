@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading, Clickable } from '.';
@@ -26,8 +28,6 @@ const Item = ({ windowId, title, active, onWindowActivate }) => {
 };
 
 const AppBar = ({ windowElements, activeWindowId, onWindowActivate }) => {
-  console.log('activeWindowId', activeWindowId);
-
   return (
     <List horizontal spacerSize="xsmall" justifyContent="center" alignItems="center" style={{ zIndex: 1000, height: 50, background: 'hsla(0, 0%, 100%, 0.5)' }}>
       {windowElements.map(windowElement => (
