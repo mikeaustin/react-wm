@@ -663,7 +663,7 @@ var SectionHeader = function SectionHeader(_ref) {
     style: {
       position: 'sticky',
       top: -1,
-      zIndex: 1
+      zIndex: 2
     }
   }, /*#__PURE__*/React.createElement(Divider, {
     size: "none",

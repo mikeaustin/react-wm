@@ -52,7 +52,12 @@ const widgets = [
   { element: <Module path="mail.js" />, props: { title: 'Mail', noPadding: true, style: { width: 1000, height: 600 } } },
   { element: <Places />, props: { title: 'Places', noPadding: true, style: { width: 900, xheight: 400 } } },
   { element: <Credits />, props: { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } } },
+  { element: <Preferences />, props: { title: 'Preferences', xbackground: 'gray-1', style: { width: 500 } } },
+  { element: <S3Browser />, props: { title: 'S3 Browser', noPadding: true, xstyle: { width: 800, height: 400 } } },
+  { element: <Editor />, props: { title: 'Editor', noPadding: true, style: { width: 640, height: 400 } } },
 ];
+
+
 
 function App() {
   const windowElementRef = useRef(null);
@@ -187,7 +192,7 @@ function App() {
   useEffect(() => {
     (async () => {
       addWindow(<Editor />, {
-        title: 'Editor', noPadding: true, background: 'gray-1', style: {
+        title: 'Editor', noPadding: true, style: {
           left: 830, top: 580, width: 640, height: 220
         }
       });

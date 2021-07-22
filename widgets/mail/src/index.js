@@ -22,7 +22,7 @@ const SectionHeader = ({ noBorder, children, components }) => {
   const { View, Text, Image, Button, Spacer, Divider, List, Heading } = components;
 
   return (
-    <View background="gray-1" style={{ position: 'sticky', top: -1, zIndex: 1 }}>
+    <View background="gray-1" style={{ position: 'sticky', top: -1, zIndex: 2 }}>
       <Divider size="none" style={noBorder && { visibility: 'hidden' }} />
       <Spacer size="xsmall" />
       <Text fontSize="tiny" fontWeight="semibold" padding="small" horizontalPadding="medium" color="gray-6">

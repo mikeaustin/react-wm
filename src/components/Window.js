@@ -141,7 +141,7 @@ const Window = ({
           onClick={handleWindowCloseClick}
         />
       </View>
-      {!noBorder && <Divider size="none" color="gray-4" />}
+      {!noBorder && <Divider size="none" color={focused ? 'gray-4' : 'gray-3'} />}
       <View flex padding={!noPadding && 'medium'} background={background} style={{ overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
         {children}
       </View>
@@ -150,11 +150,3 @@ const Window = ({
 };
 
 export default Window;
-
-/*
-      <View horizontal justifyContent="space-between" alignItems="center" padding="small" background="gray-3" topBorderRadius="small" onMouseDown={handleTitleMouseDown} onMouseUp={handleTitleMouseUp}>
-        <Text fontSize="medium" style={{ margin: '-5px 5px' }}>×</Text>
-        <Text fontWeight="bold">{title}</Text>
-        <Text>     </Text>
-      </View>
-*/

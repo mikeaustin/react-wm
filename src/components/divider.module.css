@@ -10,9 +10,12 @@
   align-self: stretch;
 }
 
+.divider.gray-3 {
+  background-color: var(--oc-gray-3);
+}
+
 .divider.gray-4 {
   background-color: var(--oc-gray-4);
-  align-self: stretch;
 }
 
 .vertical > .divider {
@@ -36,7 +39,3 @@
 .none.none {
   margin: 0 0;
 }
-
-/* .flex {
-  flex: 1;
-} */
