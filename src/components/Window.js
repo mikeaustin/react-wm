@@ -10,6 +10,10 @@ const Window = ({
   background,
   noPadding,
   noBorder,
+  left,
+  top,
+  width,
+  height,
   zIndex,
   focused,
   style,
@@ -75,9 +79,9 @@ const Window = ({
 
     let cursor = null;
 
-    if (top && left || bottom && right) {
+    if ((top && left) || (bottom && right)) {
       cursor = 'nwse-resize';
-    } else if (top && right || bottom && left) {
+    } else if ((top && right) || (bottom && left)) {
       cursor = 'nesw-resize';
     } else if (top || bottom) {
       cursor = 'ns-resize';
@@ -101,6 +105,10 @@ const Window = ({
     position: 'absolute',
     zIndex: zIndex + 100,
     // WebkitUserSelect: 'none',
+    left,
+    top,
+    width,
+    height,
     ...style
   };
 

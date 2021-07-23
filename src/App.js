@@ -47,14 +47,14 @@ const Module = ({ path }) => {
 
 const widgets = [
   { element: <Examples />, props: { title: 'Examples' } },
-  { element: <Clock />, props: { title: 'Clock', style: { width: 200, height: 230 } } },
+  { element: <Clock />, props: { title: 'Clock', width: 200, height: 230 } },
   { element: <Module path="calculator.js" />, props: { title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5' } },
-  { element: <Module path="mail.js" />, props: { title: 'Mail', noPadding: true, style: { width: 1000, height: 600 } } },
-  { element: <Places />, props: { title: 'Places', noPadding: true, style: { width: 900, xheight: 400 } } },
-  { element: <Credits />, props: { title: 'Credits', noPadding: true, style: { width: 800, height: 400 } } },
-  { element: <Preferences />, props: { title: 'Preferences', xbackground: 'gray-1', style: { width: 500 } } },
-  { element: <S3Browser />, props: { title: 'S3 Browser', noPadding: true, xstyle: { width: 800, height: 400 } } },
-  { element: <Editor />, props: { title: 'Editor', noPadding: true, style: { width: 640, height: 400 } } },
+  { element: <Module path="mail.js" />, props: { title: 'Mail', noPadding: true, width: 1000, height: 600 } },
+  { element: <Places />, props: { title: 'Places', noPadding: true, width: 900, xheight: 400 } },
+  { element: <Credits />, props: { title: 'Credits', noPadding: true, width: 800, height: 400 } },
+  { element: <Preferences />, props: { title: 'Preferences', xbackground: 'gray-1', width: 500 } },
+  { element: <S3Browser />, props: { title: 'S3 Browser', noPadding: true } },
+  { element: <Editor />, props: { title: 'Editor', noPadding: true, width: 640, height: 400 } },
 ];
 
 
@@ -160,7 +160,7 @@ function App() {
     setBackgroundUrl(event.target.src);
   }, []);
 
-  const addWindow = useCallback((element, props) => {
+  const addWindow = useCallback((element, { left = 30, top = 60, ...props }) => {
     setWindowElements((windowElements) => [
       ...windowElements,
       <Window
@@ -173,6 +173,8 @@ function App() {
         onWindowResizeStart={handleWindowResizeStart}
         onWindowResizeEnd={handleWindowResizeEnd}
         onWindowClose={handleWindowClose}
+        left={left}
+        top={top}
         {...props}
       >
         {element}
@@ -192,61 +194,43 @@ function App() {
   useEffect(() => {
     (async () => {
       addWindow(<Editor />, {
-        title: 'Editor', noPadding: true, style: {
-          left: 830, top: 580, width: 640, height: 220
-        }
+        title: 'Editor', noPadding: true, left: 830, top: 580, width: 640, height: 220,
       });
 
       const Calculator = await importModule('calculator.js');
 
       addWindow(<VideoPlayer src="videos/trailer.webm" />, {
-        title: 'Video', noPadding: true, noBorder: true, style: {
-          left: 830, top: 15
-        }
+        title: 'Video', noPadding: true, noBorder: true, left: 830, top: 15,
       });
 
       addWindow(<Examples />, {
-        title: 'Examples', style: {
-          left: 15, top: 15
-        }
+        title: 'Examples', left: 15, top: 15,
       });
 
       const Mail = await importModule('mail.js');
 
       addWindow(<Mail components={components} />, {
-        title: 'Mail', noPadding: true, style: {
-          left: 1490, top: 15, width: 900, height: 490
-        }
+        title: 'Mail', noPadding: true, left: 1490, top: 15, width: 900, height: 490,
       });
 
       addWindow(<Calculator components={components} />, {
-        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5', style: {
-          left: 1490, top: 520
-        }
+        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5', left: 1490, top: 520,
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
-        title: 'Preferences', xbackground: 'gray-1', style: {
-          left: 15, top: 420, width: 500
-        }
+        title: 'Preferences', xbackground: 'gray-1', left: 15, top: 420, width: 500,
       });
 
       addWindow(<Clock />, {
-        title: 'Clock', style: {
-          left: 1710, top: 540, width: 200, height: 230
-        }
+        title: 'Clock', left: 1710, top: 540, width: 200, height: 230,
       });
 
       addWindow(<S3Browser />, {
-        title: 'S3 Browser', noPadding: true, style: {
-          left: 830, top: 330
-        }
+        title: 'S3 Browser', noPadding: true, left: 830, top: 330,
       });
 
       addWindow(<Calendar />, {
-        title: 'Calendar', noPadding: true, style: {
-          left: 530, top: 460
-        }
+        title: 'Calendar', noPadding: true, left: 530, top: 460,
       });
     })();
 
