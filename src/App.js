@@ -48,6 +48,7 @@ const Module = ({ path }) => {
 
 const widgets = [
   { element: <Examples />, props: { title: 'Examples' } },
+  { element: <VideoPlayer src="videos/trailer.webm" />, props: { title: 'Video', noPadding: true, noBorder: true, left: 830, top: 15 } },
   { element: <Clock />, props: { title: 'Clock', width: 200, height: 230 } },
   { element: <Module path="calculator.js" />, props: { title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5' } },
   { element: <Module path="mail.js" />, props: { title: 'Mail', noPadding: true, width: 1000, height: 600 } },
@@ -56,9 +57,12 @@ const widgets = [
   { element: <Preferences />, props: { title: 'Preferences', xbackground: 'gray-1', width: 500 } },
   { element: <S3Browser />, props: { title: 'S3 Browser', noPadding: true } },
   { element: <Editor />, props: { title: 'Editor', noPadding: true, width: 640, height: 400 } },
+  {
+    element: <Fountain />, props: {
+      title: 'Fountain', noPadding: true, background: 'black',
+    }
+  },
 ];
-
-
 
 function App() {
   const windowElementRef = useRef(null);
