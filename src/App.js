@@ -187,7 +187,7 @@ function App() {
     })(nextWindowIdRef.current);
 
     nextWindowIdRef.current += 1;
-  }, []);
+  }, [handleWindowBlur, handleWindowFocus]);
 
   useEffect(() => {
     (async () => {
