@@ -19,6 +19,7 @@ import S3Browser from './widgets/S3Browser';
 import Editor from './widgets/Editor';
 import Places from './widgets/Places';
 import Credits from './widgets/Credits';
+import Fountain from './widgets/Fountain';
 
 import { Window, MenuBar } from './components';
 
@@ -232,6 +233,10 @@ function App() {
       addWindow(<Calendar />, {
         title: 'Calendar', noPadding: true, left: 530, top: 460,
       });
+
+      addWindow(<Fountain />, {
+        title: 'Fountain', noPadding: true, background: 'black', left: 1930, top: 520,
+      });
     })();
 
     return () => {
@@ -270,16 +275,6 @@ function App() {
             <Text>{widget.props.title}</Text>
           </View>
         ))}
-        {/* <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
-          <View background="white" borderRadius style={{ width: 50, height: 50 }} />
-          <Spacer />
-          <Text>Clock</Text>
-        </View>
-        <View alignItems="center" verticalPadding="medium" style={{ width: 100 }}>
-          <View background="white" borderRadius style={{ width: 50, height: 50 }} />
-          <Spacer />
-          <Text>Preferences</Text>
-        </View> */}
       </View>
       <AppBar
         windowElements={windowElements}
