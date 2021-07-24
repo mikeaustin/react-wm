@@ -28,11 +28,11 @@ const Fountain = () => {
       return;
     }
 
-    if (lastTimestamp === null) {
-      lastTimestamp = timestamp;
-    }
-
     if (frameRef.current % 2 === 0) {
+      if (lastTimestamp === null) {
+        lastTimestamp = timestamp;
+      }
+
       const delta = (timestamp - lastTimestamp.current) / 16;
 
       contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -57,6 +57,7 @@ const Fountain = () => {
             particle.vel.x = Math.random() * -2 + 1.0;
             particle.vel.y = Math.random() * -4.0 - 3.0;
           } else {
+            particle.pos.y -= particle.pos.y - 250;
             particle.vel.y *= -0.2 * delta;
           }
         }
