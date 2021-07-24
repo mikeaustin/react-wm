@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading } from '../components';
 
-const particles = Array.from({ length: 1000 }, (_, index) => (
+const createParticles = () => Array.from({ length: 1000 }, (_, index) => (
   {
     ttl: 1000,
     pos: {
@@ -19,7 +19,7 @@ const particles = Array.from({ length: 1000 }, (_, index) => (
 const Fountain = () => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
-  const particlesRef = useRef([...particles]);
+  const particlesRef = useRef(useMemo(() => createParticles()));
   const lastTimestamp = useRef(null);
 
   const handleAnimationFrame = (timestamp) => {

@@ -4,12 +4,10 @@ import React, { useRef, useState } from 'react';
 
 import { View, Text, Image, Button } from '../components';
 
-const calculateHands = () => {
-  const now = new Date();
-
-  const hourAngle = ((now.getHours() + now.getMinutes() / 60) * 30 + 180) * (Math.PI / 180);
-  const minuteAngle = ((now.getMinutes() + now.getSeconds() / 60) * 6 + 180) * (Math.PI / 180);
-  const secondAngle = (now.getSeconds() * 6 + 180) * (Math.PI / 180);
+const calculateHands = (date) => {
+  const hourAngle = ((date.getHours() + date.getMinutes() / 60) * 30 + 180) * (Math.PI / 180);
+  const minuteAngle = ((date.getMinutes() + date.getSeconds() / 60) * 6 + 180) * (Math.PI / 180);
+  const secondAngle = (date.getSeconds() * 6 + 180) * (Math.PI / 180);
 
   return ({
     hour: {
@@ -29,15 +27,15 @@ const calculateHands = () => {
 };
 
 const Clock = () => {
-  const now = new Date();
-
   const timerRef = useRef(null);
-  const [hands, setHands] = useState(calculateHands(now));
+  const [date, setDate] = useState(new Date());
 
   clearTimeout(timerRef.current);
   timerRef.current = setTimeout(() => {
-    setHands(calculateHands());
-  }, 1000 - now.getMilliseconds());
+    setDate(new Date());
+  }, 1000 - date.getMilliseconds());
+
+  const hands = calculateHands(date);
 
   return (
     <View tag="svg" viewBox="0 0 200 200" flex>
