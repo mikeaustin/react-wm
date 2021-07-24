@@ -276,7 +276,7 @@ function App() {
           >
             <View background="white" borderRadius style={{ width: 50, height: 50 }} />
             <Spacer />
-            <Text>{widget.props.title}</Text>
+            <Text fontWeight="medium" color="white" style={{ textShadow: '0 0 1px hsla(0, 0%, 0%, 0.5)' }}>{widget.props.title}</Text>
           </View>
         ))}
       </View>
