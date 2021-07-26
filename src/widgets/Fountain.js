@@ -31,8 +31,8 @@ const Fountain = () => {
     }
 
     if (frameRef.current % 2 === 0) {
-      if (lastTimestamp === null) {
-        lastTimestamp = timestamp;
+      if (lastTimestamp.current === null) {
+        lastTimestamp.current = timestamp;
       }
 
       const delta = (timestamp - lastTimestamp.current) / 16;
