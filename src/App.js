@@ -215,11 +215,11 @@ function App() {
       const Mail = await importModule('mail.js');
 
       addWindow(<Mail components={components} />, {
-        title: 'Mail', noPadding: true, left: 1480, top: 15, width: 900, height: 490,
+        title: 'Mail', noPadding: true, left: 1475, top: 15, width: 900, height: 490,
       });
 
       addWindow(<Calculator components={components} />, {
-        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5', left: 1490, top: 520,
+        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5', left: 1475, top: 520,
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
@@ -227,7 +227,7 @@ function App() {
       });
 
       addWindow(<Clock />, {
-        title: 'Clock', left: 1710, top: 540, width: 200, height: 230,
+        title: 'Clock', left: 1700, top: 540, width: 200, height: 230,
       });
 
       addWindow(<S3Browser />, {
@@ -239,7 +239,7 @@ function App() {
       });
 
       addWindow(<Fountain />, {
-        title: 'Fountain', noPadding: true, background: 'black', left: 1930, top: 520,
+        title: 'Fountain', noPadding: true, background: 'black', left: 1920, top: 520,
       });
     })();
 
