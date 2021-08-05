@@ -199,13 +199,13 @@ function App() {
   useEffect(() => {
     (async () => {
       addWindow(<Editor />, {
-        title: 'Editor', noPadding: true, left: 830, top: 580, width: 640, height: 220,
+        title: 'Editor', noPadding: true, left: 820, top: 580, width: 640, height: 220,
       });
 
       const Calculator = await importModule('calculator.js');
 
       addWindow(<VideoPlayer src="videos/trailer.webm" />, {
-        title: 'Video', noPadding: true, noBorder: true, left: 830, top: 15,
+        title: 'Video', noPadding: true, noBorder: true, left: 820, top: 15,
       });
 
       addWindow(<Examples />, {
@@ -215,7 +215,7 @@ function App() {
       const Mail = await importModule('mail.js');
 
       addWindow(<Mail components={components} />, {
-        title: 'Mail', noPadding: true, left: 1490, top: 15, width: 900, height: 490,
+        title: 'Mail', noPadding: true, left: 1480, top: 15, width: 900, height: 490,
       });
 
       addWindow(<Calculator components={components} />, {
@@ -231,7 +231,7 @@ function App() {
       });
 
       addWindow(<S3Browser />, {
-        title: 'S3 Browser', noPadding: true, left: 830, top: 330,
+        title: 'S3 Browser', noPadding: true, left: 820, top: 330,
       });
 
       addWindow(<Calendar />, {
