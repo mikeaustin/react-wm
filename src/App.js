@@ -199,13 +199,13 @@ function App() {
   useEffect(() => {
     (async () => {
       addWindow(<Editor />, {
-        title: 'Editor', noPadding: true, left: 820, top: 580, width: 640, height: 220,
+        title: 'Editor', noPadding: true, left: 830, top: 580, width: 640, height: 220,
       });
 
       const Calculator = await importModule('calculator.js');
 
       addWindow(<VideoPlayer src="videos/trailer.webm" />, {
-        title: 'Video', noPadding: true, noBorder: true, left: 820, top: 15,
+        title: 'Video', noPadding: true, noBorder: true, left: 830, top: 15,
       });
 
       addWindow(<Examples />, {
@@ -215,11 +215,11 @@ function App() {
       const Mail = await importModule('mail.js');
 
       addWindow(<Mail components={components} />, {
-        title: 'Mail', noPadding: true, left: 1475, top: 15, width: 900, height: 490,
+        title: 'Mail', noPadding: true, left: 1490, top: 15, width: 1050, height: 490,
       });
 
       addWindow(<Calculator components={components} />, {
-        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5', left: 1475, top: 520,
+        title: 'Calculator', noPadding: true, noBorder: true, background: 'gray-5', left: 1490, top: 520,
       });
 
       addWindow(<Preferences onSetBackground={handleSetBackground} />, {
@@ -227,11 +227,11 @@ function App() {
       });
 
       addWindow(<Clock />, {
-        title: 'Clock', left: 1700, top: 540, width: 200, height: 230,
+        title: 'Clock', left: 1705, top: 540, width: 200, height: 230,
       });
 
       addWindow(<S3Browser />, {
-        title: 'S3 Browser', noPadding: true, left: 820, top: 330,
+        title: 'S3 Browser', noPadding: true, left: 830, top: 330,
       });
 
       addWindow(<Calendar />, {
