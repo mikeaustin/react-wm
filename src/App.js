@@ -20,6 +20,7 @@ import Editor from './widgets/Editor';
 import Places from './widgets/Places';
 import Credits from './widgets/Credits';
 import Fountain from './widgets/Fountain';
+import WebGL from './widgets/WebGL';
 
 import { Window, MenuBar } from './components';
 
@@ -240,6 +241,11 @@ function App() {
 
       addWindow(<Fountain />, {
         title: 'Fountain', noPadding: true, background: 'black', left: 1920, top: 520,
+      });
+
+      addWindow(
+        <WebGL />, {
+        title: 'WebGL', noPadding: true, background: 'black', left: 2290, top: 520,
       });
     })();
 
