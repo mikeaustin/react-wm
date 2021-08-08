@@ -1,8 +1,12 @@
 /* eslint no-unused-vars: "off" */
 
 import React, { useEffect, useRef, useMemo, useState } from 'react';
+import X, { Scene } from 'x3dom';
+import * as Z from 'x3dom';
 
 import { View, Text, Image, Button, Spacer, Divider, List, Heading } from '../components';
+
+console.log('WebGL', Z);
 
 const WebGL = () => {
   const canvasRef = useRef(null);
@@ -20,14 +24,27 @@ const WebGL = () => {
   useEffect(() => {
     console.log('useEffect()');
 
-    const id = window.requestAnimationFrame(handleAnimationFrame);
+    // const id = window.requestAnimationFrame(handleAnimationFrame);
 
-    contextRef.current = canvasRef.current.getContext('webgl');
+    // contextRef.current = canvasRef.current.getContext('webgl');
 
     return () => {
-      window.cancelAnimationFrame(id);
+      // window.cancelAnimationFrame(id);
     };
   }, []);
+
+  return (
+    <x3d width="250px" height="250px">
+      <scene>
+        <shape>
+          <appearance>
+            <material diffuseColor='1 0 0' />
+          </appearance>
+          <box />
+        </shape>
+      </scene>
+    </x3d>
+  );
 
   return (
     <View ref={canvasRef} tag="canvas" flex width={250} height={250} />
