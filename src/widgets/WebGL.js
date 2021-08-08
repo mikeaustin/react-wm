@@ -34,13 +34,14 @@ const WebGL = () => {
   }, []);
 
   return (
-    <x3d width="250px" height="250px">
-      <scene>
-        <shape>
-          <appearance>
-            <material diffuseColor='1 0 0' />
+    <x3d is="x3d" width="100%" height="100%">
+      <scene is="scene">
+        <navigationInfo is="navigationInfo" id='nav' type='turntable' />
+        <shape is="shape">
+          <appearance is="appearance">
+            <material is="material" diffuseColor='1 0 0' />
           </appearance>
-          <box />
+          <box is="box" size="100,100,100" />
         </shape>
       </scene>
     </x3d>

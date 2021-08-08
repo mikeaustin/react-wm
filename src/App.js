@@ -245,7 +245,7 @@ function App() {
 
       addWindow(
         <WebGL />, {
-        title: 'WebGL', noPadding: true, background: 'black', left: 2290, top: 520,
+        title: 'WebGL', noPadding: true, background: 'black', left: 2290, top: 520, width: 250, height: 280,
       });
     })();
 
